@@ -1,0 +1,157 @@
+.gallery-page {
+  min-height: 100vh;
+  background: var(--cream);
+  font-family: "the-seasons", Georgia, serif;
+}
+
+/* ── HEADER ── */
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 6rem;
+  border-bottom: 1px solid rgba(92, 46, 46, 0.12);
+  background: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+}
+
+.gallery-back {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  transition: color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.gallery-back:hover {
+  color: var(--brown);
+}
+
+.gallery-header-text {
+  text-align: center;
+  flex: 1;
+  padding: 0 3rem;
+}
+
+.gallery-title {
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  line-height: 1;
+}
+
+.gallery-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  text-transform: lowercase;
+  font-weight: 300;
+}
+
+.gallery-book-btn {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  background: var(--brown);
+  color: var(--white);
+  font-family: "the-seasons", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.gallery-book-btn:hover {
+  opacity: 0.8;
+}
+
+/* ── COLLAGE GRID ── */
+.gallery-collage {
+  columns: 3;
+  column-gap: 1rem;
+  padding: 3rem 6rem 5rem;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+  opacity: 0.92;
+}
+
+/* ── COMING SOON ── */
+.gallery-coming-soon {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-coming-soon p {
+  font-family: "the-seasons", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+/* ── NOT FOUND ── */
+.gallery-not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  font-family: "the-seasons", Georgia, serif;
+  background: var(--cream);
+  text-transform: lowercase;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .gallery-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+
+  .gallery-header-text {
+    padding: 0;
+  }
+
+  .gallery-collage {
+    columns: 2;
+    padding: 2rem 2rem 4rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .gallery-collage {
+    columns: 1;
+  }
+}
