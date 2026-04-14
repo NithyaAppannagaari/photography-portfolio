@@ -1,0 +1,172 @@
+/* ============================================================
+   PixelCard — interactive image card with pixel-hover effect
+   ============================================================ */
+
+.pxcard {
+  position: relative;
+  will-change: transform;
+  /* Snap back smoothly when mouse leaves */
+  transition: box-shadow 0.4s ease;
+  border-radius: 2px;
+  overflow: hidden; /* clip the 3D tilt at card boundary */
+}
+
+.pxcard:hover {
+  box-shadow:
+    0 30px 80px rgba(28, 10, 10, 0.28),
+    0 10px 30px rgba(28, 10, 10, 0.18);
+}
+
+/* ── Aspect ratio variants ────────────────────────────────── */
+.pxcard--portrait   { aspect-ratio: 3 / 4; }
+.pxcard--landscape  { aspect-ratio: 4 / 3; }
+.pxcard--square     { aspect-ratio: 1 / 1; }
+
+/* ── Inner link wrapper ───────────────────────────────────── */
+.pxcard__link {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Base image (always visible) ──────────────────────────── */
+.pxcard__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Subtle scale-in on hover (behind the canvas) */
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.pxcard:hover .pxcard__img {
+  transform: scale(1.04);
+}
+
+/* ── Canvas — pixel effect overlay ───────────────────────── */
+.pxcard__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* canvas stretches to fill container; internal resolution
+     is set in the component (480×600) and CSS scales it */
+  display: block;
+  opacity: 0;
+  /* Fade in on hover */
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.pxcard__canvas--on {
+  opacity: 1;
+}
+
+/* ── Gradient overlay — deepens on hover for text legibility */
+.pxcard__grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 4, 4, 0.82) 0%,
+    rgba(10, 4, 4, 0.45) 40%,
+    rgba(10, 4, 4, 0.12) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.pxcard__grad--on {
+  opacity: 1;
+}
+
+/* ── Text content overlay ─────────────────────────────────── */
+.pxcard__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 2rem 2.5rem;
+  pointer-events: none;
+}
+
+.pxcard__num {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: rgba(232, 201, 154, 0.75);  /* --tan-light */
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+  display: block;
+}
+
+.pxcard__title {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  text-transform: lowercase;
+  margin-bottom: 0.6rem;
+}
+
+.pxcard__desc {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(247, 243, 236, 0.72);
+  max-width: 280px;
+  margin-bottom: 1.1rem;
+  text-transform: lowercase;
+}
+
+.pxcard__cta {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(232, 201, 154, 0.9);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(232, 201, 154, 0.4);
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+/* ── Mobile — degrade tilt, keep tap overlay ─────────────── */
+@media (hover: none) {
+  /* On touch devices: show overlay always (no hover state) */
+  .pxcard__grad {
+    opacity: 0.65;
+  }
+  .pxcard__text {
+    /* Show text without hover */
+    display: flex;
+  }
+  .pxcard__canvas {
+    display: none; /* skip canvas on touch */
+  }
+  .pxcard:hover {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .pxcard__text {
+    padding: 1.4rem 1.4rem 1.8rem;
+  }
+  .pxcard__title {
+    font-size: 1.4rem;
+  }
+}

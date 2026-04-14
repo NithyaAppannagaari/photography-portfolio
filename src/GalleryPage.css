@@ -1,7 +1,11 @@
+/* ============================================================
+   GalleryPage — enhanced masonry with tilt + overlay effects
+   ============================================================ */
+
 .gallery-page {
   min-height: 100vh;
   background: var(--cream);
-  font-family: "the-seasons", Georgia, serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 /* ── HEADER ── */
@@ -11,28 +15,32 @@
   justify-content: space-between;
   padding: 2.5rem 6rem;
   border-bottom: 1px solid rgba(92, 46, 46, 0.12);
-  background: var(--cream);
+  background: rgba(247, 243, 236, 0.94);
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 }
 
 .gallery-back {
-  font-size: 1rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
   font-weight: 400;
   color: var(--text-muted);
   text-decoration: none;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: lowercase;
   transition: color 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
+  /* Reset button styles so <button> looks like a link */
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
 }
 
-.gallery-back:hover {
-  color: var(--brown);
-}
+.gallery-back:hover { color: var(--brown); cursor: pointer; }
 
 .gallery-header-text {
   text-align: center;
@@ -41,6 +49,7 @@
 }
 
 .gallery-title {
+  font-family: 'Space Mono', monospace;
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 700;
   color: var(--text);
@@ -62,7 +71,7 @@
   padding: 0.75rem 1.8rem;
   background: var(--brown);
   color: var(--white);
-  font-family: "the-seasons", Georgia, serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -73,32 +82,111 @@
   transition: opacity 0.2s;
 }
 
-.gallery-book-btn:hover {
-  opacity: 0.8;
+.gallery-book-btn:hover { opacity: 0.8; }
+
+/* ── META ROW ── */
+.gallery-meta {
+  padding: 1.4rem 6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-/* ── COLLAGE GRID ── */
+.gallery-meta-count {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: var(--tan);
+  opacity: 0.7;
+}
+
+/* ── MASONRY GRID ── */
 .gallery-collage {
   columns: 3;
   column-gap: 1rem;
-  padding: 3rem 6rem 5rem;
+  padding: 2rem 6rem 6rem;
 }
 
-.gallery-item {
+/* ── Gallery item ── */
+.gi {
   break-inside: avoid;
   margin-bottom: 1rem;
-  overflow: hidden;
+  will-change: transform;
+  /* Entrance animation via CSS — stagger via --delay custom property */
+  animation: gi-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0s);
 }
 
-.gallery-item img {
+@keyframes gi-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gi__wrap {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  border-radius: 1px;
+}
+
+.gi__img {
   width: 100%;
   display: block;
-  transition: transform 0.5s ease, opacity 0.3s ease;
+  object-fit: cover;
+  /* Smooth zoom on hover */
+  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.03);
-  opacity: 0.92;
+.gi--hovered .gi__img {
+  transform: scale(1.04);
+  filter: saturate(1.08) brightness(0.95);
+}
+
+/* Overlay: dark gradient + index number */
+.gi__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 4, 4, 0.7) 0%,
+    rgba(10, 4, 4, 0.2) 35%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem 1.4rem;
+}
+
+.gi--hovered .gi__overlay {
+  opacity: 1;
+}
+
+.gi__idx {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(232, 201, 154, 0.8);
+  text-transform: lowercase;
+  transform: translateY(6px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.05s,
+              opacity  0.3s ease 0.05s;
+}
+
+.gi--hovered .gi__idx {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* ── COMING SOON ── */
@@ -110,9 +198,9 @@
 }
 
 .gallery-coming-soon p {
-  font-family: "the-seasons", Georgia, serif;
+  font-family: 'Space Mono', monospace;
   font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-muted);
   letter-spacing: 0.1em;
   text-transform: lowercase;
@@ -126,32 +214,35 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  font-family: "the-seasons", Georgia, serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   background: var(--cream);
   text-transform: lowercase;
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .gallery-header  { padding: 2rem 3rem; }
+  .gallery-meta    { padding: 1.2rem 3rem 0; }
+  .gallery-collage { columns: 2; padding: 2rem 3rem 4rem; }
+}
+
 @media (max-width: 900px) {
   .gallery-header {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 2rem 2rem;
+    padding: 2rem;
     text-align: center;
   }
-
-  .gallery-header-text {
-    padding: 0;
-  }
-
-  .gallery-collage {
-    columns: 2;
-    padding: 2rem 2rem 4rem;
-  }
+  .gallery-header-text { padding: 0; }
+  .gallery-meta { padding: 1rem 2rem 0; }
+  .gallery-collage { columns: 2; padding: 1.5rem 2rem 4rem; column-gap: 0.75rem; }
+  .gi { margin-bottom: 0.75rem; }
 }
 
 @media (max-width: 540px) {
-  .gallery-collage {
-    columns: 1;
-  }
+  .gallery-collage { columns: 1; }
+  /* On touch: always show overlay */
+  .gi__overlay { opacity: 0.6; }
+  .gi__idx { opacity: 0.8; transform: none; }
+  .gi__img { transition: none; }
 }

@@ -1,0 +1,376 @@
+/* ============================================================
+   PricingPage — clean B2B SaaS pricing layout
+   ============================================================ */
+
+.pricing-page {
+  min-height: 100vh;
+  background: var(--cream);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ── HEADER ── */
+.pricing-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 4rem 3rem;
+  border-bottom: 1px solid rgba(92, 46, 46, 0.12);
+  background: rgba(247, 243, 236, 0.96);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+}
+
+.pricing-back {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-muted, #5E3E3E);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.pricing-back:hover { color: var(--brown, #5C2E2E); }
+
+.pricing-header-center {
+  text-align: center;
+  flex: 1;
+}
+
+/* Reuse section-tag from App.css — also defined locally for standalone use */
+.pricing-page .section-tag {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tan, #C4956A);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.pricing-title {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text, #1A0F0F);
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  line-height: 1.1;
+  margin: 0 0 0.6rem;
+}
+
+.pricing-subtitle {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted, #5E3E3E);
+  line-height: 1.7;
+  text-transform: lowercase;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.pricing-book-btn {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  text-decoration: none;
+  color: var(--white, #fff);
+  background: var(--brown, #5C2E2E);
+  padding: 0.6rem 1.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.pricing-book-btn:hover { opacity: 0.8; }
+
+/* ── MAIN CONTENT ── */
+.pricing-main {
+  padding: 4rem 4rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── TIER GRID ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* ── TIER CARD ── */
+.tier-card {
+  background: var(--white, #fff);
+  border: 1px solid rgba(92, 46, 46, 0.12);
+  padding: 2.2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.tier-card:hover {
+  box-shadow: 0 12px 40px rgba(28, 10, 10, 0.1);
+  transform: translateY(-2px);
+}
+
+.tier-card--highlight {
+  background: var(--black, #0D0A0A);
+  border-color: var(--black, #0D0A0A);
+}
+
+/* ── Card top ── */
+.tier-top {
+  margin-bottom: 1.6rem;
+}
+
+.tier-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.tier-num {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--tan, #C4956A);
+  text-transform: lowercase;
+}
+
+.tier-card--highlight .tier-num {
+  color: rgba(232, 201, 154, 0.6);
+}
+
+.tier-badge {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted, #5E3E3E);
+  background: rgba(92, 46, 46, 0.07);
+  padding: 0.22rem 0.6rem;
+}
+
+.tier-badge--accent {
+  color: var(--tan-light, #E8C99A);
+  background: rgba(232, 201, 154, 0.15);
+}
+
+.tier-title {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 700;
+  color: var(--text, #1A0F0F);
+  text-transform: lowercase;
+  line-height: 1.15;
+  margin: 0 0 0.3rem;
+}
+
+.tier-card--highlight .tier-title { color: var(--white, #fff); }
+
+.tier-sublabel {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted, #5E3E3E);
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.tier-card--highlight .tier-sublabel { color: rgba(255,255,255,0.45); }
+
+/* ── Price ── */
+.tier-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.tier-price {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--text, #1A0F0F);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.tier-card--highlight .tier-price { color: var(--white, #fff); }
+
+.tier-unit {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-muted, #5E3E3E);
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+}
+
+.tier-card--highlight .tier-unit { color: rgba(255,255,255,0.4); }
+
+/* ── Divider ── */
+.tier-rule {
+  height: 1px;
+  background: rgba(92, 46, 46, 0.1);
+  margin-bottom: 1.4rem;
+}
+
+.tier-card--highlight .tier-rule { background: rgba(255,255,255,0.1); }
+
+/* ── Features ── */
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+}
+
+.tier-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--text-muted, #5E3E3E);
+  line-height: 1.5;
+  text-transform: lowercase;
+}
+
+.tier-card--highlight .tier-feature { color: rgba(255,255,255,0.65); }
+
+.tier-feature-check {
+  font-size: 0.72rem;
+  color: var(--tan, #C4956A);
+  flex-shrink: 0;
+  margin-top: 0.18rem;
+}
+
+.tier-card--highlight .tier-feature-check { color: var(--tan-light, #E8C99A); }
+
+/* ── Note ── */
+.tier-note {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(94, 62, 62, 0.6);
+  line-height: 1.6;
+  text-transform: lowercase;
+  margin: 0 0 1.6rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(92, 46, 46, 0.07);
+}
+
+.tier-card--highlight .tier-note { color: rgba(255,255,255,0.3); border-top-color: rgba(255,255,255,0.08); }
+
+/* ── CTA ── */
+.tier-cta {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  text-decoration: none;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid rgba(92, 46, 46, 0.22);
+  color: var(--text, #1A0F0F);
+  background: transparent;
+  transition: background 0.22s, color 0.22s, border-color 0.22s;
+  text-align: center;
+}
+
+.tier-cta:hover {
+  background: var(--brown, #5C2E2E);
+  color: var(--white, #fff);
+  border-color: var(--brown, #5C2E2E);
+}
+
+.tier-cta--primary {
+  background: var(--tan-light, #E8C99A);
+  color: var(--black, #0D0A0A);
+  border-color: var(--tan-light, #E8C99A);
+}
+
+.tier-cta--primary:hover {
+  background: rgba(232, 201, 154, 0.85);
+  color: var(--black, #0D0A0A);
+  border-color: transparent;
+}
+
+/* ── Bottom note ── */
+.pricing-footer-note {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(92, 46, 46, 0.1);
+  text-align: center;
+}
+
+.pricing-footer-note p {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted, #5E3E3E);
+  line-height: 1.7;
+  text-transform: lowercase;
+}
+
+.pricing-footer-note a {
+  color: var(--brown, #5C2E2E);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(92, 46, 46, 0.3);
+  transition: opacity 0.2s;
+}
+
+.pricing-footer-note a:hover { opacity: 0.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .pricing-header { padding: 2rem 2.5rem; }
+  .pricing-main   { padding: 3rem 2.5rem 5rem; }
+  .pricing-grid   { gap: 1.2rem; }
+}
+
+@media (max-width: 860px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .pricing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.8rem 1.6rem;
+    position: static;
+  }
+  .pricing-header-center { text-align: left; }
+  .pricing-subtitle { max-width: none; }
+  .pricing-main { padding: 2.5rem 1.6rem 4rem; }
+  .tier-card { padding: 1.8rem 1.5rem; }
+}
