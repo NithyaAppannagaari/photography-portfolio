@@ -98,19 +98,6 @@ function HomePage() {
             <a href="#contact" className="btn btn-cream">book a session →</a>
             <a href="#work"    className="btn btn-ghost-outline">view work ↓</a>
           </div>
-
-          {/* Social proof / stats strip */}
-          <div className="hero-stats">
-            <div className="hero-stat">
-              <span className="hero-stat-val">50+</span>
-              <span className="hero-stat-lbl">sessions</span>
-            </div>
-            <span className="hero-stat-sep" aria-hidden="true">·</span>
-            <div className="hero-stat">
-              <span className="hero-stat-val">3</span>
-              <span className="hero-stat-lbl">specialties</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -123,7 +110,7 @@ function HomePage() {
           <h2 className="about-name">Nithya Appannagaari</h2>
           <div className="about-rule" />
           <p className="about-bio">
-            Hi — I'm a photographer based at UC Berkeley specialising in event coverage,
+            Hi! I'm a photographer based at UC Berkeley specialising in event coverage,
             club &amp; recruitment headshots, and graduation sessions. 
           </p>
 
