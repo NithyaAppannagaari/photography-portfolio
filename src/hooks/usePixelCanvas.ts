@@ -1,7 +1,7 @@
 /**
  * usePixelCanvas — spotlight pixel-hover effect for background images
  *
- * Unlike PixelCard (which pixelates the whole image), this hook draws a
+ * Unlike PixelCard (which pixelates the whole card on hover), this hook draws a
  * circular "spotlight" of pixelation that follows the mouse cursor.
  * Everything outside the spotlight stays at full quality, creating a
  * subtle "magic lens" effect rather than a full-screen distortion.

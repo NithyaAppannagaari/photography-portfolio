@@ -17,6 +17,7 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { PORTFOLIO_PIXEL_MAX_PX } from '../constants/pixelHover'
 import './PixelCard.css'
 
 export interface PixelCardProps {
@@ -32,8 +33,8 @@ export interface PixelCardProps {
   aspect?: 'portrait' | 'landscape' | 'square'
 }
 
-/** Maximum pixel-block size reached at peak of hover */
-const MAX_PX = 18
+/** Maximum pixel-block size reached at peak of hover (shared with about `usePixelCanvas`) */
+const MAX_PX = PORTFOLIO_PIXEL_MAX_PX
 /** Lerp factor — lower = slower/smoother ease */
 const EASE = 0.14
 

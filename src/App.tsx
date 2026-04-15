@@ -5,6 +5,7 @@ import PricingPage  from './PricingPage'
 import PixelCard    from './components/PixelCard'
 import CustomCursor from './components/CustomCursor'
 import { usePixelCanvas } from './hooks/usePixelCanvas'
+import { PORTFOLIO_PIXEL_MAX_PX } from './constants/pixelHover'
 import titleImg   from './assets/title.jpg'
 import aboutImg   from './assets/about.JPG'
 import clubCover  from './assets/club_photoshoots/DSC08853 (1).jpg'
@@ -49,7 +50,7 @@ function HomePage() {
   const hero = usePixelCanvas(IMGS.hero,  { maxPx: 10, radius: 230, ease: 0.10 })
   // Pixel spotlight effect for about portrait — even subtler
   const about = usePixelCanvas(IMGS.about, {
-    maxPx: 8,
+    maxPx: PORTFOLIO_PIXEL_MAX_PX,
     radius: 170,
     ease: 0.09,
     objectFit: 'contain',

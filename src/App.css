@@ -455,18 +455,29 @@
   pointer-events: none;
 }
 
-/* Fade from image into the left text column (stronger on the left edge of the photo column) */
+/* Vignette: blend into cream on the left (text column), top, and bottom */
 .about-right-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(247, 243, 236, 0) 0%,
-    rgba(247, 243, 236, 0) 42%,
-    rgba(247, 243, 236, 0.55) 72%,
-    var(--cream) 100%
-  );
   pointer-events: none;
+  /* Top layer: vertical softening; bottom layer: horizontal into text column */
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--cream) 0%,
+      rgba(247, 243, 236, 0.4) 12%,
+      rgba(247, 243, 236, 0) 26%,
+      rgba(247, 243, 236, 0) 74%,
+      rgba(247, 243, 236, 0.4) 88%,
+      var(--cream) 100%
+    ),
+    linear-gradient(
+      to left,
+      rgba(247, 243, 236, 0) 0%,
+      rgba(247, 243, 236, 0) 38%,
+      rgba(247, 243, 236, 0.5) 68%,
+      var(--cream) 100%
+    );
 }
 
 /* ── WORK ────────────────────────────────────────── */
@@ -865,9 +876,6 @@
   .about-right {
     height: 55vh;
     min-height: 320px;
-  }
-  .about-right-fade {
-    background: linear-gradient(to top, transparent 55%, var(--cream) 100%);
   }
 
   .work-pixel-grid {

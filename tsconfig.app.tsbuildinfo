@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/gallerypage.tsx","./src/pricingpage.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/customcursor.tsx","./src/components/pixelcard.tsx","./src/hooks/usepixelcanvas.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/gallerypage.tsx","./src/pricingpage.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/customcursor.tsx","./src/components/pixelcard.tsx","./src/constants/pixelhover.ts","./src/hooks/usepixelcanvas.ts"],"version":"5.9.3"}
