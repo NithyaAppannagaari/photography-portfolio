@@ -20,6 +20,57 @@
 
 import { useRef, useEffect, useCallback } from 'react'
 
+type ObjectFitMode = 'cover' | 'contain'
+
+type HAlign = 'left' | 'center' | 'right'
+type VAlign = 'top' | 'center' | 'bottom'
+
+function parseObjectPosition(s: string): { h: HAlign; v: VAlign } {
+  const parts = s.trim().toLowerCase().split(/\s+/).filter(Boolean)
+  const mapH = (t: string): HAlign | null =>
+    t === 'left' || t === 'right' || t === 'center' ? (t as HAlign) : null
+  const mapV = (t: string): VAlign | null =>
+    t === 'top' || t === 'bottom' || t === 'center' ? (t as VAlign) : null
+  if (parts.length === 0) return { h: 'center', v: 'center' }
+  if (parts.length === 1) {
+    const a = mapH(parts[0]) ?? mapV(parts[0])
+    if (a === 'left' || a === 'right' || a === 'center') return { h: a, v: 'center' }
+    return { h: 'center', v: a as VAlign }
+  }
+  const p0 = parts[0]
+  const p1 = parts[1]
+  let h: HAlign = 'center'
+  let v: VAlign = 'center'
+  if (mapH(p0)) h = mapH(p0)!
+  else if (mapV(p0)) v = mapV(p0)!
+  if (mapV(p1)) v = mapV(p1)!
+  else if (mapH(p1)) h = mapH(p1)!
+  return { h, v }
+}
+
+/** Destination rect for `drawImage` — same math as CSS `object-fit` + `object-position`. */
+function placedImageRect(
+  iw: number,
+  ih: number,
+  cw: number,
+  ch: number,
+  fit: ObjectFitMode,
+  hAlign: HAlign,
+  vAlign: VAlign
+): { dx: number; dy: number; dw: number; dh: number } {
+  if (!iw || !ih || !cw || !ch) return { dx: 0, dy: 0, dw: cw, dh: ch }
+  const scale = fit === 'cover' ? Math.max(cw / iw, ch / ih) : Math.min(cw / iw, ch / ih)
+  const dw = iw * scale
+  const dh = ih * scale
+  let dx = (cw - dw) / 2
+  let dy = (ch - dh) / 2
+  if (hAlign === 'left') dx = 0
+  if (hAlign === 'right') dx = cw - dw
+  if (vAlign === 'top') dy = 0
+  if (vAlign === 'bottom') dy = ch - dh
+  return { dx, dy, dw, dh }
+}
+
 interface Options {
   /** Max pixel block size in the spotlight (default 10 — subtler than PixelCard's 18) */
   maxPx?: number
@@ -27,13 +78,22 @@ interface Options {
   radius?: number
   /** Lerp smoothing factor — lower = slower ease (default 0.1) */
   ease?: number
+  /** Match CSS `object-fit` on the underlying `<img>` (default `cover`) */
+  objectFit?: ObjectFitMode
+  /** Match CSS `object-position`, e.g. `right center` (default `center center`) */
+  objectPosition?: string
 }
 
-export function usePixelCanvas(src: string, { maxPx = 10, radius = 200, ease = 0.1 }: Options = {}) {
+export function usePixelCanvas(
+  src: string,
+  { maxPx = 10, radius = 200, ease = 0.1, objectFit = 'cover', objectPosition = 'center center' }: Options = {}
+) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const imgRef    = useRef<HTMLImageElement | null>(null)
   const offRef    = useRef<HTMLCanvasElement | null>(null)   // scratch canvas for downsampling
   const rafRef    = useRef<number>(0)
+  const layoutRef = useRef({ objectFit, objectPosition })
+  layoutRef.current = { objectFit, objectPosition }
   // All mutable animation state in a single ref — avoids stale closure issues
   const st = useRef({ px: 1, target: 1, mx: -999, my: -999, active: false })
 
@@ -79,11 +139,17 @@ export function usePixelCanvas(src: string, { maxPx = 10, radius = 200, ease = 0
     const H = c.height
     if (!W || !H) return
 
-    // ── 1. Draw full-quality image as the base ──────────────────────────────
+    const iw = img.naturalWidth
+    const ih = img.naturalHeight
+    const { objectFit: fit, objectPosition: posStr } = layoutRef.current
+    const { h: hAlign, v: vAlign } = parseObjectPosition(posStr)
+    const { dx, dy, dw, dh } = placedImageRect(iw, ih, W, H, fit, hAlign, vAlign)
+
+    // ── 1. Draw full-quality image as the base (same geometry as CSS object-fit) ─
     ctx.imageSmoothingEnabled      = true
     ctx.imageSmoothingQuality      = 'high'
     ctx.clearRect(0, 0, W, H)
-    ctx.drawImage(img, 0, 0, W, H)
+    ctx.drawImage(img, dx, dy, dw, dh)
 
     // ── 2. If active, overlay pixelated spotlight around cursor ─────────────
     if (!s.active || s.px <= 1.3 || s.mx < 0) return
@@ -93,10 +159,12 @@ export function usePixelCanvas(src: string, { maxPx = 10, radius = 200, ease = 0
     off.width  = bw
     off.height = bh
 
-    // Downsample onto offscreen canvas (smooth bilinear → tiny "pixel" grid)
+    // Downsample: same placement into a mini canvas (aspect matches main view)
     const oc = off.getContext('2d')!
+    oc.clearRect(0, 0, bw, bh)
     oc.imageSmoothingEnabled = true
-    oc.drawImage(img, 0, 0, bw, bh)
+    const sm = placedImageRect(iw, ih, bw, bh, fit, hAlign, vAlign)
+    oc.drawImage(img, sm.dx, sm.dy, sm.dw, sm.dh)
 
     // Clip a circle at the cursor, then draw the pixelated version inside it.
     // nearest-neighbor upscale = chunky pixel blocks — visible only in the circle.

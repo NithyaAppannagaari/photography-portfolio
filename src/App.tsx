@@ -48,7 +48,13 @@ function HomePage() {
   // Pixel spotlight effect for hero — smaller maxPx + larger radius than PixelCard
   const hero = usePixelCanvas(IMGS.hero,  { maxPx: 10, radius: 230, ease: 0.10 })
   // Pixel spotlight effect for about portrait — even subtler
-  const about = usePixelCanvas(IMGS.about, { maxPx:  8, radius: 170, ease: 0.09 })
+  const about = usePixelCanvas(IMGS.about, {
+    maxPx: 8,
+    radius: 170,
+    ease: 0.09,
+    objectFit: 'contain',
+    objectPosition: 'right center',
+  })
 
   return (
     <div className="portfolio">
