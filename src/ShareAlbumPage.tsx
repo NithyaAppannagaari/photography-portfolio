@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import PhotoViewer from './components/PhotoViewer'
 import SiteFooter from './components/SiteFooter'
+import SiteNav from './components/SiteNav'
 import { getAlbum, photoUrl, shareMessage, type Album } from './share/api'
 import { extForType, fileName } from './share/slug'
 import { useNoIndex } from './share/useNoIndex'
@@ -38,20 +40,20 @@ export default function ShareAlbumPage() {
 
   useEffect(() => {
     if (open === null) return
+    document.querySelector('.viewer')?.scrollIntoView({ block: 'start' })
+  }, [open])
+
+  useEffect(() => {
+    if (open === null || !album) return
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(null)
-      if (!album) return
       if (event.key === 'ArrowRight') setOpen((index) => (index === null ? index : (index + 1) % album.photos.length))
       if (event.key === 'ArrowLeft') {
         setOpen((index) => (index === null ? index : (index - 1 + album.photos.length) % album.photos.length))
       }
     }
-    document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', onKey)
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [open, album])
 
   async function downloadAll() {
@@ -88,98 +90,57 @@ export default function ShareAlbumPage() {
   const active = album && open !== null ? album.photos[open] : null
 
   return (
-    <div className="share-page linen">
-      <header className="page-header">
-        <div className="page-header__bar">
-          <Link to="/" className="page-header__back">Home</Link>
-          <Link to="/" className="page-header__mark">Nithya</Link>
-          {album ? (
-            <button
-              type="button"
-              className="btn btn-solid page-header__action"
-              onClick={() => { void downloadAll() }}
-              disabled={count === 0 || zipping}
-            >
-              {zipping ? 'Preparing…' : 'Download all'}
-            </button>
-          ) : <span />}
-        </div>
-        {album ? (
-          <div className="page-header__intro">
-            <p className="eyebrow eyebrow--ink">A gallery for you</p>
-            <h1>{album.title}</h1>
-            <p className="page-header__lede">{album.note || 'Photographs by Nithya Appannagaari.'}</p>
-          </div>
-        ) : null}
-      </header>
+    <div className="share-page">
+      <SiteNav trailing={album && count > 0 ? (
+        <button type="button" className="text-btn" onClick={() => { void downloadAll() }} disabled={zipping}>
+          {zipping ? 'Preparing…' : 'Download all'}
+        </button>
+      ) : null} />
 
       {album ? (
         <>
-          <p className="share-count">
-            {count === 0 ? 'No photographs yet' : `${count} photograph${count === 1 ? '' : 's'}`}
-          </p>
+          <header className="intro">
+            <p className="kicker">A gallery for you</p>
+            <h1>{album.title}</h1>
+            <p>{album.note || 'Photographs by Nithya Appannagaari.'}</p>
+          </header>
           {error ? <p className="share-note" role="alert">{error}</p> : null}
           {count === 0 ? (
             <p className="share-empty">No photographs in this album yet.</p>
+          ) : active && open !== null ? (
+            <PhotoViewer
+              src={photoUrl(album.slug, active.id, 'display')}
+              alt={active.name}
+              index={open}
+              count={count}
+              onPrev={() => setOpen((open - 1 + count) % count)}
+              onNext={() => setOpen((open + 1) % count)}
+              onClose={() => setOpen(null)}
+              downloadHref={photoUrl(album.slug, active.id, 'original', true)}
+            />
           ) : (
-            <div className="share-grid">
+            <div className="frames share-frames">
               {album.photos.map((photo, index) => (
-                <figure key={photo.id} className="share-card" style={{ '--delay': `${Math.min(index * 0.035, 0.45)}s` } as React.CSSProperties}>
-                  <button type="button" className="share-card__hit" onClick={() => setOpen(index)}>
-                    <span className="share-card__frame">
-                      <img
-                        src={photoUrl(album.slug, photo.id, 'thumb')}
-                        alt={photo.name}
-                        width={photo.width}
-                        height={photo.height}
-                        loading="lazy"
-                      />
-                      <span className="share-card__idx">{String(index + 1).padStart(2, '0')}</span>
-                    </span>
-                  </button>
-                </figure>
+                <button key={photo.id} type="button" onClick={() => setOpen(index)}>
+                  <img
+                    src={photoUrl(album.slug, photo.id, 'thumb')}
+                    alt={photo.name}
+                    width={photo.width}
+                    height={photo.height}
+                  />
+                </button>
               ))}
             </div>
           )}
         </>
       ) : missing ? (
-        <div className="share-missing">
-          <p className="eyebrow eyebrow--ink">Album</p>
+        <div className="share-empty">
           <h1>This link does not match an album.</h1>
           <Link to="/" className="text-link">Back home</Link>
         </div>
       ) : (
         <p className="share-empty">{error || 'Opening the album…'}</p>
       )}
-
-      {album && active && open !== null ? (
-        <div className="share-light" role="dialog" aria-modal="true" aria-label={active.name}>
-          <div className="share-light__bar">
-            <button type="button" className="share-light__text" onClick={() => setOpen(null)}>Close</button>
-            <p>{String(open + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</p>
-            <a className="share-light__text" href={photoUrl(album.slug, active.id, 'original', true)}>Download</a>
-          </div>
-          <button
-            type="button"
-            className="share-light__stage"
-            onClick={() => setOpen(null)}
-            aria-label="Close photograph"
-          >
-            <img
-              src={photoUrl(album.slug, active.id, 'display')}
-              alt={active.name}
-              onClick={(event) => event.stopPropagation()}
-            />
-          </button>
-          {count > 1 ? (
-            <div className="share-light__nav">
-              <button type="button" onClick={() => setOpen((open - 1 + count) % count)}>Previous</button>
-              <button type="button" onClick={() => setOpen((open + 1) % count)}>Next</button>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
       <SiteFooter />
     </div>
   )

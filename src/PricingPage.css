@@ -1,200 +1,80 @@
-.pricing-page { min-height: 100vh; background: var(--cream); }
+.pricing-page { min-height: 100vh; }
 
-.pricing-main {
-  padding: clamp(2.5rem, 6vw, 4.5rem) var(--pad) clamp(3.5rem, 7vw, 5.5rem);
-}
-
-.pricing-grid {
-  max-width: 1120px;
-  margin: 0 auto;
+.rates {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 2rem 1.5rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.5rem var(--pad) 2rem;
 }
 
-.tier-card {
+.rate {
   display: flex;
   flex-direction: column;
-  background-color: var(--cream);
-  background-image: radial-gradient(rgba(90, 40, 30, 0.045) 0.7px, transparent 0.75px);
-  background-size: 3px 3px;
-  border: 8px solid var(--vermilion);
-  box-shadow: inset 0 0 0 1.5px var(--gold);
-  padding: 1.6rem 1.35rem 1.4rem;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.tier-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--gold);
-}
-
-.tier-card--highlight {
-  background-color: var(--magenta-deep);
-  background-image:
-    linear-gradient(rgba(62, 12, 40, 0.45), rgba(62, 12, 40, 0.45)),
-    url('./assets/paisley-tile.svg');
-  background-size: auto, 320px 320px;
-  border-color: var(--gold);
-  color: var(--cream);
-}
-
-.tier-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  margin-bottom: 0.7rem;
-}
-
-.tier-num {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 28;
-  color: var(--vermilion);
-  font-size: 1.15rem;
-}
-
-.tier-card--highlight .tier-num { color: var(--gold-bright); }
-
-.tier-badge {
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-orange);
-  border: 1px solid rgba(227, 83, 26, 0.4);
-  padding: 0.2rem 0.5rem;
-}
-
-.tier-badge--accent {
-  color: var(--magenta-deep);
-  background: var(--gold);
-  border-color: var(--gold);
-}
-
-.tier-title {
-  font-family: var(--font-display);
-  font-weight: 540;
-  font-variation-settings: "SOFT" 35, "WONK" 0, "opsz" 48;
-  font-size: clamp(1.7rem, 2vw, 2.05rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.tier-card--highlight .tier-title { color: var(--cream); }
-
-.tier-sublabel {
-  margin-top: 0.3rem;
-  font-style: italic;
-  font-size: 1.15rem;
-  color: var(--ink-soft);
-}
-
-.tier-card--highlight .tier-sublabel { color: rgba(247, 241, 230, 0.75); }
-
-.tier-price-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  margin: 1.15rem 0 1.2rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid rgba(227, 83, 26, 0.25);
-}
-
-.tier-card--highlight .tier-price-wrap { border-top-color: rgba(243, 212, 138, 0.35); }
-
-.tier-price {
-  font-family: var(--font-display);
-  font-weight: 560;
-  font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 72;
-  font-size: clamp(2.5rem, 3.4vw, 3.3rem);
-  letter-spacing: -0.03em;
-  line-height: 0.9;
-  color: var(--ink-orange);
-}
-
-.tier-card--highlight .tier-price { color: var(--gold-bright); }
-
-.tier-unit {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--ink-soft);
-}
-
-.tier-card--highlight .tier-unit { color: rgba(247, 241, 230, 0.7); }
-
-.tier-features {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  flex-grow: 1;
-  margin-bottom: 1.1rem;
-}
-
-.tier-feature {
-  display: flex;
   align-items: flex-start;
-  gap: 0.7rem;
-  font-size: 1.15rem;
-  color: var(--ink-soft);
+  gap: 0.55rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
 }
 
-.tier-card--highlight .tier-feature { color: rgba(247, 241, 230, 0.86); }
+.rate--lead { border-top: 2px solid var(--vermilion); }
 
-.tier-feature-mark {
-  width: 0.48rem;
-  height: 0.48rem;
-  margin-top: 0.48rem;
-  background: var(--vermilion);
-  transform: rotate(45deg);
-  flex-shrink: 0;
+.rate--lead .rate__price { color: var(--vermilion); }
+
+.rate .kicker { color: var(--teal); }
+
+.rate h2 { font-size: 1.7rem; margin-top: 0.2rem; }
+
+.rate__sub { color: var(--muted); font-style: italic; }
+
+.rate__price {
+  margin: 0.6rem 0 0.4rem;
+  font-size: 2.7rem;
+  letter-spacing: -0.03em;
 }
 
-.tier-card--highlight .tier-feature-mark { background: var(--gold); }
+.rate__price span {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
-.tier-note {
-  font-style: italic;
+.rate ul { margin: 0.4rem 0 0.8rem; }
+
+.rate li {
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--line);
   font-size: 1.05rem;
-  color: var(--ink-soft);
-  margin-bottom: 1.15rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid rgba(227, 83, 26, 0.18);
 }
 
-.tier-card--highlight .tier-note {
-  color: rgba(247, 241, 230, 0.7);
-  border-top-color: rgba(243, 212, 138, 0.25);
+.rate__note {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-style: italic;
 }
 
-.tier-cta { width: 100%; }
+.rate .btn { margin-top: auto; }
 
-.pricing-footer-note {
+.rates-note {
   max-width: 40rem;
-  margin: 2.2rem auto 0;
-  text-align: center;
-  background: var(--cream);
-  border: 1px solid rgba(227, 83, 26, 0.35);
-  padding: 1rem 1.2rem;
+  margin: 0 auto;
+  padding: 0.5rem var(--pad) 3.5rem;
+  color: var(--muted);
 }
 
-.pricing-footer-note p {
-  font-size: 1.2rem;
-  color: var(--ink-soft);
+.rates-note a {
+  color: var(--vermilion);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
-.pricing-footer-note a {
-  color: var(--ink-orange);
-  border-bottom: 1px solid rgba(156, 52, 18, 0.4);
-}
-
-.pricing-footer-note a:hover { color: var(--vermilion); }
-
-@media (max-width: 980px) {
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 520px;
-  }
+@media (max-width: 860px) {
+  .rates { grid-template-columns: 1fr; }
 }

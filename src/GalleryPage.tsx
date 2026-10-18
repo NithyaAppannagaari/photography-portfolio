@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import PageHeader from './components/PageHeader'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import PhotoViewer from './components/PhotoViewer'
 import SiteFooter from './components/SiteFooter'
+import SiteNav from './components/SiteNav'
 import './GalleryPage.css'
 
-const clubImages = Object.values(
+const clubImages = Object.entries(
   import.meta.glob('./assets/club_photoshoots/*', { eager: true, import: 'default' })
-) as string[]
+).sort(([a], [b]) => a.localeCompare(b)).map(([, src]) => src as string)
 
-const eventImages = Object.values(
+const eventImages = Object.entries(
   import.meta.glob('./assets/event_photography/*', { eager: true, import: 'default' })
-) as string[]
+).sort(([a], [b]) => a.localeCompare(b)).map(([, src]) => src as string)
 
 const CATEGORIES = {
   'club-photoshoots': {
@@ -33,33 +34,12 @@ const CATEGORIES = {
   },
 }
 
-interface GalleryItemProps {
-  src: string
-  alt: string
-  index: number
-}
-
-function GalleryItem({ src, alt, index }: GalleryItemProps) {
-  const delay = Math.min(index * 0.035, 0.45)
-  return (
-    <figure className="gi" style={{ '--delay': `${delay}s` } as React.CSSProperties}>
-      <div className="gi__frame">
-        <img src={src} alt={alt} className="gi__img" loading="lazy" />
-        <span className="gi__idx">{String(index + 1).padStart(2, '0')}</span>
-      </div>
-    </figure>
-  )
-}
-
 export default function GalleryPage() {
   const { category } = useParams<{ category: string }>()
-  const navigate = useNavigate()
   const data = CATEGORIES[category as keyof typeof CATEGORIES]
+  const [open, setOpen] = useState<number | null>(null)
 
-  const handleBack = () => {
-    if (window.history.length > 1) navigate(-1)
-    else navigate('/#work')
-  }
+  useEffect(() => { setOpen(null) }, [category])
 
   useEffect(() => {
     document.title = data
@@ -67,55 +47,65 @@ export default function GalleryPage() {
       : 'Gallery · Nithya Appannagaari'
   }, [data])
 
-  if (!data) {
-    return (
-      <div className="gallery-page linen">
-        <div className="gallery-empty">
-          <Link to="/" className="text-link">Back home</Link>
-          <p>Gallery not found.</p>
-        </div>
-        <SiteFooter />
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (open === null) return
+    document.querySelector('.viewer')?.scrollIntoView({ block: 'start' })
+  }, [open])
+
+  useEffect(() => {
+    if (open === null || !data) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(null)
+      if (event.key === 'ArrowRight') setOpen((index) => (index === null ? index : (index + 1) % data.images.length))
+      if (event.key === 'ArrowLeft') {
+        setOpen((index) => (index === null ? index : (index - 1 + data.images.length) % data.images.length))
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, data])
 
   return (
-    <div className="gallery-page linen">
-      <PageHeader
-        kicker="Portfolio"
-        title={data.title}
-        lede={data.desc}
-        onBack={handleBack}
-        actionHref="mailto:nithya.app@berkeley.edu"
-        actionLabel="Book a session"
-      />
-
-      {data.comingSoon ? (
-        <div className="gallery-soon pattern">
-          <div className="gallery-soon__card">
-            <p className="eyebrow eyebrow--ink">Graduation</p>
-            <h2>Coming soon</h2>
-            <p>This gallery is on its way. Write to reserve a session in the meantime.</p>
-            <a className="btn btn-solid" href="mailto:nithya.app@berkeley.edu?subject=Graduation Photoshoot Inquiry">
-              Email to book
-            </a>
-          </div>
+    <div className="gallery-page">
+      <SiteNav active="work" />
+      {!data ? (
+        <div className="gallery-empty">
+          <p>Gallery not found.</p>
+          <Link to="/" className="text-link">Back home</Link>
         </div>
       ) : (
         <>
-          <div className="gallery-meta">
-            <span>{data.images.length} images</span>
-          </div>
-          <div className="gallery-collage">
-            {data.images.map((src, i) => (
-              <GalleryItem
-                key={src}
-                src={src}
-                alt={`${data.title} ${i + 1}`}
-                index={i}
-              />
-            ))}
-          </div>
+          <header className="intro">
+            <p className="kicker">Work</p>
+            <h1>{data.title}</h1>
+            <p>{data.desc}</p>
+          </header>
+          {data.comingSoon ? (
+            <div className="gallery-soon">
+              <p>Coming soon</p>
+              <a className="text-link" href="mailto:nithya.app@berkeley.edu?subject=Graduation Photoshoot Inquiry">
+                Email to book
+              </a>
+            </div>
+          ) : open !== null ? (
+            <PhotoViewer
+              src={data.images[open]}
+              alt={`${data.title} ${open + 1}`}
+              index={open}
+              count={data.images.length}
+              onPrev={() => setOpen((open - 1 + data.images.length) % data.images.length)}
+              onNext={() => setOpen((open + 1) % data.images.length)}
+              onClose={() => setOpen(null)}
+            />
+          ) : (
+            <div className="frames gallery-frames">
+              {data.images.map((src, index) => (
+                <button key={src} type="button" onClick={() => setOpen(index)}>
+                  <img src={src} alt={`${data.title} ${index + 1}`} />
+                </button>
+              ))}
+            </div>
+          )}
         </>
       )}
       <SiteFooter />

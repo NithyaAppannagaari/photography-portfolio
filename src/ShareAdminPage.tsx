@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, type DragEvent, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import SiteFooter from './components/SiteFooter'
+import SiteNav from './components/SiteNav'
 import {
   ShareError,
   createAlbum,
@@ -65,27 +66,16 @@ export default function ShareAdminPage() {
   const onAuth = useCallback(() => setUnlocked(false), [])
 
   return (
-    <div className="desk-page linen">
-      <header className="page-header">
-        <div className="page-header__bar">
-          {slug ? (
-            <Link to="/share/admin" className="page-header__back">Albums</Link>
-          ) : (
-            <Link to="/" className="page-header__back">Home</Link>
-          )}
-          <Link to="/" className="page-header__mark">Nithya</Link>
-          {unlocked ? (
-            <button type="button" className="btn btn-line-ink page-header__action" onClick={lockDesk}>
-              Lock
-            </button>
-          ) : <span />}
-        </div>
-      </header>
-      <div className="textile-rule" aria-hidden="true" />
+    <div className="desk-page">
+      <SiteNav trailing={unlocked ? (
+        <button type="button" className="text-btn" onClick={lockDesk}>Lock</button>
+      ) : slug ? (
+        <Link to="/share/admin" className="text-btn">Albums</Link>
+      ) : null} />
 
       {!unlocked ? (
         <form className="desk-unlock" onSubmit={(event) => { void onUnlock(event) }}>
-          <p className="eyebrow eyebrow--ink">Private</p>
+          <p className="kicker">Private</p>
           <h1>Client albums</h1>
           <p>Share a gallery with a link on your own site. The link stays until you delete the album.</p>
           <label>
@@ -168,7 +158,7 @@ function AlbumList({
   return (
     <main className="desk">
       <div className="desk__intro">
-        <p className="eyebrow eyebrow--ink">Your desk</p>
+        <p className="kicker">Your desk</p>
         <h1>Client albums</h1>
         <p>Each album has its own link. Nothing here is listed on the public site.</p>
       </div>
@@ -375,7 +365,7 @@ function AlbumEditor({ slug, onAuth }: { slug: string; onAuth: () => void }) {
   return (
     <main className="desk">
       <div className="desk__intro">
-        <p className="eyebrow eyebrow--ink">Client albums</p>
+        <p className="kicker">Client albums</p>
         <h1>{album.title}</h1>
         <p className="desk__url">{publicUrl}</p>
         <div className="desk__actions">
