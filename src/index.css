@@ -4,31 +4,69 @@
   padding: 0;
 }
 
+:root {
+  --ground: #541028;
+  --wine: #6E1230;
+  --magenta: #A41650;
+  --hot: #E43778;
+  --flame: #E44512;
+  --btn: #9E3010;
+  --ink: #8E2E0C;
+  --ink-soft: #A34A28;
+  --gold: #E8B54A;
+  --gold-deep: #C48A1A;
+  --teal: #1B736C;
+  --dust: #7D96B3;
+  --cream: #F7F0E4;
+  --cream-deep: #EADFCB;
+  --white: #fff;
+
+  --display: "Fraunces Variable", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --text: "Cormorant Garamond", "Iowan Old Style", Palatino, Georgia, serif;
+
+  --nav-h: 4.7rem;
+  --sheet-pad: clamp(1.15rem, 3vw, 3.3rem);
+}
+
 html {
-  /* 16px base — required for the rem values in App.css to render correctly.
-     (Prior 13px base made 0.82rem = 10.6px, far too small for body text.) */
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-  min-width: 450px;
   overflow-x: hidden;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: var(--text);
+  background: var(--ground);
+  color: var(--cream);
 }
+
+body.menu-open { overflow: hidden; }
 
 img {
   display: block;
   max-width: 100%;
 }
 
-a {
-  text-decoration: none;
+a { text-decoration: none; }
+
+button { font: inherit; }
+
+::selection {
+  background: var(--btn);
+  color: var(--cream);
 }
 
-em {
-  font-style: normal;
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
-ul {
-  list-style: none;
+@media (hover: hover) and (pointer: fine) {
+  .site,
+  .site a,
+  .site button { cursor: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
