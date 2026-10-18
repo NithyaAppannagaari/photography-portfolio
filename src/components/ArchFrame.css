@@ -1,0 +1,42 @@
+.arch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.arch__defs {
+  position: absolute;
+}
+
+.arch__window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.arch__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.arch__stroke {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.arch__stroke--outer {
+  stroke: var(--flame);
+  stroke-width: 9;
+}
+
+.arch__stroke--inner {
+  stroke: var(--gold);
+  stroke-width: 1.6;
+}

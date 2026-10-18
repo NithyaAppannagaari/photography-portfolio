@@ -1,87 +1,65 @@
-/* ============================================================
-   CustomCursor — dual-ring editorial cursor
-   ============================================================ */
-
-/* Wrapper is fixed so it overlays everything */
 .cc {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 200;
   pointer-events: none;
-  /* Hidden on touch devices */
 }
 
-/* ── Dot ──────────────────────────────────────────────────── */
 .cc__dot {
   position: absolute;
-  /* Centre on the cursor point via negative margin */
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  margin-top: -3px;
-  background: var(--brown, #5c2e2e);
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  margin-top: -3.5px;
+  background: var(--flame, #E44512);
   border-radius: 50%;
-  transition: transform 0.05s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
 }
 
-/* ── Ring ─────────────────────────────────────────────────── */
 .cc__ring {
   position: absolute;
-  width: 36px;
-  height: 36px;
-  margin-left: -18px;
-  margin-top: -18px;
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
   border-radius: 50%;
-  border: 1.5px solid rgba(92, 46, 46, 0.55);
+  border: 1.5px solid var(--gold, #E8B54A);
   display: flex;
   align-items: center;
   justify-content: center;
   transition:
-    width    0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    height   0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    margin   0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 0.3s ease,
-    background   0.3s ease;
+    width 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    height 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    margin 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .cc__label {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 0.6rem;
+  font-family: var(--display, "Fraunces Variable", Georgia, serif);
+  font-style: italic;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: lowercase;
-  color: var(--white, #fff);
+  color: var(--cream, #F7F0E4);
   opacity: 0;
   transition: opacity 0.2s ease;
-  pointer-events: none;
-  white-space: nowrap;
 }
 
-/* ── Expanded state when hovering a pixel card ────────────── */
-/* CSS :has() — supported in all modern browsers (95%+ coverage) */
-body:has(.pxcard:hover) .cc__ring {
-  width: 76px;
-  height: 76px;
-  margin-left: -38px;
-  margin-top: -38px;
-  border-color: rgba(92, 46, 46, 0.25);
-  background: rgba(92, 46, 46, 0.75);
+body:has(.is-viewable:hover) .cc__ring {
+  width: 74px;
+  height: 74px;
+  margin-left: -37px;
+  margin-top: -37px;
+  background: rgba(84, 16, 40, 0.78);
+  border-color: var(--gold, #E8B54A);
 }
 
-body:has(.pxcard:hover) .cc__label {
-  opacity: 1;
-}
+body:has(.is-viewable:hover) .cc__label { opacity: 1; }
 
-body:has(.pxcard:hover) .cc__dot {
-  width: 4px;
-  height: 4px;
-  margin-left: -2px;
-  margin-top: -2px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-/* ── Hide on touch-only devices ───────────────────────────── */
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
   .cc { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc__ring { transition: none; }
 }
