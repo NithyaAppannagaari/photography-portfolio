@@ -1,32 +1,35 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PageHeader from './components/PageHeader'
+import SiteFooter from './components/SiteFooter'
 import './PricingPage.css'
 
 const TIERS = [
   {
-    id:       'graduation',
-    num:      '01',
-    title:    'graduation photoshoots',
-    price:    '$70',
-    unit:     'per hour',
-    badge:    'most popular',
+    id: 'graduation',
+    num: '01',
+    title: 'graduation photoshoots',
+    price: '$70',
+    unit: 'per hour',
+    badge: 'most popular',
     features: [
       'up to 4 different locations',
       'full editing & color grading',
       'digital gallery delivery',
       'print-ready resolution',
     ],
-    note:     'Exact hours, timeline, and additional details discussed over email.',
-    cta:      'email to book',
-    href:     'mailto:nithya.app@berkeley.edu?subject=Graduation Photoshoot Inquiry',
+    note: 'Exact hours, timeline, and additional details discussed over email.',
+    cta: 'email to book',
+    href: 'mailto:nithya.app@berkeley.edu?subject=Graduation Photoshoot Inquiry',
     highlight: true,
   },
   {
-    id:       'club-small',
-    num:      '02',
-    title:    'club photoshoots',
-    price:    '$65',
-    unit:     'per hour',
-    badge:    'small – medium clubs',
+    id: 'club-small',
+    num: '02',
+    title: 'club photoshoots',
+    price: '$65',
+    unit: 'per hour',
+    badge: 'small – medium clubs',
     sublabel: 'under 25 people',
     features: [
       'individual + group shots',
@@ -34,18 +37,18 @@ const TIERS = [
       'digital gallery delivery',
       'brand-aligned composition',
     ],
-    note:     'Ideal for recruitment headshots and team portraits.',
-    cta:      'email to book',
-    href:     'mailto:nithya.app@berkeley.edu?subject=Club Photoshoot Inquiry (Small–Medium)',
+    note: 'Ideal for recruitment headshots and team portraits.',
+    cta: 'email to book',
+    href: 'mailto:nithya.app@berkeley.edu?subject=Club Photoshoot Inquiry (Small–Medium)',
     highlight: false,
   },
   {
-    id:       'club-large',
-    num:      '03',
-    title:    'club photoshoots',
-    price:    '$70–75',
-    unit:     'per hour',
-    badge:    'large clubs',
+    id: 'club-large',
+    num: '03',
+    title: 'club photoshoots',
+    price: '$70–75',
+    unit: 'per hour',
+    badge: 'large clubs',
     sublabel: '25+ people',
     features: [
       'individual + group shots',
@@ -53,12 +56,20 @@ const TIERS = [
       'digital gallery delivery',
       'coordinated shoot planning',
     ],
-    note:     'Rate reflects coordination overhead for larger groups.',
-    cta:      'email to book',
-    href:     'mailto:nithya.app@berkeley.edu?subject=Club Photoshoot Inquiry (Large)',
+    note: 'Rate reflects coordination overhead for larger groups.',
+    cta: 'email to book',
+    href: 'mailto:nithya.app@berkeley.edu?subject=Club Photoshoot Inquiry (Large)',
     highlight: false,
   },
 ]
+
+function label(value: string) {
+  return value.replace(/\b\w/g, (letter) => letter.toUpperCase())
+}
+
+function sentence(value: string) {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+}
 
 export default function PricingPage() {
   const navigate = useNavigate()
@@ -68,87 +79,69 @@ export default function PricingPage() {
     else navigate('/')
   }
 
+  useEffect(() => {
+    document.title = 'Pricing · Nithya Appannagaari'
+  }, [])
+
   return (
     <div className="pricing-page">
+      <PageHeader
+        kicker="Pricing"
+        title="Simple, transparent rates"
+        lede="All packages include editing, color grading, and a digital gallery. Email to discuss your specific needs."
+        onBack={handleBack}
+        actionHref="mailto:nithya.app@berkeley.edu"
+        actionLabel="Book a session"
+      />
 
-      {/* ── HEADER ── */}
-      <header className="pricing-header">
-        <button onClick={handleBack} className="pricing-back">← back</button>
-        <div className="pricing-header-center">
-          <span className="section-tag">pricing</span>
-          <h1 className="pricing-title">Simple, transparent rates</h1>
-          <p className="pricing-subtitle">
-            All packages include editing, color grading, and a digital gallery.
-            Email to discuss your specific needs.
-          </p>
-        </div>
-        <a href="mailto:nithya.app@berkeley.edu" className="pricing-book-btn">
-          book a session
-        </a>
-      </header>
-
-      {/* ── TIER CARDS ── */}
-      <main className="pricing-main">
+      <main className="pricing-main pattern">
         <div className="pricing-grid">
           {TIERS.map((tier) => (
-            <div key={tier.id} className={`tier-card${tier.highlight ? ' tier-card--highlight' : ''}`}>
-
-              {/* Card header */}
+            <article key={tier.id} className={`tier-card${tier.highlight ? ' tier-card--highlight' : ''}`}>
               <div className="tier-top">
                 <div className="tier-meta">
                   <span className="tier-num">{tier.num}</span>
-                  {tier.badge && (
+                  {tier.badge ? (
                     <span className={`tier-badge${tier.highlight ? ' tier-badge--accent' : ''}`}>
-                      {tier.badge}
+                      {label(tier.badge)}
                     </span>
-                  )}
+                  ) : null}
                 </div>
-                <h2 className="tier-title">{tier.title}</h2>
-                {tier.sublabel && (
-                  <p className="tier-sublabel">{tier.sublabel}</p>
-                )}
+                <h2 className="tier-title">{label(tier.title)}</h2>
+                {tier.sublabel ? <p className="tier-sublabel">{sentence(tier.sublabel)}</p> : null}
               </div>
 
-              {/* Price */}
               <div className="tier-price-wrap">
                 <span className="tier-price">{tier.price}</span>
                 <span className="tier-unit">{tier.unit}</span>
               </div>
 
-              {/* Divider */}
-              <div className="tier-rule" />
-
-              {/* Features */}
               <ul className="tier-features">
-                {tier.features.map((f, i) => (
-                  <li key={i} className="tier-feature">
-                    <span className="tier-feature-check" aria-hidden="true">✓</span>
-                    <span>{f}</span>
+                {tier.features.map((feature) => (
+                  <li key={feature} className="tier-feature">
+                    <span className="tier-feature-mark" aria-hidden="true" />
+                    <span>{sentence(feature)}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* Note */}
               <p className="tier-note">{tier.note}</p>
 
-              {/* CTA */}
-              <a href={tier.href} className={`tier-cta${tier.highlight ? ' tier-cta--primary' : ''}`}>
-                {tier.cta} →
+              <a href={tier.href} className={`btn ${tier.highlight ? 'btn-cream' : 'btn-line-ink'} tier-cta`}>
+                Email to book
               </a>
-
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Bottom callout */}
         <div className="pricing-footer-note">
           <p>
-            Not sure which package fits? Reach out and we'll figure it out together —
-            {' '}<a href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
+            Not sure which package fits? Reach out and we&apos;ll figure it out together —{' '}
+            <a href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
           </p>
         </div>
       </main>
-
+      <SiteFooter />
     </div>
   )
 }

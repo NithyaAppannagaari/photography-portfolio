@@ -20,7 +20,8 @@
   height: 6px;
   margin-left: -3px;
   margin-top: -3px;
-  background: var(--brown, #5c2e2e);
+  background: #E3531A;
+  box-shadow: 0 0 0 2px #F7F1E6;
   border-radius: 50%;
   transition: transform 0.05s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
 }
@@ -33,7 +34,7 @@
   margin-left: -18px;
   margin-top: -18px;
   border-radius: 50%;
-  border: 1.5px solid rgba(92, 46, 46, 0.55);
+  border: 1.5px solid #F3D48A;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,9 +47,9 @@
 }
 
 .cc__label {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-family: "Cormorant Garamond", Palatino, Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: lowercase;
   color: var(--white, #fff);
@@ -60,20 +61,20 @@
 
 /* ── Expanded state when hovering a pixel card ────────────── */
 /* CSS :has() — supported in all modern browsers (95%+ coverage) */
-body:has(.pxcard:hover) .cc__ring {
+body:has(.print:hover) .cc__ring {
   width: 76px;
   height: 76px;
   margin-left: -38px;
   margin-top: -38px;
-  border-color: rgba(92, 46, 46, 0.25);
-  background: rgba(92, 46, 46, 0.75);
+  border-color: rgba(227, 83, 26, 0.3);
+  background: rgba(110, 24, 72, 0.88);
 }
 
-body:has(.pxcard:hover) .cc__label {
+body:has(.print:hover) .cc__label {
   opacity: 1;
 }
 
-body:has(.pxcard:hover) .cc__dot {
+body:has(.print:hover) .cc__dot {
   width: 4px;
   height: 4px;
   margin-left: -2px;

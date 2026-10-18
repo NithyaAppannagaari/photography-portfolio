@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+  <defs>
+    <style>
+      .body { fill: currentColor; }
+      .inner { fill: #F7F1E6; }
+      .gold { fill: #E2B34A; }
+      .vein { fill: none; stroke: #F7F1E6; stroke-width: 1.1; opacity: 0.8; }
+      .petal { fill: currentColor; }
+      .center { fill: #F7F1E6; }
+      .seed { fill: #1C7A72; }
+    </style>
+    <g id="paisley">
+      <path class="body" d="M62 8C86 10 108 28 116 54C126 86 118 120 98 144C80 166 52 172 36 158C16 140 8 112 14 84C20 56 36 40 34 24C32 12 44 6 62 8Z"/>
+      <path class="inner" d="M64 28C80 30 94 44 98 62C104 84 98 108 84 124C72 138 54 140 44 128C32 114 28 94 32 74C36 54 46 44 46 32C46 24 54 26 64 28Z"/>
+      <path class="gold" d="M66 46C76 48 84 58 86 70C88 82 82 96 72 104C64 110 54 108 50 98C46 88 50 76 54 66C56 58 60 50 66 46Z"/>
+      <circle class="seed" cx="70" cy="74" r="3.2"/>
+      <circle class="center" cx="70" cy="74" r="1.3"/>
+      <path class="vein" d="M58 20C68 36 62 52 52 60"/>
+    </g>
+    <g id="flower">
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(45)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(90)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(135)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(180)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(225)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(270)"/>
+      <ellipse class="petal" cx="0" cy="-11" rx="4.4" ry="8.6" transform="rotate(315)"/>
+      <circle class="center" r="3.4"/>
+      <circle class="seed" r="1.5"/>
+    </g>
+    <g id="bloom">
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4"/>
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4" transform="rotate(60)"/>
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4" transform="rotate(120)"/>
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4" transform="rotate(180)"/>
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4" transform="rotate(240)"/>
+      <ellipse class="petal" cx="0" cy="-8" rx="3.2" ry="6.4" transform="rotate(300)"/>
+      <circle class="gold" r="2.3"/>
+    </g>
+    <g id="leaf">
+      <path class="body" d="M2 16C14 12 26 4 30 0C22 10 20 20 10 26C6 28 2 24 2 16Z"/>
+      <path class="vein" d="M6 18C14 14 22 8 28 3"/>
+    </g>
+  </defs>
+
+  <rect width="480" height="480" fill="#6E1848"/>
+
+  <g id="tile">
+    <use href="#paisley" color="#E4377A" transform="translate(18 36) rotate(-18) scale(1.28)"/>
+    <use href="#paisley" color="#C4164A" transform="translate(250 168) rotate(158) scale(1.18)"/>
+    <use href="#paisley" color="#E3531A" transform="translate(392 18) rotate(24) scale(1.05)"/>
+    <use href="#paisley" color="#F078A8" transform="translate(36 318) rotate(-148) scale(1.12)"/>
+    <use href="#paisley" color="#E2B34A" transform="translate(214 372) rotate(12) scale(0.92)"/>
+    <use href="#paisley" color="#8AA4BE" transform="translate(430 300) rotate(196) scale(0.88)"/>
+    <use href="#paisley" color="#1C7A72" transform="translate(168 86) rotate(78) scale(0.62)"/>
+    <use href="#paisley" color="#E4377A" transform="translate(330 250) rotate(-70) scale(0.55)"/>
+
+    <use href="#flower" color="#E2B34A" transform="translate(168 46) scale(1.15)"/>
+    <use href="#flower" color="#8AA4BE" transform="translate(318 78) scale(0.9)"/>
+    <use href="#flower" color="#1C7A72" transform="translate(86 214) scale(1)"/>
+    <use href="#flower" color="#E4377A" transform="translate(400 168) scale(0.85)"/>
+    <use href="#flower" color="#F7F1E6" transform="translate(132 400) scale(0.8)"/>
+    <use href="#flower" color="#E2B34A" transform="translate(360 420) scale(1.05)"/>
+    <use href="#flower" color="#C4164A" transform="translate(246 250) scale(0.7)"/>
+
+    <use href="#bloom" color="#F078A8" transform="translate(48 150)"/>
+    <use href="#bloom" color="#E2B34A" transform="translate(200 150)"/>
+    <use href="#bloom" color="#8AA4BE" transform="translate(300 330)"/>
+    <use href="#bloom" color="#1C7A72" transform="translate(430 90)"/>
+    <use href="#bloom" color="#E3531A" transform="translate(90 360)"/>
+    <use href="#bloom" color="#F7F1E6" transform="translate(270 40)"/>
+    <use href="#bloom" color="#E4377A" transform="translate(20 450)"/>
+    <use href="#bloom" color="#E2B34A" transform="translate(450 450)"/>
+
+    <use href="#leaf" color="#1C7A72" transform="translate(140 110) rotate(-20)"/>
+    <use href="#leaf" color="#8AA4BE" transform="translate(210 130) rotate(30) scale(0.8)"/>
+    <use href="#leaf" color="#1C7A72" transform="translate(300 190) rotate(140) scale(0.9)"/>
+    <use href="#leaf" color="#E2B34A" transform="translate(70 260) rotate(-40) scale(0.85)"/>
+    <use href="#leaf" color="#8AA4BE" transform="translate(360 250) rotate(70) scale(0.75)"/>
+    <use href="#leaf" color="#1C7A72" transform="translate(180 300) rotate(200) scale(0.9)"/>
+    <use href="#leaf" color="#F078A8" transform="translate(40 80) rotate(110) scale(0.7)"/>
+    <use href="#leaf" color="#E2B34A" transform="translate(410 380) rotate(-30) scale(0.8)"/>
+
+    <g fill="#F7F1E6" opacity="0.85">
+      <circle cx="24" cy="24" r="1.5"/>
+      <circle cx="78" cy="18" r="1.1"/>
+      <circle cx="128" cy="34" r="1.6"/>
+      <circle cx="230" cy="16" r="1.2"/>
+      <circle cx="290" cy="40" r="1.4"/>
+      <circle cx="360" cy="22" r="1.1"/>
+      <circle cx="440" cy="48" r="1.5"/>
+      <circle cx="20" cy="100" r="1.2"/>
+      <circle cx="110" cy="128" r="1.3"/>
+      <circle cx="260" cy="110" r="1.1"/>
+      <circle cx="340" cy="140" r="1.5"/>
+      <circle cx="460" cy="130" r="1.2"/>
+      <circle cx="16" cy="200" r="1.4"/>
+      <circle cx="150" cy="188" r="1.1"/>
+      <circle cx="220" cy="210" r="1.5"/>
+      <circle cx="390" cy="220" r="1.2"/>
+      <circle cx="470" cy="240" r="1.3"/>
+      <circle cx="60" cy="300" r="1.2"/>
+      <circle cx="170" cy="340" r="1.4"/>
+      <circle cx="300" cy="300" r="1.1"/>
+      <circle cx="380" cy="310" r="1.5"/>
+      <circle cx="24" cy="390" r="1.3"/>
+      <circle cx="100" cy="430" r="1.1"/>
+      <circle cx="190" cy="460" r="1.4"/>
+      <circle cx="280" cy="440" r="1.2"/>
+      <circle cx="340" cy="470" r="1.5"/>
+      <circle cx="420" cy="400" r="1.2"/>
+      <circle cx="460" cy="470" r="1.3"/>
+    </g>
+    <g fill="#E2B34A">
+      <circle cx="54" cy="64" r="2"/>
+      <circle cx="196" cy="70" r="1.7"/>
+      <circle cx="420" cy="70" r="2"/>
+      <circle cx="150" cy="250" r="1.8"/>
+      <circle cx="250" cy="320" r="2"/>
+      <circle cx="70" cy="410" r="1.6"/>
+      <circle cx="330" cy="200" r="1.7"/>
+      <circle cx="450" cy="340" r="1.8"/>
+    </g>
+  </g>
+
+  <use href="#tile" x="-480" y="-480"/>
+  <use href="#tile" x="0" y="-480"/>
+  <use href="#tile" x="480" y="-480"/>
+  <use href="#tile" x="-480" y="0"/>
+  <use href="#tile" x="480" y="0"/>
+  <use href="#tile" x="-480" y="480"/>
+  <use href="#tile" x="0" y="480"/>
+  <use href="#tile" x="480" y="480"/>
+</svg>
