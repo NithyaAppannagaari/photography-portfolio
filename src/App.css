@@ -370,19 +370,24 @@
 }
 
 @media (max-width: 860px) {
-  .nav { grid-template-columns: 1fr auto; }
-  .nav__links, .nav__cta { display: none; }
+  .nav {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  .nav .nav__links,
+  .nav .nav__cta { display: none; }
   .nav__menu {
     display: inline-flex;
     align-items: center;
+    justify-self: end;
     background: transparent;
     border: 1px solid currentColor;
-    min-height: 2.6rem;
-    padding: 0.3rem 0.9rem;
+    min-height: 44px;
+    padding: 0.35rem 1rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 0.98rem;
+    font-size: 1rem;
   }
   .nav--solid .nav__menu { border-color: var(--ink-orange); color: var(--ink-orange); }
   .work__grid { grid-template-columns: 1fr; }
