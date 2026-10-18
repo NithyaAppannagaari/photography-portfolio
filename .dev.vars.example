@@ -1,0 +1,4 @@
+# Used by `npx wrangler dev` only. The local site (`npm run dev`) reads .env instead.
+# Production uses a Worker secret, not this file:
+#   npx wrangler secret put SHARE_ADMIN_PASSWORD
+SHARE_ADMIN_PASSWORD=

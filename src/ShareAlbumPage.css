@@ -1,0 +1,26 @@
+.share-page { min-height: 100vh; }
+
+.share-frames { padding: 0 var(--pad) 4.5rem; }
+
+.share-note, .share-empty {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 1rem var(--pad) 4rem;
+  color: var(--muted);
+}
+
+.share-note { color: var(--crimson); font-style: italic; }
+
+.share-empty {
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.share-empty h1 {
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3rem);
+  max-width: 16ch;
+}
