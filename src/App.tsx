@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
+
+const ShareAlbumPage = lazy(() => import('./ShareAlbumPage'))
+const ShareAdminPage = lazy(() => import('./ShareAdminPage'))
 import CustomCursor from './components/CustomCursor'
 import Jharokha from './components/Jharokha'
 import Ornament from './components/Ornament'
@@ -246,11 +249,16 @@ export default function App() {
   return (
     <>
       <CustomCursor />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/gallery/:category" element={<GalleryPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
-      </Routes>
+      <Suspense fallback={<div className="route-fallback linen" />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/gallery/:category" element={<GalleryPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/share/admin" element={<ShareAdminPage />} />
+          <Route path="/share/admin/:slug" element={<ShareAdminPage />} />
+          <Route path="/share/:slug" element={<ShareAlbumPage />} />
+        </Routes>
+      </Suspense>
     </>
   )
 }

@@ -1,5 +1,7 @@
 .home { background: var(--cream); }
 
+.route-fallback { min-height: 100vh; }
+
 .nav {
   position: fixed;
   top: 0;
