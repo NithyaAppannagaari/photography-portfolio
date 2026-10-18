@@ -28,6 +28,7 @@
 }
 
 .gallery-soon p {
+  color: var(--magenta);
   font-style: italic;
   font-size: clamp(2rem, 4vw, 3rem);
 }

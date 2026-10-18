@@ -19,16 +19,16 @@
 
 .nav--magenta { color: var(--cream); }
 
-.nav--paper .wordmark { color: var(--vermilion-deep); }
+.nav--paper .wordmark { color: var(--magenta); }
 
 .nav--paper .nav__links a[aria-current="page"],
 .nav--paper .nav__sheet a[aria-current="page"] {
-  text-decoration-color: var(--vermilion);
+  text-decoration-color: var(--magenta);
 }
 
 .nav--magenta .nav__links a[aria-current="page"],
 .nav--magenta .nav__sheet a[aria-current="page"] {
-  text-decoration-color: var(--gold);
+  text-decoration-color: var(--cream);
 }
 
 .wordmark {

@@ -298,10 +298,10 @@ function AlbumEditor({ slug, onAuth }: { slug: string; onAuth: () => void }) {
     const problems: string[] = []
     for (let index = 0; index < files.length; index += 1) {
       const file = files[index]
-      setStatus(`Preparing ${index + 1} of ${files.length} — ${file.name}`)
+      setStatus(`Preparing ${index + 1} of ${files.length}, ${file.name}`)
       try {
         const prepared = await preparePhoto(file)
-        setStatus(`Uploading ${index + 1} of ${files.length} — ${file.name}`)
+        setStatus(`Uploading ${index + 1} of ${files.length}, ${file.name}`)
         const result = await uploadPhoto(slug, prepared)
         setAlbum((current) => current ? { ...current, photos: [...current.photos, result.photo] } : current)
       } catch (err: unknown) {

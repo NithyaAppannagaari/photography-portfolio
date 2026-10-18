@@ -20,7 +20,7 @@
   margin-top: 0.8rem;
   font-size: 1.02rem;
   word-break: break-all;
-  color: var(--vermilion-deep);
+  color: var(--magenta);
 }
 
 .desk__actions {
@@ -90,13 +90,13 @@
 }
 
 .desk__error {
-  color: #8a3b32;
+  color: var(--magenta);
   font-style: italic;
   margin: 0.3rem 0 0.8rem;
 }
 
 .desk__toast {
-  color: var(--teal);
+  color: var(--magenta);
   font-style: italic;
   margin-top: 0.7rem;
 }
@@ -145,7 +145,7 @@
   border: 1px dashed var(--line);
 }
 
-.desk-drop.is-over { border-color: var(--vermilion); background: rgba(227, 83, 26, 0.06); }
+.desk-drop.is-over { border-color: var(--magenta); background: rgba(110, 24, 72, 0.06); }
 
 .desk-drop span {
   font-family: var(--font-serif);
@@ -188,7 +188,7 @@
 .desk-photos button {
   margin-top: 0.3rem;
   padding: 0;
-  color: #8a3b32;
+  color: var(--magenta);
   font-family: var(--font-sans);
   font-size: 0.66rem;
   font-weight: 500;

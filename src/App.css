@@ -21,7 +21,7 @@
   font-style: italic;
   font-weight: 420;
   text-decoration: underline;
-  text-decoration-color: var(--gold);
+  text-decoration-color: var(--cream);
   text-underline-offset: 0.12em;
   text-decoration-thickness: 1px;
 }
@@ -52,8 +52,6 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  background: var(--hot-pink);
-  color: var(--cream);
   transition: opacity 0.45s ease;
 }
 
@@ -62,7 +60,9 @@
 .work-card__soon {
   display: grid;
   place-items: center;
-  color: var(--muted);
+  background: var(--cream);
+  color: var(--magenta);
+  border: 1px solid var(--magenta);
   font-style: italic;
   font-size: 1.35rem;
 }
@@ -96,11 +96,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
 }
 
-.about__tags {
-  margin: 0.8rem 0 1.1rem;
-  color: var(--muted);
-  font-style: italic;
-}
+.about .text-link { display: inline-block; margin-top: 1.1rem; }
 
 .contact {
   border-top: 1px solid var(--line);
@@ -119,7 +115,7 @@
 .contact__email {
   display: inline-block;
   margin-top: 1.1rem;
-  color: var(--vermilion);
+  color: var(--magenta);
   font-style: italic;
   font-size: 1.35rem;
   text-decoration: underline;
