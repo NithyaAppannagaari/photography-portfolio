@@ -87,5 +87,13 @@
 
 @media (max-width: 860px) {
   .work__grid, .about { grid-template-columns: 1fr; }
-  .work, .about, .contact { padding-block: 3rem; }
+  .work, .about, .contact { padding: 2.75rem var(--pad); }
+  .work__grid { gap: 2.25rem; }
+  .about { gap: 1.75rem; }
+  .section-head { margin-bottom: 1.35rem; }
+  .work-card h2 { margin-top: 0.7rem; }
+  .contact__email {
+    font-size: clamp(1.15rem, 4.8vw, 1.35rem);
+    overflow-wrap: anywhere;
+  }
 }

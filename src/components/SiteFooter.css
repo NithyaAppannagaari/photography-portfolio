@@ -3,7 +3,7 @@
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  padding: 1.2rem var(--pad) 1.5rem;
+  padding: 1.2rem var(--pad) calc(1.5rem + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
   font-family: var(--font-sans);
   font-size: 0.66rem;

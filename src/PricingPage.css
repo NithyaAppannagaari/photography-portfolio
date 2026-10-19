@@ -1,5 +1,22 @@
 .pricing-page { min-height: 100vh; }
 
+.pricing-page .intro {
+  max-width: 40rem;
+  padding: 2.2rem var(--pad) 1.5rem;
+}
+
+.pricing-page .intro h1 {
+  margin-top: 0.1rem;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+}
+
+.pricing-page .intro p {
+  margin-top: 0.75rem;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
 .rates {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -76,5 +93,7 @@
 }
 
 @media (max-width: 860px) {
-  .rates { grid-template-columns: 1fr; }
+  .pricing-page .intro { padding-top: 2.5rem; padding-bottom: 1.5rem; }
+  .rates { grid-template-columns: 1fr; gap: 2.25rem; }
+  .rates-note { padding-bottom: 2.75rem; }
 }
