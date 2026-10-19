@@ -3,6 +3,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
+import Highlights from './components/Highlights'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
 import titleImg from './assets/title.jpg'
@@ -52,6 +53,8 @@ function HomePage() {
       <figure className="hero-photo">
         <img src={titleImg} alt="Event photograph by Nithya Appannagaari" />
       </figure>
+
+      <Highlights />
 
       <section className="work" id="work">
         <div className="section-head">
