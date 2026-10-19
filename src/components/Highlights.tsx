@@ -1,27 +1,35 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type TouchEvent } from 'react'
-import dancer from '../assets/highlights/dancer.webp'
-import columns from '../assets/highlights/columns.webp'
-import threeDancers from '../assets/highlights/three-dancers.webp'
-import portrait from '../assets/highlights/portrait.webp'
-import night from '../assets/highlights/night.webp'
-import golden from '../assets/highlights/golden.webp'
-import duo from '../assets/highlights/duo.webp'
-import laugh from '../assets/highlights/laugh.webp'
-import circle from '../assets/highlights/circle.webp'
-import lawn from '../assets/highlights/lawn.webp'
+import jump from '../assets/sunny/jump.webp'
+import lift from '../assets/sunny/lift.webp'
+import blueSky from '../assets/sunny/blue-sky.webp'
+import trees from '../assets/sunny/trees.webp'
+import columns from '../assets/sunny/columns.webp'
+import daylightPair from '../assets/sunny/daylight-pair.webp'
+import candid from '../assets/sunny/candid.webp'
+import goldenGreen from '../assets/sunny/golden-green.webp'
+import goldenTrio from '../assets/sunny/golden-trio.webp'
+import circle from '../assets/sunny/circle.webp'
+import lawn from '../assets/sunny/lawn.webp'
+import goldenPortrait from '../assets/sunny/golden-portrait.webp'
+import laugh from '../assets/sunny/laugh.webp'
+import skyDancers from '../assets/sunny/sky-dancers.webp'
 import './Highlights.css'
 
 const SLIDES = [
-  { src: dancer, alt: 'A dancer lifted in white during a performance.' },
-  { src: columns, alt: 'Four women standing together in front of stone columns.' },
-  { src: threeDancers, alt: 'Three dancers in pink and gold, outdoors in the sun.' },
-  { src: portrait, alt: 'A portrait of a woman in a white top, smiling.' },
-  { src: night, alt: 'A crowd at night under blue and green light.' },
-  { src: golden, alt: 'Three women in gold and black, standing in warm light.' },
-  { src: duo, alt: 'Two dancers in pink and gold mid-step.' },
-  { src: laugh, alt: 'A woman laughing, one hand near her face.' },
-  { src: circle, alt: 'A large circle of dancers on a lawn.' },
-  { src: lawn, alt: 'A group seated on the grass in white and gold.' },
+  { src: jump, alt: 'Two dancers jumping, blue sky behind them.' },
+  { src: lift, alt: 'A dancer lifted outdoors in daylight, smiling.' },
+  { src: blueSky, alt: 'A portrait in direct sun, blue sky behind her.' },
+  { src: trees, alt: 'Three people smiling in bright light, green trees behind them.' },
+  { src: columns, alt: 'Four women in daylight in front of stone columns.' },
+  { src: daylightPair, alt: 'Two women standing together in bright daylight.' },
+  { src: candid, alt: 'People talking outdoors, trees and daylight behind them.' },
+  { src: goldenGreen, alt: 'A group in golden light with green trees behind them.' },
+  { src: goldenTrio, alt: 'Three women in warm golden-hour light.' },
+  { src: circle, alt: 'A circle of dancers on a sunny lawn.' },
+  { src: lawn, alt: 'A group seated on the grass in the sun.' },
+  { src: goldenPortrait, alt: 'A close portrait in warm golden light.' },
+  { src: laugh, alt: 'A woman laughing in bright outdoor light.' },
+  { src: skyDancers, alt: 'Three dancers outdoors, sun and blue sky behind them.' },
 ]
 
 const INTERVAL = 5000

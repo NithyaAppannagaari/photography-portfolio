@@ -1,43 +1,3 @@
-.statement {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  background: var(--magenta);
-  color: var(--cream);
-}
-
-.statement__title {
-  width: min(14em, calc(100% - 2 * var(--pad)));
-  margin: auto;
-  padding: 2.5rem 0 4.5rem;
-}
-
-.statement__title h1 {
-  color: var(--cream);
-  font-size: clamp(2.8rem, 6.5vw, 5.6rem);
-  font-weight: 450;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
-.statement__title p {
-  margin-top: 0.85rem;
-  color: var(--cream);
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
-}
-
-.hero-photo {
-  padding: clamp(1.5rem, 4vw, 3.5rem) var(--pad) 0.5rem;
-}
-
-.hero-photo img {
-  width: min(1120px, 100%);
-  margin: 0 auto;
-  height: auto;
-}
-
 .work, .about, .contact { padding: 4.5rem var(--pad); }
 
 .section-head { margin-bottom: 1.4rem; }
@@ -128,5 +88,4 @@
 @media (max-width: 860px) {
   .work__grid, .about { grid-template-columns: 1fr; }
   .work, .about, .contact { padding-block: 3rem; }
-  .statement__title { width: min(12em, calc(100% - 2 * var(--pad))); }
 }
