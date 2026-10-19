@@ -3,10 +3,9 @@ import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
+import Hero from './components/Hero'
 import Highlights from './components/Highlights'
 import SiteFooter from './components/SiteFooter'
-import SiteNav from './components/SiteNav'
-import titleImg from './assets/title.jpg'
 import aboutImg from './assets/about.JPG'
 import clubCover from './assets/club_photoshoots/DSC08853 (1).jpg'
 import eventCover from './assets/event_photography/vertical7.jpeg'
@@ -42,17 +41,7 @@ function HomePage() {
 
   return (
     <div className="home">
-      <section className="statement">
-        <SiteNav tone="magenta" />
-        <div className="statement__title">
-          <h1>Nithya Appannagaari</h1>
-          <p>photography</p>
-        </div>
-      </section>
-
-      <figure className="hero-photo">
-        <img src={titleImg} alt="Event photograph by Nithya Appannagaari" />
-      </figure>
+      <Hero />
 
       <Highlights />
 
