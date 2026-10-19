@@ -145,7 +145,7 @@
   border: 1px dashed var(--line);
 }
 
-.desk-drop.is-over { border-color: var(--magenta); background: rgba(110, 24, 72, 0.06); }
+.desk-drop.is-over { border-color: var(--magenta); background: rgba(176, 18, 107, 0.08); }
 
 .desk-drop span {
   font-family: var(--font-serif);

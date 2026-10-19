@@ -43,8 +43,8 @@ export default function GalleryPage() {
 
   useEffect(() => {
     document.title = data
-      ? `${data.title} · Nithya Appannagaari`
-      : 'Gallery · Nithya Appannagaari'
+      ? `${data.title} · Nithya Appannagaari Photography`
+      : 'Nithya Appannagaari Photography'
   }, [data])
 
   useEffect(() => {

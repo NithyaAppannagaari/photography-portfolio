@@ -17,7 +17,7 @@ export default function ShareAlbumPage() {
   const [zipping, setZipping] = useState(false)
   const [open, setOpen] = useState<number | null>(null)
 
-  useNoIndex(album ? `${album.title} · Nithya Appannagaari` : 'Gallery · Nithya Appannagaari')
+  useNoIndex(album ? `${album.title} · Nithya Appannagaari Photography` : 'Nithya Appannagaari Photography')
 
   useEffect(() => {
     let active = true
@@ -100,7 +100,7 @@ export default function ShareAlbumPage() {
       {album ? (
         <>
           <header className="intro">
-            <p className="kicker">A gallery for you</p>
+            <p className="kicker">Gallery</p>
             <h1>{album.title}</h1>
             <p>{album.note || 'Photographs by Nithya Appannagaari.'}</p>
           </header>

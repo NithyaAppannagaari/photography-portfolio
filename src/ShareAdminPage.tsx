@@ -35,7 +35,7 @@ export default function ShareAdminPage() {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
-  useNoIndex('Client albums · Nithya Appannagaari')
+  useNoIndex('Albums · Nithya Appannagaari Photography')
 
   function fail(err: unknown) {
     if (locked(err)) setUnlocked(false)
@@ -158,7 +158,7 @@ function AlbumList({
   return (
     <main className="desk">
       <div className="desk__intro">
-        <p className="kicker">Your desk</p>
+        <p className="kicker">Albums</p>
         <h1>Client albums</h1>
         <p>Each album has its own link. Nothing here is listed on the public site.</p>
       </div>

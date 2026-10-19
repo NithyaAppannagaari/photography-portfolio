@@ -36,16 +36,17 @@ const WORK = [
 
 function HomePage() {
   useEffect(() => {
-    document.title = 'Nithya Appannagaari · Photography'
+    document.title = 'Nithya Appannagaari Photography'
   }, [])
 
   return (
     <div className="home">
       <section className="statement">
         <SiteNav tone="magenta" />
-        <p className="statement__text">
-          Professional photography for your campus story. <em>event coverage</em>, <em>club headshots</em>, and <em>graduation</em> sessions.
-        </p>
+        <div className="statement__title">
+          <h1>Nithya Appannagaari</h1>
+          <p>photography</p>
+        </div>
       </section>
 
       <figure className="hero-photo">
@@ -86,8 +87,7 @@ function HomePage() {
       </section>
 
       <section className="contact" id="contact">
-        <p className="kicker">Contact</p>
-        <h2>say hi</h2>
+        <h2>Contact</h2>
         <p>for club shoots, grad photos, or events, email me.</p>
         <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
       </section>

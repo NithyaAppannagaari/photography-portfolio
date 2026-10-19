@@ -56,15 +56,14 @@ const TIERS = [
 
 export default function PricingPage() {
   useEffect(() => {
-    document.title = 'Pricing · Nithya Appannagaari'
+    document.title = 'Rates · Nithya Appannagaari Photography'
   }, [])
 
   return (
     <div className="pricing-page">
       <SiteNav active="pricing" />
       <header className="intro">
-        <p className="kicker">Pricing</p>
-        <h1>rates</h1>
+        <h1>Rates</h1>
         <p>editing and a gallery are included. email me if you need something else.</p>
       </header>
       <main className="rates">

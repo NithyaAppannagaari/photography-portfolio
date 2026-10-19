@@ -4,7 +4,7 @@ import './SiteNav.css'
 
 const LINKS = [
   { id: 'work', label: 'Work' },
-  { id: 'pricing', label: 'Pricing' },
+  { id: 'pricing', label: 'Rates' },
   { id: 'about', label: 'About' },
   { id: 'contact', label: 'Contact' },
 ] as const

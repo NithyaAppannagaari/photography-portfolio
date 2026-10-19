@@ -4,13 +4,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --paper: #f7f1e6;
-  --cream: #f7f1e6;
-  --ink: #3e0c28;
-  --muted: #5c3a4a;
-  --line: rgba(110, 24, 72, 0.28);
-  --magenta: #6e1848;
-  --magenta-deep: #3e0c28;
+  --white: #ffffff;
+  --ink: #171717;
+  --muted: #4a4a4a;
+  --line: rgba(176, 18, 107, 0.28);
+  --magenta: #b0126b;
   --font-serif: "Newsreader Variable", "Iowan Old Style", Palatino, Georgia, serif;
   --font-sans: "Newsreader Variable", "Iowan Old Style", Palatino, Georgia, serif;
   --pad: clamp(1.15rem, 3.2vw, 2.75rem);
@@ -25,7 +23,7 @@ body {
   font-size: 1.15rem;
   line-height: 1.5;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--white);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,7 +33,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; }
 ul { list-style: none; }
 
-::selection { background: var(--magenta); color: var(--cream); }
+::selection { background: var(--magenta); color: var(--white); }
 
 :focus-visible {
   outline: 1px solid var(--magenta);
@@ -82,16 +80,16 @@ h1, h2, h3 {
 
 .btn:hover, .btn-line:hover, .btn-line-ink:hover, .btn-cream:hover {
   background: var(--magenta);
-  color: var(--cream);
+  color: var(--white);
 }
 
 .btn-solid {
   background: var(--magenta);
   border-color: var(--magenta);
-  color: var(--cream);
+  color: var(--white);
 }
 
-.btn-solid:hover { background: var(--magenta-deep); border-color: var(--magenta-deep); color: var(--cream); }
+.btn-solid:hover { background: var(--white); border-color: var(--magenta); color: var(--magenta); }
 
 .btn:disabled, .btn-solid:disabled {
   opacity: 0.4;
@@ -155,7 +153,7 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--paper);
+  background: var(--white);
 }
 
 .viewer__stage img {
@@ -176,7 +174,7 @@ h1, h2, h3 {
 
 .viewer__controls .kicker { color: var(--muted); }
 
-.route-fallback { min-height: 100vh; background: var(--paper); }
+.route-fallback { min-height: 100vh; background: var(--white); }
 
 @media (max-width: 1040px) {
   .frames { grid-template-columns: repeat(2, 1fr); }

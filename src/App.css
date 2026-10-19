@@ -4,26 +4,28 @@
   display: flex;
   flex-direction: column;
   background: var(--magenta);
-  color: var(--cream);
+  color: var(--white);
 }
 
-.statement__text {
-  width: min(18em, calc(100% - 2 * var(--pad)));
+.statement__title {
+  width: min(14em, calc(100% - 2 * var(--pad)));
   margin: auto;
   padding: 2.5rem 0 4.5rem;
-  font-size: clamp(2.15rem, 4.7vw, 4.35rem);
-  font-weight: 420;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
 }
 
-.statement__text em {
-  font-style: italic;
-  font-weight: 420;
-  text-decoration: underline;
-  text-decoration-color: var(--cream);
-  text-underline-offset: 0.12em;
-  text-decoration-thickness: 1px;
+.statement__title h1 {
+  color: var(--white);
+  font-size: clamp(2.8rem, 6.5vw, 5.6rem);
+  font-weight: 450;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.statement__title p {
+  margin-top: 0.85rem;
+  color: var(--white);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
 }
 
 .hero-photo {
@@ -60,7 +62,7 @@
 .work-card__soon {
   display: grid;
   place-items: center;
-  background: var(--cream);
+  background: var(--white);
   color: var(--magenta);
   border: 1px solid var(--magenta);
   font-style: italic;
@@ -126,5 +128,5 @@
 @media (max-width: 860px) {
   .work__grid, .about { grid-template-columns: 1fr; }
   .work, .about, .contact { padding-block: 3rem; }
-  .statement__text { width: min(16em, calc(100% - 2 * var(--pad))); }
+  .statement__title { width: min(12em, calc(100% - 2 * var(--pad))); }
 }
