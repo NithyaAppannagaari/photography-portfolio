@@ -22,13 +22,13 @@
   min-height: 46vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.8rem;
   padding: 2rem var(--pad) 4rem;
 }
 
 .gallery-soon p {
-  color: var(--magenta);
+  color: var(--cream);
   font-style: italic;
   font-size: clamp(2rem, 4vw, 3rem);
 }

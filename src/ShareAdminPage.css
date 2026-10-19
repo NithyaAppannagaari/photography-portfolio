@@ -2,7 +2,7 @@
 
 .desk {
   width: min(820px, 100%);
-  margin: 0 auto;
+  margin: 0;
   padding: 2.4rem var(--pad) 4.5rem;
 }
 
@@ -20,7 +20,7 @@
   margin-top: 0.8rem;
   font-size: 1.02rem;
   word-break: break-all;
-  color: var(--magenta);
+  color: var(--cream);
 }
 
 .desk__actions {
@@ -39,7 +39,7 @@
 
 .desk-unlock {
   width: min(32rem, 100%);
-  margin: 4.5rem auto 5rem;
+  margin: 4.5rem 0 5rem;
   padding: 0 var(--pad);
 }
 
@@ -90,13 +90,13 @@
 }
 
 .desk__error {
-  color: var(--magenta);
+  color: var(--cream);
   font-style: italic;
   margin: 0.3rem 0 0.8rem;
 }
 
 .desk__toast {
-  color: var(--magenta);
+  color: var(--cream);
   font-style: italic;
   margin-top: 0.7rem;
 }
@@ -137,7 +137,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.3rem;
   margin-top: 1.6rem;
   min-height: 8rem;
@@ -145,7 +145,7 @@
   border: 1px dashed var(--line);
 }
 
-.desk-drop.is-over { border-color: var(--magenta); background: rgba(110, 24, 72, 0.06); }
+.desk-drop.is-over { border-color: var(--cream); background: transparent; }
 
 .desk-drop span {
   font-family: var(--font-serif);
@@ -174,7 +174,7 @@
   display: grid;
   grid-template-columns: 84px 1fr;
   gap: 0.75rem;
-  align-items: center;
+  align-items: start;
 }
 
 .desk-photos img {
@@ -188,7 +188,7 @@
 .desk-photos button {
   margin-top: 0.3rem;
   padding: 0;
-  color: var(--magenta);
+  color: var(--cream);
   font-family: var(--font-sans);
   font-size: 0.66rem;
   font-weight: 500;
