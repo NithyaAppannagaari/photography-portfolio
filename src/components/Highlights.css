@@ -1,0 +1,73 @@
+.highlights {
+  padding-top: 3.2rem;
+}
+
+.highlights__label {
+  padding: 0 var(--pad) 0.9rem;
+}
+
+.highlights__stage {
+  position: relative;
+  width: 100%;
+  height: min(78vh, 860px);
+  background: var(--cream);
+  touch-action: pan-y;
+}
+
+.highlights__stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s ease;
+}
+
+.highlights__stage img.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.highlights__bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem 1.4rem;
+  padding: 0.9rem var(--pad) 0.4rem;
+}
+
+.highlights__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.highlights__dots button {
+  width: 0.48rem;
+  height: 0.48rem;
+  padding: 0;
+  border: 1px solid var(--magenta);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.highlights__dots button.is-active {
+  background: var(--magenta);
+}
+
+.highlights__count {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .highlights__stage { height: min(68vh, 560px); }
+  .highlights__bar { gap: 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlights__stage img { transition: none; }
+}
