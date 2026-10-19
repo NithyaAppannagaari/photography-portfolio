@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background: var(--magenta);
-  color: var(--white);
+  color: var(--cream);
 }
 
 .statement__title {
@@ -14,7 +14,7 @@
 }
 
 .statement__title h1 {
-  color: var(--white);
+  color: var(--cream);
   font-size: clamp(2.8rem, 6.5vw, 5.6rem);
   font-weight: 450;
   line-height: 1.02;
@@ -23,7 +23,7 @@
 
 .statement__title p {
   margin-top: 0.85rem;
-  color: var(--white);
+  color: var(--cream);
   font-size: 1.05rem;
   letter-spacing: 0.12em;
 }
@@ -62,7 +62,7 @@
 .work-card__soon {
   display: grid;
   place-items: center;
-  background: var(--white);
+  background: var(--cream);
   color: var(--magenta);
   border: 1px solid var(--magenta);
   font-style: italic;
