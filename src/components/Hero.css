@@ -1,101 +1,165 @@
 .hero {
+  --mx: 0;
+  --my: 0;
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  color: var(--cream);
   background: var(--magenta);
-}
-
-.hero__photos,
-.hero__veil {
-  position: absolute;
-  inset: 0;
-}
-
-.hero__photos img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 22%;
-  opacity: 0;
-  transition: opacity 1.4s ease;
-}
-
-.hero__photos img.is-active { opacity: 1; }
-
-.hero__veil {
-  background:
-    linear-gradient(180deg, rgba(110, 24, 72, 0.22) 0%, rgba(110, 24, 72, 0.38) 42%, rgba(110, 24, 72, 0.62) 100%);
-}
-
-.hero .nav,
-.hero__copy,
-.hero__scroll { position: relative; z-index: 2; }
-
-.hero__copy {
-  width: min(12em, calc(100% - 2 * var(--pad)));
-  margin: auto;
-  padding: 1.5rem 0 5.5rem;
-  animation: hero-rise 1.15s ease both;
-}
-
-.hero__copy h1 {
   color: var(--cream);
-  font-size: clamp(3.1rem, 8.4vw, 7rem);
-  font-weight: 450;
-  line-height: 0.9;
-  letter-spacing: -0.035em;
 }
 
-.hero__copy em {
+.hero .nav { position: relative; z-index: 5; }
+
+.hero__name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 0.6vw 0 0.35vw;
+  color: var(--cream);
+  font-size: min(17.2vw, 34svh, 20rem);
+  font-weight: 450;
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+  animation: hero-in 0.9s ease both;
+}
+
+.hero__name em {
   display: block;
   font-style: italic;
   font-weight: 420;
+  letter-spacing: -0.058em;
+  white-space: nowrap;
 }
 
-.hero__copy p {
-  margin-top: 1.05rem;
+.hero__role {
+  position: relative;
+  z-index: 1;
+  margin: 1.7rem 0 0 0.7vw;
   color: var(--cream);
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   letter-spacing: 0.22em;
+  animation: hero-in 0.9s ease 0.12s both;
+}
+
+.hero__frames { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+
+.hero__frame {
+  position: absolute;
+  margin: 0;
+  padding: 0.35rem;
+  background: var(--cream);
+  animation: hero-in 1s ease both;
+}
+
+.hero__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.hero__frame--a {
+  top: 59%;
+  right: 26%;
+  width: min(15vw, 210px);
+  aspect-ratio: 3 / 4;
+  transform: translate(calc(var(--mx) * -22px), calc(var(--my) * -14px)) rotate(-7deg);
+  animation-delay: 0.16s;
+}
+
+.hero__frame--b {
+  top: 62%;
+  left: 36%;
+  width: min(28vw, 400px);
+  aspect-ratio: 4 / 3;
+  transform: translate(calc(var(--mx) * 16px), calc(var(--my) * 10px)) rotate(3deg);
+  animation-delay: 0.28s;
+  z-index: 1;
+}
+
+.hero__frame--c {
+  right: 36%;
+  bottom: 9%;
+  width: min(12.5vw, 175px);
+  aspect-ratio: 4 / 5;
+  transform: translate(calc(var(--mx) * -10px), calc(var(--my) * 18px)) rotate(-2.5deg);
+  animation-delay: 0.4s;
+}
+
+.hero__meta {
+  position: absolute;
+  z-index: 3;
+  left: var(--pad);
+  bottom: 6.6rem;
+  color: var(--cream);
+  font-size: 1.05rem;
+  font-style: italic;
+  animation: hero-in 0.9s ease 0.34s both;
 }
 
 .hero__scroll {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   left: var(--pad);
   bottom: 1.35rem;
   color: var(--cream);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   letter-spacing: 0.16em;
-  animation: hero-rise 1.15s ease 0.2s both;
+  animation: hero-in 0.9s ease 0.46s both;
 }
 
 .hero__scroll::after {
   content: "";
   display: block;
   width: 1px;
-  height: 2.6rem;
-  margin-top: 0.55rem;
+  height: 2.4rem;
+  margin-top: 0.5rem;
   background: var(--cream);
 }
 
-@keyframes hero-rise {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
+.hero :focus-visible { outline-color: var(--cream); }
+
+@keyframes hero-in {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
 }
 
-@media (max-width: 640px) {
-  .hero__copy { width: min(11em, calc(100% - 2 * var(--pad))); }
+@media (max-width: 860px) {
+  .hero__name {
+    font-size: clamp(3.15rem, 16.4vw, 6.4rem);
+    padding: 0 1vw 0 0.4vw;
+  }
+
+  .hero__frame--a {
+    top: 34%;
+    right: 7%;
+    width: 36vw;
+  }
+
+  .hero__frame--b {
+    top: 44%;
+    left: 4%;
+    width: 62vw;
+  }
+
+  .hero__frame--c {
+    top: auto;
+    bottom: 20%;
+    right: 5%;
+    width: 32vw;
+  }
+
+  .hero__meta { bottom: 6.8rem; max-width: 18rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__photos img { transition: none; }
-  .hero__copy,
+  .hero__name,
+  .hero__role,
+  .hero__frame,
+  .hero__meta,
   .hero__scroll { animation: none; }
 }
