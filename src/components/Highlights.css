@@ -10,7 +10,7 @@
   position: relative;
   width: 100%;
   height: min(78vh, 860px);
-  background: var(--cream);
+  background: var(--magenta);
   touch-action: pan-y;
 }
 
@@ -33,7 +33,9 @@
 
 .highlights__bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
   gap: 1rem 1.4rem;
   padding: 0.9rem var(--pad) 0.4rem;
 }
@@ -49,17 +51,17 @@
   width: 0.48rem;
   height: 0.48rem;
   padding: 0;
-  border: 1px solid var(--magenta);
+  border: 1px solid var(--cream);
   border-radius: 50%;
   background: transparent;
 }
 
 .highlights__dots button.is-active {
-  background: var(--magenta);
+  background: var(--cream);
 }
 
 .highlights__count {
-  margin-left: auto;
+  margin-left: 0;
   color: var(--muted);
 }
 
@@ -68,19 +70,13 @@
   .highlights__stage { height: min(62vh, 520px); }
   .highlights__label { padding-bottom: 0.75rem; }
   .highlights__bar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-areas:
-      "prev count next"
-      "dots dots dots";
-    align-items: center;
-    gap: 0.85rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.85rem 1.15rem;
     padding-bottom: 0.5rem;
   }
-  .highlights__bar .text-btn:first-of-type { grid-area: prev; justify-self: start; }
-  .highlights__dots { grid-area: dots; }
-  .highlights__count { grid-area: count; margin-left: 0; }
-  .highlights__bar .text-btn:last-of-type { grid-area: next; justify-self: end; }
+  .highlights__dots { flex-basis: 100%; order: 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {

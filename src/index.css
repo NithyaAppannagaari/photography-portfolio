@@ -5,16 +5,21 @@
 
 :root {
   --cream: #f7f1e6;
-  --ink: #3e0c28;
-  --muted: #5c3a4a;
-  --line: rgba(110, 24, 72, 0.28);
+  --ink: #f7f1e6;
+  --muted: rgba(247, 241, 230, 0.7);
+  --line: rgba(247, 241, 230, 0.28);
   --magenta: #6e1848;
   --font-serif: "Newsreader Variable", "Iowan Old Style", Palatino, Georgia, serif;
   --font-sans: "Newsreader Variable", "Iowan Old Style", Palatino, Georgia, serif;
   --pad: clamp(1.375rem, 3.2vw, 2.75rem);
 }
 
-html { font-size: 16px; scroll-behavior: smooth; }
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background: var(--magenta);
+  color-scheme: dark;
+}
 
 body {
   overflow-x: hidden;
@@ -22,22 +27,36 @@ body {
   font-weight: 420;
   font-size: 1.15rem;
   line-height: 1.5;
-  color: var(--ink);
-  background: var(--cream);
+  color: var(--cream);
+  background: var(--magenta);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; background: none; border: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; text-align: left; }
 ul { list-style: none; }
 
-::selection { background: var(--magenta); color: var(--cream); }
+::selection { background: var(--cream); color: var(--magenta); }
 
 :focus-visible {
-  outline: 1px solid var(--magenta);
+  outline: 1px solid var(--cream);
   outline-offset: 3px;
+}
+
+::placeholder { color: rgba(247, 241, 230, 0.55); }
+
+input,
+textarea {
+  caret-color: var(--cream);
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--cream);
+  box-shadow: 0 0 0 1000px var(--magenta) inset;
+  transition: background-color 9999s ease-out;
 }
 
 section[id] { scroll-margin-top: 4.5rem; }
@@ -47,7 +66,7 @@ h1, h2, h3 {
   font-weight: 450;
   letter-spacing: -0.02em;
   line-height: 1.08;
-  color: var(--magenta);
+  color: var(--cream);
 }
 
 .kicker {
@@ -62,13 +81,13 @@ h1, h2, h3 {
 .btn, .btn-solid, .btn-line, .btn-line-ink, .btn-cream {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 2.6rem;
   padding: 0.45rem 0.95rem;
-  border: 1px solid var(--magenta);
+  border: 1px solid rgba(247, 241, 230, 0.55);
   border-radius: 0;
   background: transparent;
-  color: var(--magenta);
+  color: var(--cream);
   font-family: var(--font-sans);
   font-size: 0.68rem;
   font-weight: 500;
@@ -79,17 +98,18 @@ h1, h2, h3 {
 }
 
 .btn:hover, .btn-line:hover, .btn-line-ink:hover, .btn-cream:hover {
-  background: var(--magenta);
-  color: var(--cream);
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--magenta);
 }
 
 .btn-solid {
-  background: var(--magenta);
-  border-color: var(--magenta);
+  background: transparent;
+  border-color: var(--cream);
   color: var(--cream);
 }
 
-.btn-solid:hover { background: var(--cream); border-color: var(--magenta); color: var(--magenta); }
+.btn-solid:hover { background: transparent; border-color: var(--cream); color: var(--cream); }
 
 .btn:disabled, .btn-solid:disabled {
   opacity: 0.4;
@@ -114,7 +134,7 @@ h1, h2, h3 {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.15rem;
-  color: var(--magenta);
+  color: var(--cream);
   text-decoration: underline;
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
@@ -144,16 +164,16 @@ h1, h2, h3 {
 
 .viewer {
   max-width: 1080px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0.5rem var(--pad) 4.5rem;
   scroll-margin-top: 4.6rem;
 }
 
 .viewer__stage {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--cream);
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: var(--magenta);
 }
 
 .viewer__stage img {
@@ -169,12 +189,12 @@ h1, h2, h3 {
   flex-wrap: wrap;
   gap: 0.4rem 1.6rem;
   margin-top: 0.95rem;
-  color: var(--magenta);
+  color: var(--cream);
 }
 
 .viewer__controls .kicker { color: var(--muted); }
 
-.route-fallback { min-height: 100vh; background: var(--cream); }
+.route-fallback { min-height: 100vh; background: var(--magenta); }
 
 @media (max-width: 1040px) {
   .frames { grid-template-columns: repeat(2, 1fr); }

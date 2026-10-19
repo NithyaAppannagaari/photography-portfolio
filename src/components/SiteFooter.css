@@ -1,8 +1,9 @@
 .site-footer {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.6rem;
+  align-items: flex-start;
   padding: 1.2rem var(--pad) calc(1.5rem + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
   font-family: var(--font-sans);
@@ -14,7 +15,7 @@
 }
 
 .site-footer div { display: flex; gap: 1rem; }
-.site-footer a:hover { color: var(--magenta); }
+.site-footer a:hover { color: var(--cream); }
 
 @media (max-width: 640px) {
   .site-footer {

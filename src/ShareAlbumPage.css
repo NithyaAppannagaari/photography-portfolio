@@ -4,18 +4,18 @@
 
 .share-note, .share-empty {
   max-width: 36rem;
-  margin: 0 auto;
+  margin: 0;
   padding: 1rem var(--pad) 4rem;
   color: var(--muted);
 }
 
-.share-note { color: var(--magenta); font-style: italic; }
+.share-note { color: var(--cream); font-style: italic; }
 
 .share-empty {
   min-height: 46vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.8rem;
 }
 

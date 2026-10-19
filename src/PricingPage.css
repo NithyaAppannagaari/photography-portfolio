@@ -22,7 +22,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem 1.5rem;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0.5rem var(--pad) 2rem;
 }
 
@@ -35,9 +35,9 @@
   border-top: 1px solid var(--line);
 }
 
-.rate--lead { border-top: 2px solid var(--magenta); }
+.rate--lead { border-top: 2px solid var(--cream); }
 
-.rate--lead .rate__price { color: var(--magenta); }
+.rate--lead .rate__price { color: var(--cream); }
 
 .rate .kicker { color: var(--muted); }
 
@@ -81,13 +81,13 @@
 
 .rates-note {
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 0;
   padding: 0.5rem var(--pad) 3.5rem;
   color: var(--muted);
 }
 
 .rates-note a {
-  color: var(--magenta);
+  color: var(--cream);
   text-decoration: underline;
   text-underline-offset: 0.16em;
 }
