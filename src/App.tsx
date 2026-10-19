@@ -15,20 +15,20 @@ const ShareAdminPage = lazy(() => import('./ShareAdminPage'))
 
 const WORK = [
   {
-    title: 'Club photoshoots',
-    desc: 'Professional headshot and team sessions tailored to your club\'s brand and recruitment goals.',
+    title: 'club photoshoots',
+    desc: 'headshots and team photos for clubs.',
     slug: 'club-photoshoots',
     src: clubCover,
   },
   {
-    title: 'Graduation photoshoots',
-    desc: 'Capturing the emotion of your special day with a timeless approach so you can relive it for a lifetime.',
+    title: 'graduation photoshoots',
+    desc: 'grad photos around campus.',
     slug: 'graduation-photoshoots',
     src: null,
   },
   {
-    title: 'Event photography',
-    desc: 'Crafting compelling visual narratives for cultural events to elevate your marketing.',
+    title: 'event photography',
+    desc: 'photos from campus events.',
     slug: 'event-photography',
     src: eventCover,
   },
@@ -36,16 +36,17 @@ const WORK = [
 
 function HomePage() {
   useEffect(() => {
-    document.title = 'Nithya Appannagaari · Photography'
+    document.title = 'Nithya Appannagaari Photography'
   }, [])
 
   return (
     <div className="home">
       <section className="statement">
         <SiteNav tone="magenta" />
-        <p className="statement__text">
-          Professional photography for your campus story — <em>event coverage</em>, <em>club headshots</em>, and <em>graduation</em> sessions.
-        </p>
+        <div className="statement__title">
+          <h1>Nithya Appannagaari</h1>
+          <p>photography</p>
+        </div>
       </section>
 
       <figure className="hero-photo">
@@ -62,7 +63,7 @@ function HomePage() {
               {item.src ? (
                 <img src={item.src} alt="" />
               ) : (
-                <div className="work-card__soon"><span>Coming soon</span></div>
+                <div className="work-card__soon"><span>coming soon</span></div>
               )}
               <h2>{item.title}</h2>
               <p>{item.desc}</p>
@@ -79,21 +80,15 @@ function HomePage() {
           <p className="kicker">About</p>
           <h2>Nithya Appannagaari</h2>
           <p>
-            Hi! I&apos;m a photographer based at UC Berkeley specialising in event coverage,
-            club &amp; recruitment headshots, and graduation sessions.
+            hi, i&apos;m nithya. i&apos;m at berkeley, and i photograph clubs, grads, and events.
           </p>
-          <p className="about__tags">Event photography, club headshots, graduation.</p>
-          <a href="#work" className="text-link">View my work</a>
+          <a href="#work" className="text-link">see the photos</a>
         </div>
       </section>
 
       <section className="contact" id="contact">
-        <p className="kicker">Contact</p>
-        <h2>Ready to capture your next moment?</h2>
-        <p>
-          Reach out to discuss your project — event coverage, headshots,
-          or graduation sessions. Response within 24 hours.
-        </p>
+        <h2>Contact</h2>
+        <p>for club shoots, grad photos, or events, email me.</p>
         <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
       </section>
 

@@ -9,7 +9,7 @@
   color: var(--muted);
 }
 
-.share-note { color: var(--crimson); font-style: italic; }
+.share-note { color: var(--magenta); font-style: italic; }
 
 .share-empty {
   min-height: 46vh;

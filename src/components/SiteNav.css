@@ -12,23 +12,23 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(247, 241, 230, 0.94);
+  background: rgba(255, 255, 255, 0.94);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
 
-.nav--magenta { color: var(--cream); }
+.nav--magenta { color: var(--white); }
 
-.nav--paper .wordmark { color: var(--vermilion-deep); }
+.nav--paper .wordmark { color: var(--magenta); }
 
 .nav--paper .nav__links a[aria-current="page"],
 .nav--paper .nav__sheet a[aria-current="page"] {
-  text-decoration-color: var(--vermilion);
+  text-decoration-color: var(--magenta);
 }
 
 .nav--magenta .nav__links a[aria-current="page"],
 .nav--magenta .nav__sheet a[aria-current="page"] {
-  text-decoration-color: var(--gold);
+  text-decoration-color: var(--white); }
 }
 
 .wordmark {

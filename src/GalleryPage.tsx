@@ -15,20 +15,20 @@ const eventImages = Object.entries(
 
 const CATEGORIES = {
   'club-photoshoots': {
-    title: 'Club photoshoots',
-    desc: 'Professional headshot and team sessions tailored to your club\'s brand and recruitment goals.',
+    title: 'club photoshoots',
+    desc: 'headshots and team photos for clubs.',
     images: clubImages,
     comingSoon: false,
   },
   'graduation-photoshoots': {
-    title: 'Graduation photoshoots',
-    desc: 'Capturing the emotion of your special day with a timeless approach so you can relive the experience for a lifetime.',
+    title: 'graduation photoshoots',
+    desc: 'grad photos around campus.',
     images: [],
     comingSoon: true,
   },
   'event-photography': {
-    title: 'Event photography',
-    desc: 'Crafting compelling visual narratives for cultural events to elevate your marketing.',
+    title: 'event photography',
+    desc: 'photos from campus events.',
     images: eventImages,
     comingSoon: false,
   },
@@ -43,8 +43,8 @@ export default function GalleryPage() {
 
   useEffect(() => {
     document.title = data
-      ? `${data.title} · Nithya Appannagaari`
-      : 'Gallery · Nithya Appannagaari'
+      ? `${data.title} · Nithya Appannagaari Photography`
+      : 'Nithya Appannagaari Photography'
   }, [data])
 
   useEffect(() => {
@@ -70,8 +70,8 @@ export default function GalleryPage() {
       <SiteNav active="work" />
       {!data ? (
         <div className="gallery-empty">
-          <p>Gallery not found.</p>
-          <Link to="/" className="text-link">Back home</Link>
+          <p>that gallery isn&apos;t here.</p>
+          <Link to="/" className="text-link">back home</Link>
         </div>
       ) : (
         <>
@@ -82,9 +82,9 @@ export default function GalleryPage() {
           </header>
           {data.comingSoon ? (
             <div className="gallery-soon">
-              <p>Coming soon</p>
-              <a className="text-link" href="mailto:nithya.app@berkeley.edu?subject=Graduation Photoshoot Inquiry">
-                Email to book
+              <p>coming soon</p>
+              <a className="text-link" href="mailto:nithya.app@berkeley.edu?subject=Graduation photoshoot">
+                email me
               </a>
             </div>
           ) : open !== null ? (

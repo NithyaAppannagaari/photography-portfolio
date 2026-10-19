@@ -46,7 +46,7 @@ The bucket name in `wrangler.jsonc` is `nithya-share`. If you change it, change 
 2. `npx wrangler login`
 3. `npx wrangler r2 bucket create nithya-share`
 4. `openssl rand -base64 24`, then `npx wrangler secret put SHARE_ADMIN_PASSWORD` and paste the password. This is the production password. It is stored as a Worker secret, not in the repo.
-5. `npm run deploy` — this builds the site and publishes the Worker named `nithya-photography`.
+5. `npm run deploy`. This builds the site and publishes the Worker named `nithya-photography`.
 6. In the Cloudflare dashboard, open **Workers & Pages → nithya-photography → Settings → Domains & Routes** and attach the portfolio domain.
 7. Open `https://your-domain/share/admin`, unlock it, and create the album there. Upload on the live desk. A local album is not copied up by deploy.
 

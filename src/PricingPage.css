@@ -18,11 +18,11 @@
   border-top: 1px solid var(--line);
 }
 
-.rate--lead { border-top: 2px solid var(--vermilion); }
+.rate--lead { border-top: 2px solid var(--magenta); }
 
-.rate--lead .rate__price { color: var(--vermilion); }
+.rate--lead .rate__price { color: var(--magenta); }
 
-.rate .kicker { color: var(--teal); }
+.rate .kicker { color: var(--muted); }
 
 .rate h2 { font-size: 1.7rem; margin-top: 0.2rem; }
 
@@ -70,7 +70,7 @@
 }
 
 .rates-note a {
-  color: var(--vermilion);
+  color: var(--magenta);
   text-decoration: underline;
   text-underline-offset: 0.16em;
 }
