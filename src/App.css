@@ -1,23 +1,37 @@
-.work, .about, .contact { padding: 4.5rem var(--pad); }
+.work, .about, .contact {
+  padding-top: clamp(3.4rem, 7vw, 5.75rem);
+  padding-bottom: clamp(3.4rem, 7vw, 5.75rem);
+  padding-left: max(var(--pad), env(safe-area-inset-left));
+  padding-right: max(var(--pad), env(safe-area-inset-right));
+}
 
 .section-head { margin-bottom: 1.4rem; }
 
 .work__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.2rem 1.25rem;
-  max-width: 1120px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.75rem) clamp(1rem, 2vw, 1.6rem);
 }
+
+.work-card { display: block; }
 
 .work-card img,
 .work-card__soon {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  transition: opacity 0.45s ease;
 }
 
-.work-card:hover img { opacity: 0.88; }
+.work-card h2 {
+  text-decoration-color: transparent;
+  text-underline-offset: 0.14em;
+}
+
+.work-card:hover h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--cream);
+}
 
 .work-card__soon {
   display: flex;
@@ -26,7 +40,7 @@
   padding: 1.1rem;
   background: var(--magenta);
   color: var(--cream);
-  border: 1px solid var(--line);
+  border: 1px solid var(--frame);
   font-style: italic;
   font-size: 1.35rem;
 }
@@ -45,10 +59,9 @@
 
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
   align-items: start;
-  max-width: 1120px;
   margin: 0;
   border-top: 1px solid var(--line);
 }
@@ -64,7 +77,6 @@
 
 .contact {
   border-top: 1px solid var(--line);
-  max-width: 1120px;
   margin: 0;
 }
 
@@ -89,9 +101,12 @@
 
 @media (max-width: 860px) {
   .work__grid, .about { grid-template-columns: 1fr; }
-  .work, .about, .contact { padding: 2.75rem var(--pad); }
-  .work__grid { gap: 2.25rem; }
-  .about { gap: 1.75rem; }
+  .work, .about, .contact {
+    padding-top: 2.85rem;
+    padding-bottom: 2.85rem;
+  }
+  .work__grid { gap: 2.35rem; }
+  .about { gap: 1.5rem; }
   .section-head { margin-bottom: 1.35rem; }
   .work-card h2 { margin-top: 0.7rem; }
   .contact__email {

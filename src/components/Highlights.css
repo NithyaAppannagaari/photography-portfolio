@@ -1,24 +1,28 @@
 .highlights {
-  padding-top: 3.2rem;
+  padding-top: clamp(2.5rem, 5vw, 3.6rem);
+  padding-left: max(var(--pad), env(safe-area-inset-left));
+  padding-right: max(var(--pad), env(safe-area-inset-right));
 }
 
 .highlights__label {
-  padding: 0 var(--pad) 0.9rem;
+  padding: 0 0 0.9rem;
 }
 
 .highlights__stage {
   position: relative;
   width: 100%;
-  height: min(78vh, 860px);
-  background: var(--magenta);
+  height: min(74vh, 820px);
+  background: var(--mat);
+  border: 1px solid var(--frame);
+  padding: 0.42rem;
   touch-action: pan-y;
 }
 
 .highlights__stage img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0.42rem;
+  width: calc(100% - 0.84rem);
+  height: calc(100% - 0.84rem);
   object-fit: contain;
   object-position: center center;
   opacity: 0;
@@ -37,7 +41,11 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1rem 1.4rem;
-  padding: 0.9rem var(--pad) 0.4rem;
+  padding: 0.95rem 0 0.4rem;
+}
+
+.highlights__dots button:hover {
+  background: rgba(247, 241, 230, 0.5);
 }
 
 .highlights__dots {
@@ -66,8 +74,8 @@
 }
 
 @media (max-width: 640px) {
-  .highlights { padding-top: 2.5rem; }
-  .highlights__stage { height: min(62vh, 520px); }
+  .highlights { padding-top: 2.35rem; }
+  .highlights__stage { height: min(68svh, 540px); }
   .highlights__label { padding-bottom: 0.75rem; }
   .highlights__bar {
     display: flex;

@@ -8,19 +8,17 @@
   padding-right: max(var(--pad), env(safe-area-inset-right));
   padding-bottom: 0.85rem;
   padding-left: max(var(--pad), env(safe-area-inset-left));
-  position: relative;
-}
-
-.nav--paper {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 40;
   background: var(--magenta);
-  border-bottom: 1px solid var(--line);
   color: var(--cream);
 }
 
-.nav--magenta { color: var(--cream); }
+.nav.is-stuck,
+.nav--paper {
+  border-bottom: 1px solid var(--line);
+}
 
 .nav--paper .wordmark { color: var(--cream); }
 
@@ -43,6 +41,7 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  transition: opacity 0.25s ease;
 }
 
 .wordmark__mark { width: 0.72rem; height: 0.72rem; flex-shrink: 0; }
@@ -55,13 +54,43 @@
 }
 
 .nav__links a, .nav__sheet a {
+  position: relative;
   font-family: var(--font-serif);
   font-size: 1.12rem;
   font-weight: 450;
   letter-spacing: 0.01em;
 }
 
-.nav__links a[aria-current="page"],
+.nav__links a::after,
+.nav__social a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__links a:hover::after,
+.nav__links a[aria-current="page"]::after,
+.nav__social a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav__sheet a:hover,
+.wordmark:hover,
+.nav__menu:hover {
+  opacity: 0.62;
+}
+
+.nav__links a[aria-current="page"] {
+  text-decoration: none;
+}
+
 .nav__sheet a[aria-current="page"] {
   text-decoration: underline;
   text-underline-offset: 0.28em;
@@ -85,6 +114,8 @@
   text-transform: uppercase;
 }
 
+.nav__social a { position: relative; }
+
 .nav__menu {
   display: none;
   align-items: center;
@@ -99,10 +130,23 @@
 
 .nav__sheet {
   display: none;
-  flex-basis: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 41;
   flex-direction: column;
-  gap: 0.95rem;
-  padding: 0.55rem 0 0.9rem;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 0.35rem max(var(--pad), env(safe-area-inset-right)) 1rem max(var(--pad), env(safe-area-inset-left));
+  background: var(--magenta);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__sheet a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .nav__sheet a:nth-last-child(-n+2) {

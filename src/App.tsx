@@ -3,9 +3,12 @@ import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
+import Cursor from './components/Cursor'
 import Hero from './components/Hero'
 import Highlights from './components/Highlights'
+import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
+import SiteNav from './components/SiteNav'
 import aboutImg from './assets/about.JPG'
 import clubCover from './assets/club_photoshoots/DSC08853 (1).jpg'
 import eventCover from './assets/event_photography/vertical7.jpeg'
@@ -41,31 +44,39 @@ function HomePage() {
 
   return (
     <div className="home">
+      <SiteNav tone="magenta" />
       <Hero />
 
-      <Highlights />
+      <Reveal>
+        <Highlights />
+      </Reveal>
 
       <section className="work" id="work">
         <div className="section-head">
           <p className="kicker">Work</p>
         </div>
         <div className="work__grid">
-          {WORK.map((item) => (
-            <Link key={item.slug} to={`/gallery/${item.slug}`} className="work-card">
-              {item.src ? (
-                <img src={item.src} alt="" />
-              ) : (
-                <div className="work-card__soon"><span>coming soon</span></div>
-              )}
-              <h2>{item.title}</h2>
-              <p>{item.desc}</p>
-            </Link>
+          {WORK.map((item, index) => (
+            <Reveal key={item.slug} delay={index * 90}>
+              <Link to={`/gallery/${item.slug}`} className="work-card">
+                {item.src ? (
+                  <span className="photo-frame">
+                    <img src={item.src} alt="" />
+                  </span>
+                ) : (
+                  <div className="work-card__soon"><span>coming soon</span></div>
+                )}
+                <h2>{item.title}</h2>
+                <p>{item.desc}</p>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
 
+      <Reveal>
       <section className="about" id="about">
-        <figure>
+        <figure className="photo-frame">
           <img src={aboutImg} alt="Portrait of Nithya Appannagaari" />
         </figure>
         <div>
@@ -77,12 +88,15 @@ function HomePage() {
           <a href="#work" className="text-link">see the photos</a>
         </div>
       </section>
+      </Reveal>
 
+      <Reveal>
       <section className="contact" id="contact">
         <h2>Contact</h2>
         <p>for club shoots, grad photos, or events, email me.</p>
         <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
       </section>
+      </Reveal>
 
       <SiteFooter />
     </div>
@@ -92,6 +106,7 @@ function HomePage() {
 export default function App() {
   return (
     <Suspense fallback={<div className="route-fallback" />}>
+      <Cursor />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/gallery/:category" element={<GalleryPage />} />

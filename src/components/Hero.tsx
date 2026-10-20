@@ -1,27 +1,29 @@
-import SiteNav from './SiteNav'
-import photo from '../assets/hero-low.webp'
+import photo from '../assets/sunny/jump.webp'
 import './Hero.css'
 
 export default function Hero() {
   return (
     <section className="hero">
-      <SiteNav tone="magenta" />
       <div className="hero__body">
-        <h1 className="hero__name">
-          Nithya <em>Appannagaari</em>
-        </h1>
-        <p className="hero__role">Photography</p>
-        <figure className="hero__photo">
+        <div className="hero__intro">
+          <h1 className="hero__name">
+            Nithya <em>Appannagaari</em>
+          </h1>
+          <p className="hero__role">Photography</p>
+        </div>
+        <figure className="hero__photo photo-frame">
           <img
             src={photo}
-            alt="A circle of dancers at dusk, arms raised, deep shadow around them."
+            alt="Two dancers jumping, blue sky behind them."
             width={2000}
-            height={1225}
+            height={1425}
             decoding="async"
           />
         </figure>
-        <p className="hero__meta">Berkeley, CA · events, portraits, clubs</p>
-        <a className="hero__scroll" href="#highlights">scroll</a>
+        <div className="hero__foot">
+          <p className="hero__meta">Berkeley, CA · events, portraits, clubs</p>
+          <a className="hero__scroll" href="#highlights">scroll</a>
+        </div>
       </div>
     </section>
   )

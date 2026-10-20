@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './SiteNav.css'
 
@@ -23,9 +23,30 @@ export default function SiteNav({
   const location = useLocation()
   const [open, setOpen] = useState(false)
   const [here, setHere] = useState<Active>('')
+  const [stuck, setStuck] = useState(false)
   const home = location.pathname === '/'
+  const navRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setOpen(false) }, [location.pathname, location.hash])
+
+  useEffect(() => {
+    const el = navRef.current
+    if (!el) return
+    const apply = () => {
+      document.documentElement.style.setProperty('--nav-h', `${el.getBoundingClientRect().height}px`)
+    }
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [open])
+
+  useEffect(() => {
+    const onScroll = () => setStuck(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     if (!home || active) return
@@ -67,7 +88,7 @@ export default function SiteNav({
   })
 
   return (
-    <div className={`nav nav--${tone}${open ? ' nav--open' : ''}`}>
+    <div ref={navRef} className={`nav nav--${tone}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
       <Link to="/" className="wordmark" onClick={() => setOpen(false)}>
         <svg className="wordmark__mark" viewBox="0 0 12 12" aria-hidden="true">
           <rect x="0.6" y="0.6" width="10.8" height="10.8" fill="none" stroke="currentColor" strokeWidth="1" />

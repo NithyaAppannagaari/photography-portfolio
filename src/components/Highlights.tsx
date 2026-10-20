@@ -16,15 +16,15 @@ import skyDancers from '../assets/sunny/sky-dancers.webp'
 import './Highlights.css'
 
 const SLIDES = [
-  { src: jump, alt: 'Two dancers jumping, blue sky behind them.' },
-  { src: lift, alt: 'A dancer lifted outdoors in daylight, smiling.' },
+  { src: goldenTrio, alt: 'Three women in warm golden-hour light.' },
   { src: blueSky, alt: 'A portrait in direct sun, blue sky behind her.' },
+  { src: lift, alt: 'A dancer lifted outdoors in daylight, smiling.' },
   { src: trees, alt: 'Three people smiling in bright light, green trees behind them.' },
   { src: columns, alt: 'Four women in daylight in front of stone columns.' },
   { src: daylightPair, alt: 'Two women standing together in bright daylight.' },
   { src: candid, alt: 'People talking outdoors, trees and daylight behind them.' },
   { src: goldenGreen, alt: 'A group in golden light with green trees behind them.' },
-  { src: goldenTrio, alt: 'Three women in warm golden-hour light.' },
+  { src: jump, alt: 'Two dancers jumping, blue sky behind them.' },
   { src: circle, alt: 'A circle of dancers on a sunny lawn.' },
   { src: lawn, alt: 'A group seated on the grass in the sun.' },
   { src: goldenPortrait, alt: 'A close portrait in warm golden light.' },

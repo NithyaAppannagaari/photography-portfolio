@@ -1,42 +1,53 @@
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: calc(100svh - var(--nav-h));
   display: flex;
   flex-direction: column;
   background: var(--magenta);
   color: var(--cream);
 }
 
-.hero .nav { position: relative; z-index: 2; }
-
 .hero__body {
   flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  grid-template-rows: auto minmax(1.25rem, 1fr) auto;
+  column-gap: clamp(2rem, 4.2vw, 4.75rem);
+  align-items: stretch;
+  min-height: 0;
+  padding-top: clamp(1.35rem, 3.2vh, 2.35rem);
+  padding-bottom: clamp(1.45rem, 3.4vh, 2.5rem);
+  padding-left: max(var(--pad), env(safe-area-inset-left));
+  padding-right: max(var(--pad), env(safe-area-inset-right));
+}
+
+.hero__intro {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 1.35rem;
-  padding: 0.35rem var(--pad) calc(1.15rem + env(safe-area-inset-bottom));
-  text-align: left;
+  gap: clamp(0.85rem, 2vh, 1.35rem);
+  min-width: 0;
+  container-type: inline-size;
+  animation: hero-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero__name {
   width: 100%;
   margin: 0;
   color: var(--cream);
-  font-size: clamp(2.7rem, min(12.8vw, 15.5svh), 10rem);
+  font-size: clamp(2.7rem, 12.4cqi, 6.35rem);
   font-weight: 450;
-  line-height: 0.94;
+  line-height: 0.9;
   letter-spacing: -0.04em;
-  animation: hero-in 1.8s ease both;
 }
 
 .hero__name em {
   display: block;
   font-style: italic;
   font-weight: 420;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.042em;
   white-space: nowrap;
 }
 
@@ -47,33 +58,33 @@
   font-weight: 500;
   font-variant-caps: all-small-caps;
   letter-spacing: 0.36em;
-  animation: hero-in 1.8s ease 0.2s both;
 }
 
 .hero__photo {
-  position: relative;
-  width: min(100%, 760px);
+  grid-column: 2;
+  grid-row: 1 / -1;
+  min-height: 0;
+  height: 100%;
   margin: 0;
-  animation: hero-in 1.8s ease 0.4s both;
+  animation: hero-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
 }
 
 .hero__photo img {
-  display: block;
   width: 100%;
-  height: clamp(12.5rem, 30svh, 22.5rem);
+  height: 100%;
   object-fit: cover;
   object-position: center 42%;
-  filter: contrast(1.04) saturate(0.88) brightness(0.9);
 }
 
-.hero__photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--magenta);
-  mix-blend-mode: multiply;
-  opacity: 0.16;
-  pointer-events: none;
+.hero__foot {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  animation: hero-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
 }
 
 .hero__meta {
@@ -83,42 +94,87 @@
   font-size: 1.05rem;
   font-style: italic;
   line-height: 1.4;
-  animation: hero-in 1.8s ease 0.6s both;
 }
 
 .hero__scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 44px;
   color: var(--cream);
   font-size: 0.78rem;
   font-weight: 500;
   font-variant-caps: all-small-caps;
   letter-spacing: 0.32em;
-  animation: hero-in 1.8s ease 0.8s both;
 }
 
 .hero__scroll::after {
   content: "";
   display: block;
   width: 1px;
-  height: 1.35rem;
-  margin: 0.55rem 0 0;
+  height: 1.5rem;
+  margin: 0.5rem 0 0;
   background: var(--cream);
+  transform-origin: top;
+  animation: scroll-hint 1.8s ease-in-out infinite;
 }
 
 .hero :focus-visible { outline-color: var(--cream); }
 
 @keyframes hero-in {
-  from { opacity: 0; translate: 0 8px; }
+  from { opacity: 0; translate: 0 14px; }
   to { opacity: 1; translate: 0 0; }
 }
 
-@media (min-width: 861px) {
-  .hero__photo { width: min(52vw, 680px); }
+@keyframes scroll-hint {
+  0% { transform: scaleY(0.3); opacity: 0.35; }
+  45% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0.3); transform-origin: bottom; opacity: 0.3; }
+}
+
+@media (max-width: 900px) {
+  .hero { min-height: calc(100svh - var(--nav-h)); }
+
+  .hero__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    padding-top: 0.85rem;
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+  }
+
+  .hero__intro {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero__name {
+    font-size: clamp(2.65rem, 11.4vw, 4rem);
+  }
+
+  .hero__photo {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-height: 16.5rem;
+  }
+
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 16.5rem;
+    object-position: center 40%;
+  }
+
+  .hero__foot { gap: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__name,
-  .hero__role,
+  .hero__intro,
   .hero__photo,
-  .hero__meta,
-  .hero__scroll { animation: none; }
+  .hero__foot,
+  .hero__scroll::after {
+    animation: none;
+  }
 }

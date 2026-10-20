@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
 import './PricingPage.css'
@@ -67,8 +68,9 @@ export default function PricingPage() {
         <p>editing and a gallery are included. email me if you need something else.</p>
       </header>
       <main className="rates">
-        {TIERS.map((tier) => (
-          <article key={tier.id} className={tier.highlight ? 'rate rate--lead' : 'rate'}>
+        {TIERS.map((tier, index) => (
+          <Reveal key={tier.id} delay={index * 80}>
+          <article className={tier.highlight ? 'rate rate--lead' : 'rate'}>
             <p className="kicker">{tier.badge}</p>
             <h2>{tier.title}</h2>
             {tier.sublabel ? <p className="rate__sub">{tier.sublabel}</p> : null}
@@ -81,6 +83,7 @@ export default function PricingPage() {
             <p className="rate__note">{tier.note}</p>
             <a className={tier.highlight ? 'btn btn-solid' : 'btn'} href={tier.href}>email me</a>
           </article>
+          </Reveal>
         ))}
       </main>
       <p className="rates-note">

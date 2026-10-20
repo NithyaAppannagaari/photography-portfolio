@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PhotoViewer from './components/PhotoViewer'
 import SiteFooter from './components/SiteFooter'
@@ -47,24 +47,6 @@ export default function GalleryPage() {
       : 'Nithya Appannagaari Photography'
   }, [data])
 
-  useEffect(() => {
-    if (open === null) return
-    document.querySelector('.viewer')?.scrollIntoView({ block: 'start' })
-  }, [open])
-
-  useEffect(() => {
-    if (open === null || !data) return
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(null)
-      if (event.key === 'ArrowRight') setOpen((index) => (index === null ? index : (index + 1) % data.images.length))
-      if (event.key === 'ArrowLeft') {
-        setOpen((index) => (index === null ? index : (index - 1 + data.images.length) % data.images.length))
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, data])
-
   return (
     <div className="gallery-page">
       <SiteNav active="work" />
@@ -87,7 +69,21 @@ export default function GalleryPage() {
                 email me
               </a>
             </div>
-          ) : open !== null ? (
+          ) : (
+            <div className="frames gallery-frames">
+              {data.images.map((src, index) => (
+                <button
+                  key={src}
+                  type="button"
+                  style={{ '--i': Math.min(index, 12) } as CSSProperties}
+                  onClick={() => setOpen(index)}
+                >
+                  <img src={src} alt={`${data.title} ${index + 1}`} />
+                </button>
+              ))}
+            </div>
+          )}
+          {open !== null ? (
             <PhotoViewer
               src={data.images[open]}
               alt={`${data.title} ${open + 1}`}
@@ -97,15 +93,7 @@ export default function GalleryPage() {
               onNext={() => setOpen((open + 1) % data.images.length)}
               onClose={() => setOpen(null)}
             />
-          ) : (
-            <div className="frames gallery-frames">
-              {data.images.map((src, index) => (
-                <button key={src} type="button" onClick={() => setOpen(index)}>
-                  <img src={src} alt={`${data.title} ${index + 1}`} />
-                </button>
-              ))}
-            </div>
-          )}
+          ) : null}
         </>
       )}
       <SiteFooter />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PhotoViewer from './components/PhotoViewer'
 import SiteFooter from './components/SiteFooter'
@@ -37,24 +37,6 @@ export default function ShareAlbumPage() {
       })
     return () => { active = false }
   }, [slug])
-
-  useEffect(() => {
-    if (open === null) return
-    document.querySelector('.viewer')?.scrollIntoView({ block: 'start' })
-  }, [open])
-
-  useEffect(() => {
-    if (open === null || !album) return
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(null)
-      if (event.key === 'ArrowRight') setOpen((index) => (index === null ? index : (index + 1) % album.photos.length))
-      if (event.key === 'ArrowLeft') {
-        setOpen((index) => (index === null ? index : (index - 1 + album.photos.length) % album.photos.length))
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, album])
 
   async function downloadAll() {
     if (!album || album.photos.length === 0 || zipping) return
@@ -107,21 +89,15 @@ export default function ShareAlbumPage() {
           {error ? <p className="share-note" role="alert">{error}</p> : null}
           {count === 0 ? (
             <p className="share-empty">No photographs in this album yet.</p>
-          ) : active && open !== null ? (
-            <PhotoViewer
-              src={photoUrl(album.slug, active.id, 'display')}
-              alt={active.name}
-              index={open}
-              count={count}
-              onPrev={() => setOpen((open - 1 + count) % count)}
-              onNext={() => setOpen((open + 1) % count)}
-              onClose={() => setOpen(null)}
-              downloadHref={photoUrl(album.slug, active.id, 'original', true)}
-            />
           ) : (
             <div className="frames share-frames">
               {album.photos.map((photo, index) => (
-                <button key={photo.id} type="button" onClick={() => setOpen(index)}>
+                <button
+                  key={photo.id}
+                  type="button"
+                  style={{ '--i': Math.min(index, 12) } as CSSProperties}
+                  onClick={() => setOpen(index)}
+                >
                   <img
                     src={photoUrl(album.slug, photo.id, 'thumb')}
                     alt={photo.name}
@@ -132,6 +108,18 @@ export default function ShareAlbumPage() {
               ))}
             </div>
           )}
+          {active && open !== null ? (
+            <PhotoViewer
+              src={photoUrl(album.slug, active.id, 'display')}
+              alt={active.name}
+              index={open}
+              count={count}
+              onPrev={() => setOpen((open - 1 + count) % count)}
+              onNext={() => setOpen((open + 1) % count)}
+              onClose={() => setOpen(null)}
+              downloadHref={photoUrl(album.slug, active.id, 'original', true)}
+            />
+          ) : null}
         </>
       ) : missing ? (
         <div className="share-empty">

@@ -2,7 +2,7 @@
 
 .intro {
   max-width: 40rem;
-  padding: 2.4rem var(--pad) 1.8rem;
+  padding: 2.4rem max(var(--pad), env(safe-area-inset-right)) 1.8rem max(var(--pad), env(safe-area-inset-left));
 }
 
 .intro h1 {
@@ -16,7 +16,9 @@
   font-size: 1.2rem;
 }
 
-.gallery-frames { padding: 0 var(--pad) 4.5rem; }
+.gallery-frames {
+  padding: 0 max(var(--pad), env(safe-area-inset-right)) 4.5rem max(var(--pad), env(safe-area-inset-left));
+}
 
 .gallery-soon, .gallery-empty {
   min-height: 46vh;
