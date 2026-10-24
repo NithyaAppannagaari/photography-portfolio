@@ -25,7 +25,7 @@ export default function PhotoViewer({
   const closeRef = useRef<HTMLButtonElement>(null)
   const actions = useRef({ onPrev, onNext, onClose })
   actions.current = { onPrev, onNext, onClose }
-  const dragX = useRef<number | null>(null)
+  const origin = useRef<{ x: number; y: number } | null>(null)
 
   useEffect(() => {
     const previous = document.body.style.overflow
@@ -51,15 +51,18 @@ export default function PhotoViewer({
 
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === 'mouse' && event.button !== 0) return
-    dragX.current = event.clientX
+    origin.current = { x: event.clientX, y: event.clientY }
+    try { event.currentTarget.setPointerCapture(event.pointerId) } catch { /* pointer already gone */ }
   }
 
   const onPointerUp = (event: PointerEvent<HTMLDivElement>) => {
-    if (dragX.current == null) return
-    const dx = event.clientX - dragX.current
-    dragX.current = null
-    if (dx > 48) actions.current.onPrev()
-    else if (dx < -48) actions.current.onNext()
+    if (!origin.current) return
+    const dx = event.clientX - origin.current.x
+    const dy = event.clientY - origin.current.y
+    origin.current = null
+    if (Math.abs(dx) < 56 || Math.abs(dx) < Math.abs(dy)) return
+    if (dx > 0) actions.current.onPrev()
+    else actions.current.onNext()
   }
 
   return createPortal(

@@ -26,8 +26,7 @@ const TIERS = [
     title: 'club photoshoots',
     price: '$65',
     unit: 'per hour',
-    badge: 'smaller clubs',
-    sublabel: 'under 25 people',
+    badge: 'under 25 people',
     features: [
       'individual and group shots',
       'editing included',
@@ -42,14 +41,13 @@ const TIERS = [
     title: 'club photoshoots',
     price: '$70-75',
     unit: 'per hour',
-    badge: 'bigger clubs',
-    sublabel: '25 or more',
+    badge: '25 or more people',
     features: [
       'individual and group shots',
       'editing included',
       'a digital gallery',
     ],
-    note: 'a bit more for bigger groups.',
+    note: 'headshots and team photos.',
     href: 'mailto:nithya.app@berkeley.edu?subject=Club photoshoot, 25 or more',
     highlight: false,
   },
@@ -65,7 +63,11 @@ export default function PricingPage() {
       <SiteNav active="pricing" />
       <header className="intro">
         <h1>Rates</h1>
-        <p>editing and a gallery are included. email me if you need something else.</p>
+        <p>
+          editing and a gallery are included.{' '}
+          <a href="mailto:nithya.app@berkeley.edu">Email me</a>
+          {' '}if you need something else.
+        </p>
       </header>
       <main className="rates">
         {TIERS.map((tier, index) => (
@@ -73,7 +75,6 @@ export default function PricingPage() {
           <article className={tier.highlight ? 'rate rate--lead' : 'rate'}>
             <p className="kicker">{tier.badge}</p>
             <h2>{tier.title}</h2>
-            {tier.sublabel ? <p className="rate__sub">{tier.sublabel}</p> : null}
             <p className="rate__price">
               {tier.price} <span>{tier.unit}</span>
             </p>
@@ -81,7 +82,7 @@ export default function PricingPage() {
               {tier.features.map((feature) => <li key={feature}>{feature}</li>)}
             </ul>
             <p className="rate__note">{tier.note}</p>
-            <a className={tier.highlight ? 'btn btn-solid' : 'btn'} href={tier.href}>email me</a>
+            <a className={tier.highlight ? 'btn btn-solid' : 'btn'} href={tier.href}>Email me</a>
           </article>
           </Reveal>
         ))}

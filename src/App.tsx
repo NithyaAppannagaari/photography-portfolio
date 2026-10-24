@@ -48,6 +48,29 @@ function HomePage() {
       <Hero />
 
       <Reveal>
+        <section className="about" id="about">
+          <figure className="photo-frame">
+            <img
+              src={aboutImg}
+              alt="Portrait of Nithya Appannagaari"
+              width={3456}
+              height={2304}
+              decoding="async"
+              loading="lazy"
+            />
+          </figure>
+          <div>
+            <p className="kicker">About</p>
+            <h2>Nithya Appannagaari</h2>
+            <p>
+              hi, i&apos;m nithya. i&apos;m at berkeley, and i photograph clubs, grads, and events.
+            </p>
+            <a href="#highlights" className="text-link">see the photos</a>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
         <Highlights />
       </Reveal>
 
@@ -55,19 +78,28 @@ function HomePage() {
         <div className="section-head">
           <p className="kicker">Work</p>
         </div>
-        <div className="work__grid">
+        <div className="work__list">
           {WORK.map((item, index) => (
-            <Reveal key={item.slug} delay={index * 90}>
-              <Link to={`/gallery/${item.slug}`} className="work-card">
+            <Reveal key={item.slug} delay={index * 70}>
+              <Link to={`/gallery/${item.slug}`} className="work-row">
+                <div className="work-row__copy">
+                  <h2>{item.title}</h2>
+                  <p>{item.desc}</p>
+                </div>
                 {item.src ? (
                   <span className="photo-frame">
-                    <img src={item.src} alt="" />
+                    <img
+                      src={item.src}
+                      alt=""
+                      width={1200}
+                      height={800}
+                      decoding="async"
+                      loading="lazy"
+                    />
                   </span>
                 ) : (
-                  <div className="work-card__soon"><span>coming soon</span></div>
+                  <div className="work-row__soon"><span>coming soon</span></div>
                 )}
-                <h2>{item.title}</h2>
-                <p>{item.desc}</p>
               </Link>
             </Reveal>
           ))}
@@ -75,27 +107,14 @@ function HomePage() {
       </section>
 
       <Reveal>
-      <section className="about" id="about">
-        <figure className="photo-frame">
-          <img src={aboutImg} alt="Portrait of Nithya Appannagaari" />
-        </figure>
-        <div>
-          <p className="kicker">About</p>
-          <h2>Nithya Appannagaari</h2>
-          <p>
-            hi, i&apos;m nithya. i&apos;m at berkeley, and i photograph clubs, grads, and events.
-          </p>
-          <a href="#work" className="text-link">see the photos</a>
-        </div>
-      </section>
-      </Reveal>
-
-      <Reveal>
-      <section className="contact" id="contact">
-        <h2>Contact</h2>
-        <p>for club shoots, grad photos, or events, email me.</p>
-        <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
-      </section>
+        <section className="contact" id="contact">
+          <p className="kicker">Contact</p>
+          <h2>
+            <a href="mailto:nithya.app@berkeley.edu">Email me</a>
+          </h2>
+          <p>for club shoots, grad photos, or events.</p>
+          <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
+        </section>
       </Reveal>
 
       <SiteFooter />

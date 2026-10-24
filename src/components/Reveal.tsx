@@ -24,7 +24,7 @@ export default function Reveal({
         el.classList.add('is-in')
         observer.disconnect()
       },
-      { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0, rootMargin: '0px 0px 15% 0px' },
     )
     observer.observe(el)
     return () => observer.disconnect()

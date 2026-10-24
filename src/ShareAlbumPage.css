@@ -1,7 +1,7 @@
 .share-page { min-height: 100vh; }
 
 .share-frames {
-  padding: 0 max(var(--pad), env(safe-area-inset-right)) 4.5rem max(var(--pad), env(safe-area-inset-left));
+  padding: 0 max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
 }
 
 .share-note, .share-empty {

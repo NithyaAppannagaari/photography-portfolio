@@ -1,13 +1,17 @@
-.gallery-page { min-height: 100vh; }
+.gallery-page {
+  min-height: 100vh;
+  background-color: #6e1848;
+}
 
 .intro {
-  max-width: 40rem;
-  padding: 2.4rem max(var(--pad), env(safe-area-inset-right)) 1.8rem max(var(--pad), env(safe-area-inset-left));
+  max-width: 46rem;
+  padding: var(--section-y) max(var(--pad), env(safe-area-inset-right)) var(--stack) max(var(--pad), env(safe-area-inset-left));
+  background-color: #6e1848;
 }
 
 .intro h1 {
   margin-top: 0.4rem;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
 }
 
 .intro p:last-child {
@@ -17,20 +21,46 @@
 }
 
 .gallery-frames {
-  padding: 0 max(var(--pad), env(safe-area-inset-right)) 4.5rem max(var(--pad), env(safe-area-inset-left));
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--gutter);
+  padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
 }
 
-.gallery-soon, .gallery-empty {
+.gallery-frames button:nth-child(5n + 1) { grid-column: span 4; }
+.gallery-frames button:nth-child(5n + 2),
+.gallery-frames button:nth-child(5n + 3),
+.gallery-frames button:nth-child(5n + 4),
+.gallery-frames button:nth-child(5n + 5) { grid-column: span 2; }
+
+.gallery-frames img { aspect-ratio: 3 / 4; }
+.gallery-frames button:nth-child(5n + 1) img { aspect-ratio: 3 / 2; }
+
+.gallery-soon,
+.gallery-empty {
   min-height: 46vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.8rem;
-  padding: 2rem var(--pad) 4rem;
+  gap: var(--stack);
+  padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
+  background-color: #6e1848;
 }
 
 .gallery-soon p {
   color: var(--cream);
   font-style: italic;
   font-size: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 800px) {
+  .gallery-frames { grid-template-columns: 1fr 1fr; }
+  .gallery-frames button,
+  .gallery-frames button:nth-child(5n + 2),
+  .gallery-frames button:nth-child(5n + 3),
+  .gallery-frames button:nth-child(5n + 4),
+  .gallery-frames button:nth-child(5n + 5) { grid-column: span 1; }
+  .gallery-frames button:nth-child(5n + 1) { grid-column: span 2; }
+  .gallery-frames img { aspect-ratio: 3 / 4; }
+  .gallery-frames button:nth-child(5n + 1) img { aspect-ratio: 4 / 3; }
 }

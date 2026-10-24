@@ -1,3 +1,9 @@
+.nav-sentinel {
+  height: 1px;
+  margin-bottom: -1px;
+  pointer-events: none;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +17,8 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--magenta);
+  background-color: #6e1848;
+  background-image: none;
   color: var(--cream);
 }
 
@@ -139,7 +146,8 @@
   align-items: flex-start;
   gap: 0.15rem;
   padding: 0.35rem max(var(--pad), env(safe-area-inset-right)) 1rem max(var(--pad), env(safe-area-inset-left));
-  background: var(--magenta);
+  background-color: #6e1848;
+  background-image: none;
   border-bottom: 1px solid var(--line);
 }
 

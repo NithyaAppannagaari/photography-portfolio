@@ -1,97 +1,80 @@
 .hero {
-  min-height: calc(100svh - var(--nav-h));
-  display: flex;
-  flex-direction: column;
-  background: var(--magenta);
-  color: var(--cream);
-}
-
-.hero__body {
-  flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  grid-template-rows: auto minmax(1.25rem, 1fr) auto;
-  column-gap: clamp(2rem, 4.2vw, 4.75rem);
-  align-items: stretch;
-  min-height: 0;
-  padding-top: clamp(1.35rem, 3.2vh, 2.35rem);
-  padding-bottom: clamp(1.45rem, 3.4vh, 2.5rem);
-  padding-left: max(var(--pad), env(safe-area-inset-left));
-  padding-right: max(var(--pad), env(safe-area-inset-right));
-}
-
-.hero__intro {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: clamp(0.85rem, 2vh, 1.35rem);
-  min-width: 0;
+  gap: var(--stack);
+  padding-top: clamp(0.35rem, 1.4vw, 0.9rem);
+  padding-bottom: var(--section-y);
+  padding-left: max(var(--pad), env(safe-area-inset-left));
+  padding-right: max(var(--pad), env(safe-area-inset-right));
+  background-color: #6e1848;
+  color: var(--cream);
+}
+
+.hero__intro {
+  width: 100%;
   container-type: inline-size;
-  animation: hero-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero__name {
   width: 100%;
   margin: 0;
   color: var(--cream);
-  font-size: clamp(2.7rem, 12.4cqi, 6.35rem);
+  font-size: clamp(2.45rem, 13.4cqi, 11.25rem);
   font-weight: 450;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
 }
 
 .hero__name em {
   display: block;
   font-style: italic;
   font-weight: 420;
-  letter-spacing: -0.042em;
+  letter-spacing: -0.052em;
   white-space: nowrap;
 }
 
 .hero__role {
   margin: 0;
   color: var(--cream);
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 500;
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.42em;
 }
 
 .hero__photo {
-  grid-column: 2;
-  grid-row: 1 / -1;
-  min-height: 0;
-  height: 100%;
+  width: 100%;
   margin: 0;
-  animation: hero-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  animation: hero-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
 }
 
 .hero__photo img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 2000 / 1425;
   object-fit: cover;
   object-position: center 42%;
 }
 
 .hero__foot {
-  grid-column: 1;
-  grid-row: 3;
-  align-self: end;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.25rem;
-  animation: hero-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+  gap: 0.85rem;
+  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 
 .hero__meta {
   margin: 0;
-  max-width: 28rem;
+  max-width: 36rem;
   color: var(--cream);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-style: italic;
   line-height: 1.4;
 }
@@ -113,8 +96,8 @@
   content: "";
   display: block;
   width: 1px;
-  height: 1.5rem;
-  margin: 0.5rem 0 0;
+  height: 1.55rem;
+  margin: 0.45rem 0 0;
   background: var(--cream);
   transform-origin: top;
   animation: scroll-hint 1.8s ease-in-out infinite;
@@ -123,7 +106,7 @@
 .hero :focus-visible { outline-color: var(--cream); }
 
 @keyframes hero-in {
-  from { opacity: 0; translate: 0 14px; }
+  from { opacity: 0; translate: 0 12px; }
   to { opacity: 1; translate: 0 0; }
 }
 
@@ -133,41 +116,11 @@
   100% { transform: scaleY(0.3); transform-origin: bottom; opacity: 0.3; }
 }
 
-@media (max-width: 900px) {
-  .hero { min-height: calc(100svh - var(--nav-h)); }
-
-  .hero__body {
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-    padding-top: 0.85rem;
-    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
-  }
-
-  .hero__intro {
-    width: 100%;
-    gap: 0.75rem;
-  }
-
-  .hero__name {
-    font-size: clamp(2.65rem, 11.4vw, 4rem);
-  }
-
-  .hero__photo {
-    flex: 1 1 auto;
-    width: 100%;
-    height: auto;
-    min-height: 16.5rem;
-  }
-
-  .hero__photo img {
-    width: 100%;
-    height: 100%;
-    min-height: 16.5rem;
-    object-position: center 40%;
-  }
-
-  .hero__foot { gap: 1rem; }
+@media (max-width: 720px) {
+  .hero { gap: var(--gutter); }
+  .hero__name em { letter-spacing: -0.045em; }
+  .hero__role { letter-spacing: 0.34em; }
+  .hero__meta { font-size: 1.08rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

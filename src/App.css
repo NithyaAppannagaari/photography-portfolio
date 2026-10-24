@@ -1,116 +1,125 @@
-.work, .about, .contact {
-  padding-top: clamp(3.4rem, 7vw, 5.75rem);
-  padding-bottom: clamp(3.4rem, 7vw, 5.75rem);
+.about,
+.work,
+.contact {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
   padding-left: max(var(--pad), env(safe-area-inset-left));
   padding-right: max(var(--pad), env(safe-area-inset-right));
+  border-top: 1px solid var(--line);
+  background-color: #6e1848;
 }
 
-.section-head { margin-bottom: 1.4rem; }
+.section-head { margin-bottom: var(--stack); }
 
-.work__grid {
+.work__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-y);
+}
+
+.work-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.75rem, 3vw, 2.75rem) clamp(1rem, 2vw, 1.6rem);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: end;
 }
 
-.work-card { display: block; }
-
-.work-card img,
-.work-card__soon {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-.work-card h2 {
+.work-row h2 {
+  font-size: clamp(2.15rem, 4.2vw, 3.7rem);
   text-decoration-color: transparent;
-  text-underline-offset: 0.14em;
+  text-underline-offset: 0.12em;
 }
 
-.work-card:hover h2 {
+.work-row:hover h2 {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-decoration-color: var(--cream);
 }
 
-.work-card__soon {
+.work-row p {
+  margin-top: 0.55rem;
+  max-width: 34ch;
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.work-row img,
+.work-row__soon {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.work-row__soon {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
   padding: 1.1rem;
-  background: var(--magenta);
+  background-color: #6e1848;
   color: var(--cream);
   border: 1px solid var(--frame);
   font-style: italic;
-  font-size: 1.35rem;
-}
-
-.work-card h2 {
-  margin-top: 0.8rem;
-  font-size: 1.55rem;
-}
-
-.work-card p {
-  margin-top: 0.35rem;
-  color: var(--muted);
-  font-size: 1.05rem;
-  max-width: 36ch;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
 }
 
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(1.5rem, 4vw, 4.5rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
   align-items: start;
   margin: 0;
-  border-top: 1px solid var(--line);
 }
 
-.about img { width: 100%; height: auto; }
+.about img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
 
 .about h2 {
-  margin: 0.45rem 0 0.8rem;
-  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0.4rem 0 0.85rem;
+  font-size: clamp(2.15rem, 4vw, 3.35rem);
 }
 
-.about .text-link { display: inline-block; margin-top: 1.1rem; }
+.about .text-link { display: inline-block; margin-top: var(--stack); }
 
-.contact {
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
+.contact { margin: 0; }
 
 .contact h2 {
-  max-width: 14ch;
-  margin: 0.55rem 0 0.8rem;
-  font-size: clamp(2.1rem, 4.4vw, 3.3rem);
+  max-width: 12ch;
+  margin: 0.4rem 0 0.75rem;
+  font-size: clamp(3rem, 7vw, 5.6rem);
 }
 
-.contact p { max-width: 38rem; color: var(--muted); }
-
-.contact__email {
-  display: inline-block;
-  margin-top: 1.1rem;
-  color: var(--cream);
-  font-style: italic;
-  font-size: 1.35rem;
+.contact h2 a {
+  color: inherit;
   text-decoration: underline;
-  text-underline-offset: 0.16em;
+  text-underline-offset: 0.1em;
   text-decoration-thickness: 1px;
 }
 
-@media (max-width: 860px) {
-  .work__grid, .about { grid-template-columns: 1fr; }
-  .work, .about, .contact {
-    padding-top: 2.85rem;
-    padding-bottom: 2.85rem;
-  }
-  .work__grid { gap: 2.35rem; }
-  .about { gap: 1.5rem; }
-  .section-head { margin-bottom: 1.35rem; }
-  .work-card h2 { margin-top: 0.7rem; }
-  .contact__email {
-    font-size: clamp(1.15rem, 4.8vw, 1.35rem);
-    overflow-wrap: anywhere;
-  }
+.contact p {
+  max-width: 38rem;
+  color: var(--muted);
+}
+
+.contact__email {
+  display: inline-block;
+  margin-top: var(--stack);
+  color: var(--cream);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+  .about,
+  .work-row { grid-template-columns: 1fr; }
+  .about { gap: var(--stack); }
+  .work-row { gap: var(--stack); align-items: start; }
+  .work-row h2 { font-size: clamp(2rem, 9vw, 2.7rem); }
 }
