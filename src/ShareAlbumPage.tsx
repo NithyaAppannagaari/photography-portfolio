@@ -103,6 +103,8 @@ export default function ShareAlbumPage() {
                     alt={photo.name}
                     width={photo.width}
                     height={photo.height}
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
                   />
                 </button>
               ))}

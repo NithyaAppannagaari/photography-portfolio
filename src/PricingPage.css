@@ -1,8 +1,11 @@
-.pricing-page { min-height: 100vh; }
+.pricing-page {
+  min-height: 100vh;
+  background-color: #6e1848;
+}
 
 .pricing-page .intro {
-  max-width: 40rem;
-  padding: 2.2rem var(--pad) 1.5rem;
+  max-width: 42rem;
+  padding: var(--section-y) max(var(--pad), env(safe-area-inset-right)) var(--stack) max(var(--pad), env(safe-area-inset-left));
 }
 
 .pricing-page .intro h1 {
@@ -17,12 +20,19 @@
   font-size: 1.15rem;
 }
 
+.pricing-page .intro a {
+  color: var(--cream);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
 .rates {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem clamp(1.25rem, 3vw, 2.5rem);
+  gap: var(--section-y) var(--gutter);
   margin: 0;
-  padding: 0.5rem max(var(--pad), env(safe-area-inset-right)) 2rem max(var(--pad), env(safe-area-inset-left));
+  padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
+  background-color: #6e1848;
 }
 
 .rates .reveal { height: 100%; }
@@ -84,7 +94,8 @@
 .rates-note {
   max-width: 40rem;
   margin: 0;
-  padding: 0.5rem var(--pad) 3.5rem;
+  padding: 0.5rem max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
+  background-color: #6e1848;
   color: var(--muted);
 }
 
@@ -95,7 +106,5 @@
 }
 
 @media (max-width: 860px) {
-  .pricing-page .intro { padding-top: 2.5rem; padding-bottom: 1.5rem; }
-  .rates { grid-template-columns: 1fr; gap: 2.25rem; }
-  .rates-note { padding-bottom: 2.75rem; }
+  .rates { grid-template-columns: 1fr; }
 }

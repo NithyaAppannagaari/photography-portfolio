@@ -4,7 +4,8 @@
   flex-wrap: wrap;
   gap: 0.7rem 1.6rem;
   align-items: flex-start;
-  padding: 1.2rem var(--pad) calc(1.5rem + env(safe-area-inset-bottom));
+  padding: 1.25rem max(var(--pad), env(safe-area-inset-right)) calc(1.35rem + env(safe-area-inset-bottom)) max(var(--pad), env(safe-area-inset-left));
+  background-color: #6e1848;
   border-top: 1px solid var(--line);
   font-family: var(--font-sans);
   font-size: 0.66rem;

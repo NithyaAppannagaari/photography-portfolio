@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PhotoViewer from './components/PhotoViewer'
 import SiteFooter from './components/SiteFooter'
@@ -66,7 +66,7 @@ export default function GalleryPage() {
             <div className="gallery-soon">
               <p>coming soon</p>
               <a className="text-link" href="mailto:nithya.app@berkeley.edu?subject=Graduation photoshoot">
-                email me
+                Email me
               </a>
             </div>
           ) : (
@@ -75,10 +75,16 @@ export default function GalleryPage() {
                 <button
                   key={src}
                   type="button"
-                  style={{ '--i': Math.min(index, 12) } as CSSProperties}
                   onClick={() => setOpen(index)}
                 >
-                  <img src={src} alt={`${data.title} ${index + 1}`} />
+                  <img
+                    src={src}
+                    alt={`${data.title} ${index + 1}`}
+                    width={index % 5 === 0 ? 1200 : 900}
+                    height={index % 5 === 0 ? 800 : 1200}
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
                 </button>
               ))}
             </div>

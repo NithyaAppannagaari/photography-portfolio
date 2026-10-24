@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const HOT = 'a, button, .photo-frame, .highlights__stage, .work-card, .frames button, .lightbox__frame'
+const HOT = 'a, button, .photo-frame, .highlights__item, .work-row, .frames button, .lightbox__frame'
 
 export default function Cursor() {
   const ring = useRef<HTMLDivElement>(null)
@@ -13,15 +13,9 @@ export default function Cursor() {
     if (!fine.matches || reduced.matches) return
 
     document.documentElement.classList.add('has-cursor')
-    let x = -100
-    let y = -100
-    let cx = -100
-    let cy = -100
-    let frame = 0
 
     const onMove = (event: PointerEvent) => {
-      x = event.clientX
-      y = event.clientY
+      el.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
       el.classList.add('is-on')
       const target = event.target
       const typing = target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]')
@@ -32,22 +26,13 @@ export default function Cursor() {
 
     const onLeave = () => el.classList.remove('is-on')
 
-    const tick = () => {
-      cx += (x - cx) * 0.32
-      cy += (y - cy) * 0.32
-      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`
-      frame = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener('pointermove', onMove)
+    window.addEventListener('pointermove', onMove, { passive: true })
     document.documentElement.addEventListener('pointerleave', onLeave)
-    frame = requestAnimationFrame(tick)
 
     return () => {
       document.documentElement.classList.remove('has-cursor')
       window.removeEventListener('pointermove', onMove)
       document.documentElement.removeEventListener('pointerleave', onLeave)
-      cancelAnimationFrame(frame)
     }
   }, [])
 
