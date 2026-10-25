@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test api/contact.test.ts",
+    "test": "node --experimental-strip-types --test api/contact.test.ts share/image-size.test.ts",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy"
   },

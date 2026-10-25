@@ -42,17 +42,17 @@
   font-size: 1.08rem;
 }
 
-.work-card .frame img,
-.work-card__soon {
+.work-card .frame img {
   width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .work-card__soon {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  min-height: 9rem;
   padding: 1rem;
   color: var(--paper);
   font-family: var(--font-display);

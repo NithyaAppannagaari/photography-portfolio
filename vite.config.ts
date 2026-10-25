@@ -2,6 +2,7 @@ import path from 'node:path'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { handleContactRequest, type ContactEnv } from './api/contact.ts'
+import { intrinsicSizePlugin } from './share/intrinsic-plugin.ts'
 import { applyResponse, attachShareApi, toRequest } from './share/node-adapter.ts'
 
 function adminPassword(mode: string, root: string): string {
@@ -70,6 +71,6 @@ function shareApi(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), contactApi(), shareApi()],
+  plugins: [intrinsicSizePlugin(), react(), contactApi(), shareApi()],
   assetsInclude: ['**/*.JPG'],
 })

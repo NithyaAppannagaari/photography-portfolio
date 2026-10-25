@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom'
 type PhotoViewerProps = {
   src: string
   alt: string
+  width?: number
+  height?: number
   index: number
   count: number
   onPrev: () => void
@@ -15,6 +17,8 @@ type PhotoViewerProps = {
 export default function PhotoViewer({
   src,
   alt,
+  width,
+  height,
   index,
   count,
   onPrev,
@@ -79,7 +83,7 @@ export default function PhotoViewer({
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
         >
-          <img src={src} alt={alt} />
+          <img src={src} alt={alt} width={width} height={height} />
         </div>
         <figcaption className="lightbox__bar">
           {count > 1 ? (

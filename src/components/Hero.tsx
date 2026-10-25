@@ -1,5 +1,7 @@
 import aboutImg from '../assets/about.webp'
+import aboutSize from '../assets/about.webp?intrinsic'
 import photo from '../assets/sunny/jump.webp'
+import photoSize from '../assets/sunny/jump.webp?intrinsic'
 import { FlowerDoodle, HeartDoodle, Sparkle, Squiggle, StarDoodle } from './Doodles'
 import './Hero.css'
 
@@ -33,8 +35,8 @@ export default function Hero() {
               <img
                 src={aboutImg}
                 alt="Portrait of Nithya Appannagaari"
-                width={1600}
-                height={1066}
+                width={aboutSize.width}
+                height={aboutSize.height}
                 decoding="async"
                 fetchPriority="high"
               />
@@ -48,8 +50,8 @@ export default function Hero() {
           <img
             src={photo}
             alt="Two dancers jumping, blue sky behind them."
-            width={2000}
-            height={1425}
+            width={photoSize.width}
+            height={photoSize.height}
             decoding="async"
             loading="lazy"
           />

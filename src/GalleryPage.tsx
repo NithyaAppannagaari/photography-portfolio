@@ -5,13 +5,26 @@ import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
 import './GalleryPage.css'
 
-const clubImages = Object.entries(
-  import.meta.glob('./assets/club_photoshoots/*', { eager: true, import: 'default' })
-).sort(([a], [b]) => a.localeCompare(b)).map(([, src]) => src as string)
+type Shot = { src: string; width: number; height: number }
+type Size = { width: number; height: number }
 
-const eventImages = Object.entries(
-  import.meta.glob('./assets/event_photography/*', { eager: true, import: 'default' })
-).sort(([a], [b]) => a.localeCompare(b)).map(([, src]) => src as string)
+function collect(urls: Record<string, string>, sizes: Record<string, Size>): Shot[] {
+  return Object.keys(urls).sort((a, b) => a.localeCompare(b)).map((key) => {
+    const size = sizes[key]
+    if (!size) throw new Error(`Missing intrinsic size for ${key}`)
+    return { src: urls[key], width: size.width, height: size.height }
+  })
+}
+
+const clubImages = collect(
+  import.meta.glob('./assets/club_photoshoots/*', { eager: true, import: 'default' }) as Record<string, string>,
+  import.meta.glob('./assets/club_photoshoots/*', { eager: true, query: '?intrinsic', import: 'default' }) as Record<string, Size>,
+)
+
+const eventImages = collect(
+  import.meta.glob('./assets/event_photography/*', { eager: true, import: 'default' }) as Record<string, string>,
+  import.meta.glob('./assets/event_photography/*', { eager: true, query: '?intrinsic', import: 'default' }) as Record<string, Size>,
+)
 
 const CATEGORIES = {
   'club-photoshoots': {
@@ -69,17 +82,17 @@ export default function GalleryPage() {
             </div>
           ) : (
             <div className="frames gallery-frames">
-              {data.images.map((src, index) => (
+              {data.images.map((photo, index) => (
                 <button
-                  key={src}
+                  key={photo.src}
                   type="button"
                   onClick={() => setOpen(index)}
                 >
                   <img
-                    src={src}
+                    src={photo.src}
                     alt={`${data.title} ${index + 1}`}
-                    width={index % 5 === 0 ? 1200 : 900}
-                    height={index % 5 === 0 ? 800 : 1200}
+                    width={photo.width}
+                    height={photo.height}
                     loading={index < 2 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
@@ -89,8 +102,10 @@ export default function GalleryPage() {
           )}
           {open !== null ? (
             <PhotoViewer
-              src={data.images[open]}
+              src={data.images[open].src}
               alt={`${data.title} ${open + 1}`}
+              width={data.images[open].width}
+              height={data.images[open].height}
               index={open}
               count={data.images.length}
               onPrev={() => setOpen((open - 1 + data.images.length) % data.images.length)}

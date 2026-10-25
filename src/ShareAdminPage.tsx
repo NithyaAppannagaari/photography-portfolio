@@ -416,7 +416,12 @@ function AlbumEditor({ slug, onAuth }: { slug: string; onAuth: () => void }) {
         <ul className="desk-photos">
           {album.photos.map((photo) => (
             <li key={photo.id}>
-              <img src={`/api/share/albums/${album.slug}/photos/${photo.id}?size=thumb`} alt="" />
+              <img
+                src={`/api/share/albums/${album.slug}/photos/${photo.id}?size=thumb`}
+                alt=""
+                width={photo.width}
+                height={photo.height}
+              />
               <div>
                 <p>{photo.name}</p>
                 <button type="button" onClick={() => { void onRemovePhoto(photo.id) }} disabled={uploading}>

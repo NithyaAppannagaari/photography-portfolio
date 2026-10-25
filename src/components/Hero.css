@@ -65,14 +65,7 @@
 
 .hero__about .pinned { width: min(100%, 34rem); }
 
-.hero__about .frame img { aspect-ratio: 3 / 2; }
-
 .hero__photo { width: 100%; margin: 0; }
-
-.hero__photo .frame img {
-  aspect-ratio: 2000 / 1425;
-  object-position: center 42%;
-}
 
 .hero__doodles {
   display: flex;

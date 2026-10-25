@@ -114,6 +114,8 @@ export default function ShareAlbumPage() {
             <PhotoViewer
               src={photoUrl(album.slug, active.id, 'display')}
               alt={active.name}
+              width={active.width}
+              height={active.height}
               index={open}
               count={count}
               onPrev={() => setOpen((open - 1 + count) % count)}

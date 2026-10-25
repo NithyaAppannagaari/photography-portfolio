@@ -179,8 +179,8 @@
 
 .desk-photos img {
   width: 84px;
-  height: 112px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border: 1px solid var(--frame);
   padding: 2px;
   background: var(--mat);

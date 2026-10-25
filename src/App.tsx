@@ -12,7 +12,9 @@ import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
 import clubCover from './assets/club_photoshoots/DSC08853 (1).jpg'
+import clubSize from './assets/club_photoshoots/DSC08853 (1).jpg?intrinsic'
 import eventCover from './assets/event_photography/vertical7.jpeg'
+import eventSize from './assets/event_photography/vertical7.jpeg?intrinsic'
 
 const ShareAlbumPage = lazy(() => import('./ShareAlbumPage'))
 const ShareAdminPage = lazy(() => import('./ShareAdminPage'))
@@ -23,18 +25,24 @@ const WORK = [
     desc: 'headshots and team photos for clubs.',
     slug: 'club-photoshoots',
     src: clubCover,
+    width: clubSize.width,
+    height: clubSize.height,
   },
   {
     title: 'graduation photoshoots',
     desc: 'grad photos around campus.',
     slug: 'graduation-photoshoots',
     src: null,
+    width: 0,
+    height: 0,
   },
   {
     title: 'event photography',
     desc: 'photos from campus events.',
     slug: 'event-photography',
     src: eventCover,
+    width: eventSize.width,
+    height: eventSize.height,
   },
 ]
 
@@ -83,8 +91,8 @@ function HomePage() {
                       <img
                         src={item.src}
                         alt=""
-                        width={1200}
-                        height={800}
+                        width={item.width}
+                        height={item.height}
                         decoding="async"
                         loading="lazy"
                       />
