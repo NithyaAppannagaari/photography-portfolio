@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 const HOT = 'a, button, .pinned, .frame, .work-card, .sticker, .inquiry button, .lightbox__frame'
-const COLORS = ['#E8A317', '#9DB89A', '#D9A5A0', '#C9A24B']
+const COLORS = ['#e86aa6', '#f4a6c8', '#fbd5e5', '#c9b6e4', '#ffffff']
 
 export default function Cursor() {
   const ring = useRef<HTMLDivElement>(null)

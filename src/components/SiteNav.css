@@ -31,7 +31,7 @@
   bottom: 0;
   height: 14px;
   pointer-events: none;
-  background-image: radial-gradient(circle at 50% 0, #C9A24B 8px, transparent 8.6px);
+  background-image: radial-gradient(circle at 50% 0, var(--pink-hot) 8px, transparent 8.6px);
   background-size: 20px 14px;
   background-position: center top;
   background-repeat: round;
@@ -67,7 +67,7 @@
   transition: opacity 0.25s ease;
 }
 
-.wordmark__mark { width: 0.95rem; height: 0.95rem; flex-shrink: 0; color: var(--gold); }
+.wordmark__mark { width: 0.95rem; height: 0.95rem; flex-shrink: 0; color: var(--pink); }
 .wordmark__short { display: none; }
 
 .nav__links {

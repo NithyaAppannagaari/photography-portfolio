@@ -20,7 +20,7 @@ const TIERS = [
     ],
     note: 'we can sort hours and timing when you write.',
     highlight: true,
-    tape: 'sage',
+    tape: 'lavender',
   },
   {
     id: 'club-small',
@@ -35,7 +35,7 @@ const TIERS = [
     ],
     note: 'headshots and team photos.',
     highlight: false,
-    tape: 'marigold',
+    tape: 'pink',
   },
   {
     id: 'club-large',
@@ -50,7 +50,7 @@ const TIERS = [
     ],
     note: 'headshots and team photos.',
     highlight: false,
-    tape: 'rose',
+    tape: 'blush',
   },
 ]
 

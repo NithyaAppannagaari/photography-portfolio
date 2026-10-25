@@ -44,47 +44,57 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.55rem;
-  padding: 1.55rem 1rem 1.15rem;
+  padding: 1.7rem 1.05rem 1.2rem;
   overflow: visible;
-  border: 1.5px solid var(--gold);
-  background: transparent;
+  border: 1.5px solid var(--pink-hot);
+  border-radius: 1.35rem;
+  background: #fff;
+  color: var(--violet);
 }
 
 .rate::before {
   content: "";
   position: absolute;
-  top: 0.55rem;
+  top: 0.7rem;
   left: 50%;
   width: 4rem;
   height: 1rem;
   transform: translateX(-50%) rotate(var(--tilt, -2deg));
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #9DB89A 6px 11px, #F3E9D8 11px 16px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #c9b6e4 6px 11px, #ffffff 11px 16px);
 }
 
-.rate--tape-marigold::before {
+.rate--tape-pink::before {
   --tilt: 3deg;
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #E8A317 6px 11px, #F3E9D8 11px 16px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #e86aa6 6px 11px, #ffffff 11px 16px);
 }
 
-.rate--tape-rose::before {
+.rate--tape-blush::before {
   --tilt: -3.5deg;
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #D9A5A0 6px 11px, #F3E9D8 11px 16px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #fbd5e5 6px 11px, #ffffff 11px 16px);
 }
 
-.rate--lead { border-color: var(--paper); }
+.rate--lead {
+  border-color: var(--pink-hot);
+  background: linear-gradient(180deg, #ffffff 0%, var(--blush) 100%);
+}
 
-.rate--lead .rate__price { color: var(--cream); }
+.rate--lead .rate__price { color: var(--violet); }
 
-.rate .kicker { margin-top: 0.85rem; }
+.rate .kicker {
+  margin-top: 0.85rem;
+  background: var(--blush);
+  color: var(--violet);
+}
 
-.rate h2 { font-size: 1.7rem; margin-top: 0.2rem; }
+.rate h2 { font-size: 1.7rem; margin-top: 0.2rem; color: var(--violet); }
 
-.rate__sub { color: var(--muted); font-style: italic; }
+.rate__sub { color: rgba(74, 16, 56, 0.68); font-style: italic; }
 
 .rate__price {
   margin: 0.6rem 0 0.4rem;
   font-size: 2.7rem;
   letter-spacing: -0.03em;
+  color: var(--violet);
 }
 
 .rate__price span {
@@ -95,20 +105,21 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(74, 16, 56, 0.68);
 }
 
 .rate ul { margin: 0.4rem 0 0.8rem; }
 
 .rate li {
   padding: 0.4rem 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(74, 16, 56, 0.12);
+  color: var(--violet);
   font-size: 1.05rem;
 }
 
 .rate__note {
   margin-bottom: 1rem;
-  color: var(--muted);
+  color: rgba(74, 16, 56, 0.68);
   font-size: 1rem;
   font-style: italic;
 }

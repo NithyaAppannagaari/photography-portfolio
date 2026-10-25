@@ -17,20 +17,20 @@ function shot(name: string) {
 }
 
 const PHOTOS = [
-  { ...shot('golden-trio.webp'), alt: 'Three women in warm golden-hour light.', tape: 'sage', sticker: '', tone: '' },
-  { ...shot('blue-sky.webp'), alt: 'A portrait in direct sun, blue sky behind her.', tape: '', sticker: 'golden hour', tone: 'rose' },
+  { ...shot('golden-trio.webp'), alt: 'Three women in warm golden-hour light.', tape: 'lavender', sticker: '', tone: '' },
+  { ...shot('blue-sky.webp'), alt: 'A portrait in direct sun, blue sky behind her.', tape: '', sticker: 'golden hour', tone: 'blush' },
   { ...shot('lift.webp'), alt: 'A dancer lifted outdoors in daylight, smiling.', tape: '', sticker: '', tone: '' },
-  { ...shot('trees.webp'), alt: 'Three people smiling in bright light, green trees behind them.', tape: 'gold', sticker: '', tone: '' },
-  { ...shot('columns.webp'), alt: 'Four women in daylight in front of stone columns.', tape: '', sticker: 'sunny', tone: 'marigold' },
-  { ...shot('daylight-pair.webp'), alt: 'Two women standing together in bright daylight.', tape: 'rose', sticker: '', tone: '' },
+  { ...shot('trees.webp'), alt: 'Three people smiling in bright light, green trees behind them.', tape: 'pink', sticker: '', tone: '' },
+  { ...shot('columns.webp'), alt: 'Four women in daylight in front of stone columns.', tape: '', sticker: 'sunny', tone: 'pink' },
+  { ...shot('daylight-pair.webp'), alt: 'Two women standing together in bright daylight.', tape: 'blush', sticker: '', tone: '' },
   { ...shot('candid.webp'), alt: 'People talking outdoors, trees and daylight behind them.', tape: '', sticker: '', tone: '' },
-  { ...shot('golden-green.webp'), alt: 'A group in golden light with green trees behind them.', tape: 'sage', sticker: '', tone: '' },
+  { ...shot('golden-green.webp'), alt: 'A group in golden light with green trees behind them.', tape: 'lavender', sticker: '', tone: '' },
   { ...shot('jump.webp'), alt: 'Two dancers jumping, blue sky behind them.', tape: '', sticker: '', tone: '' },
   { ...shot('circle.webp'), alt: 'A circle of dancers on a sunny lawn.', tape: '', sticker: '', tone: '' },
-  { ...shot('lawn.webp'), alt: 'A group seated on the grass in the sun.', tape: 'gold', sticker: '', tone: '' },
-  { ...shot('golden-portrait.webp'), alt: 'A close portrait in warm golden light.', tape: '', sticker: 'daylight', tone: 'sage' },
+  { ...shot('lawn.webp'), alt: 'A group seated on the grass in the sun.', tape: 'pink', sticker: '', tone: '' },
+  { ...shot('golden-portrait.webp'), alt: 'A close portrait in warm golden light.', tape: '', sticker: 'daylight', tone: 'lavender' },
   { ...shot('laugh.webp'), alt: 'A woman laughing in bright outdoor light.', tape: '', sticker: '', tone: '' },
-  { ...shot('sky-dancers.webp'), alt: 'Three dancers outdoors, sun and blue sky behind them.', tape: 'rose', sticker: '', tone: '' },
+  { ...shot('sky-dancers.webp'), alt: 'Three dancers outdoors, sun and blue sky behind them.', tape: 'blush', sticker: '', tone: '' },
 ]
 
 export default function Highlights() {

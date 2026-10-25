@@ -6,17 +6,19 @@
 
 :root {
   --magenta: #6e1848;
-  --paper: #F3E9D8;
-  --cream: #F3E9D8;
-  --ink: #F3E9D8;
-  --ink-dark: #1A0F0A;
-  --muted: rgba(243, 233, 216, 0.74);
-  --line: rgba(243, 233, 216, 0.28);
-  --gold: #C9A24B;
-  --marigold: #E8A317;
-  --sage: #9DB89A;
-  --rose: #D9A5A0;
-  --frame: #C9A24B;
+  --violet: #4a1038;
+  --lavender: #c9b6e4;
+  --pink: #f4a6c8;
+  --pink-hot: #e86aa6;
+  --blush: #fbd5e5;
+  --white: #ffffff;
+  --paper: #ffffff;
+  --cream: #ffffff;
+  --ink: #ffffff;
+  --ink-dark: #4a1038;
+  --muted: rgba(255, 255, 255, 0.78);
+  --line: rgba(255, 255, 255, 0.32);
+  --frame: #e86aa6;
   --mat: transparent;
   --font-display: "Fraunces Variable", "Iowan Old Style", Palatino, Georgia, serif;
   --font-body: "Outfit Variable", "Avenir Next", "Segoe UI", sans-serif;
@@ -67,10 +69,10 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; text-align: left; cursor: pointer; }
 ul { list-style: none; }
 
-::selection { background: var(--gold); color: var(--ink-dark); }
+::selection { background: var(--pink); color: var(--violet); }
 
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--pink-hot);
   outline-offset: 3px;
 }
 
@@ -99,8 +101,9 @@ h1, h2, h3 {
 .kicker {
   display: inline-block;
   padding: 0.16rem 0.48rem 0.12rem;
-  background: var(--paper);
-  color: var(--ink-dark);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--violet);
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 650;
@@ -115,10 +118,10 @@ h1, h2, h3 {
   justify-content: flex-start;
   min-height: 2.7rem;
   padding: 0.45rem 0.95rem;
-  border: 1.5px solid var(--gold);
+  border: 1.5px solid transparent;
   border-radius: 999px;
-  background: var(--marigold);
-  color: var(--ink-dark);
+  background: linear-gradient(160deg, var(--pink) 0%, var(--pink-hot) 100%);
+  color: var(--white);
   font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 650;
@@ -130,7 +133,8 @@ h1, h2, h3 {
 
 .btn-line, .btn-line-ink, .btn-cream {
   background: transparent;
-  color: var(--paper);
+  border-color: var(--pink);
+  color: var(--white);
 }
 
 .btn:hover, .btn-solid:hover, .btn-line:hover, .btn-line-ink:hover, .btn-cream:hover {
@@ -167,7 +171,7 @@ h1, h2, h3 {
   text-decoration-thickness: 1px;
 }
 
-.text-link:hover { color: var(--gold); }
+.text-link:hover { color: var(--pink); }
 
 .sticker {
   --tilt: -3deg;
@@ -187,16 +191,16 @@ h1, h2, h3 {
   transform: rotate(var(--tilt));
 }
 
-.sticker--marigold { background: var(--marigold); --tilt: 2.5deg; }
-.sticker--sage { background: var(--sage); --tilt: -2deg; }
-.sticker--rose { background: var(--rose); --tilt: 3.5deg; }
-.sticker--gold { background: var(--gold); --tilt: -1.5deg; }
+.sticker--pink { background: var(--pink-hot); color: var(--white); --tilt: 2.5deg; }
+.sticker--lavender { background: var(--lavender); color: var(--violet); --tilt: -2deg; }
+.sticker--blush { background: var(--blush); color: var(--violet); --tilt: 3.5deg; }
+.sticker--white { background: var(--white); color: var(--violet); --tilt: -1.5deg; }
 
 .sticker--pin {
   position: absolute;
   z-index: 3;
-  right: 0.55rem;
-  bottom: 0.7rem;
+  right: 0.9rem;
+  bottom: 0.95rem;
   pointer-events: none;
 }
 
@@ -210,7 +214,7 @@ h1, h2, h3 {
   --tilt: -2.5deg;
   position: absolute;
   z-index: 3;
-  top: 0.55rem;
+  top: 0.75rem;
   left: 50%;
   width: 4.4rem;
   height: 1.15rem;
@@ -218,24 +222,24 @@ h1, h2, h3 {
   transform: translateX(-50%) rotate(var(--tilt));
   background: repeating-linear-gradient(
     -18deg,
-    #F3E9D8 0 7px,
-    #9DB89A 7px 13px,
-    #F3E9D8 13px 18px
+    #ffffff 0 7px,
+    #c9b6e4 7px 13px,
+    #ffffff 13px 18px
   );
   box-shadow: 0 1px 0 rgba(26, 15, 10, 0.12);
 }
 
-.washi--rose {
+.washi--blush {
   --tilt: 3deg;
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 7px, #D9A5A0 7px 13px, #F3E9D8 13px 18px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #fbd5e5 7px 13px, #ffffff 13px 18px);
 }
 
-.washi--gold {
+.washi--pink {
   --tilt: -4deg;
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 7px, #C9A24B 7px 13px, #F3E9D8 13px 18px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #e86aa6 7px 13px, #ffffff 13px 18px);
 }
 
-.washi--sage { --tilt: 2deg; }
+.washi--lavender { --tilt: 2deg; }
 
 .frame,
 .photo-frame,
@@ -243,7 +247,7 @@ h1, h2, h3 {
   display: block;
   position: relative;
   overflow: visible;
-  border: 1.5px solid var(--gold);
+  border: 1.5px solid var(--pink-hot);
   padding: 0.38rem;
   background: transparent;
 }
@@ -275,29 +279,33 @@ h1, h2, h3 {
   content: "";
   position: absolute;
   z-index: 2;
-  top: 0.45rem;
+  top: 0.7rem;
   left: 50%;
   width: 3.6rem;
   height: 0.95rem;
   pointer-events: none;
   transform: translateX(-50%) rotate(-3deg);
-  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #D9A5A0 6px 11px, #F3E9D8 11px 16px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #f4a6c8 6px 11px, #ffffff 11px 16px);
 }
 
 .scallop {
   height: 14px;
-  background-image: radial-gradient(circle at 50% 0, var(--sage) 8px, transparent 8.6px);
+  background-image: radial-gradient(circle at 50% 0, var(--lavender) 8px, transparent 8.6px);
   background-size: 20px 14px;
   background-position: center top;
   background-repeat: round;
 }
 
-.scallop--rose {
-  background-image: radial-gradient(circle at 50% 0, var(--rose) 8px, transparent 8.6px);
+.scallop--lavender {
+  background-image: radial-gradient(circle at 50% 0, var(--lavender) 8px, transparent 8.6px);
 }
 
-.scallop--gold {
-  background-image: radial-gradient(circle at 50% 0, var(--gold) 8px, transparent 8.6px);
+.scallop--pink {
+  background-image: radial-gradient(circle at 50% 0, var(--pink-hot) 8px, transparent 8.6px);
+}
+
+.scallop--blush {
+  background-image: radial-gradient(circle at 50% 0, var(--blush) 8px, transparent 8.6px);
 }
 
 .home,
@@ -426,7 +434,7 @@ h1, h2, h3 {
   width: 12px;
   height: 12px;
   margin: -6px 0 0 -6px;
-  border: 1.5px solid var(--gold);
+  border: 1.5px solid var(--pink-hot);
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
@@ -466,7 +474,7 @@ html.has-cursor .cursor.is-hot {
   width: 42px;
   height: 42px;
   margin: -21px 0 0 -21px;
-  background: rgba(201, 162, 75, 0.16);
+  background: rgba(232, 106, 166, 0.2);
 }
 
 .reveal {
@@ -499,7 +507,7 @@ html.has-cursor .cursor.is-hot {
 
 .route-fallback { min-height: 100vh; background-color: var(--magenta); }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
   .board,
   .frames { column-count: 2; }
 }

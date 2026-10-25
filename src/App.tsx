@@ -28,7 +28,7 @@ const WORK = [
     src: clubCover,
     width: clubSize.width,
     height: clubSize.height,
-    tape: 'sage',
+    tape: 'lavender',
     flip: false,
   },
   {
@@ -38,7 +38,7 @@ const WORK = [
     src: null,
     width: 0,
     height: 0,
-    tape: 'rose',
+    tape: 'blush',
     flip: true,
   },
   {
@@ -48,7 +48,7 @@ const WORK = [
     src: eventCover,
     width: eventSize.width,
     height: eventSize.height,
-    tape: 'gold',
+    tape: 'pink',
     flip: false,
   },
 ]

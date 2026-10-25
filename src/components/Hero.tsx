@@ -15,10 +15,10 @@ export default function Hero() {
             <em>Appannagaari</em>
           </h1>
           <div className="hero__doodles" aria-hidden="true">
-            <Sparkle className="doodle doodle--gold" />
-            <FlowerDoodle className="doodle doodle--sage" />
-            <StarDoodle className="doodle doodle--marigold" />
-            <HeartDoodle className="doodle doodle--rose" />
+            <Sparkle className="doodle doodle--pink" />
+            <FlowerDoodle className="doodle doodle--blush" />
+            <StarDoodle className="doodle doodle--lavender" />
+            <HeartDoodle className="doodle doodle--heart" />
             <Squiggle className="doodle doodle--squiggle" />
           </div>
         </div>
@@ -27,10 +27,10 @@ export default function Hero() {
           <p>hi, i&apos;m nithya. i&apos;m at berkeley, and i photograph clubs, grads, and events.</p>
           <div className="hero__actions">
             <a href="#highlights" className="text-link">see the photos</a>
-            <a href="#contact" className="sticker sticker--marigold">say hi</a>
+            <a href="#contact" className="sticker sticker--pink">say hi</a>
           </div>
           <figure className="pinned">
-            <span className="washi washi--sage" aria-hidden="true" />
+            <span className="washi washi--lavender" aria-hidden="true" />
             <span className="frame">
               <img
                 src={aboutImg}
@@ -45,7 +45,7 @@ export default function Hero() {
         </div>
       </div>
       <figure className="hero__photo pinned">
-        <span className="washi washi--rose" aria-hidden="true" />
+        <span className="washi washi--pink" aria-hidden="true" />
         <span className="frame">
           <img
             src={photo}
@@ -56,7 +56,7 @@ export default function Hero() {
             loading="lazy"
           />
         </span>
-        <span className="sticker sticker--sage sticker--pin">daylight</span>
+        <span className="sticker sticker--lavender sticker--pin">daylight</span>
       </figure>
     </section>
   )

@@ -1,9 +1,9 @@
 export const homeLayout = [
   { kind: 'hero' },
-  { kind: 'scallop', tone: 'sage' },
+  { kind: 'scallop', tone: 'lavender' },
   { kind: 'highlights' },
   { kind: 'work' },
-  { kind: 'scallop', tone: 'rose' },
+  { kind: 'scallop', tone: 'pink' },
   { kind: 'contact' },
 ] as const
 
