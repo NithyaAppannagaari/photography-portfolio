@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LogoMark } from './Doodles'
 import './SiteNav.css'
 
 const LINKS = [
-  { id: 'work', label: 'Work' },
-  { id: 'pricing', label: 'Rates' },
+  { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'work', label: 'Portfolio' },
+  { id: 'pricing', label: 'Rates' },
+  { id: 'contact', label: 'Inquire' },
 ] as const
 
-type Active = 'work' | 'pricing' | 'about' | 'contact' | ''
+type Active = 'home' | 'work' | 'pricing' | 'about' | 'contact' | ''
 
 export default function SiteNav({
   tone = 'paper',
@@ -75,14 +75,15 @@ export default function SiteNav({
   const current = active || (home ? here : '')
 
   const hrefFor = (id: string) => {
+    if (id === 'home') return '/'
     if (id === 'pricing') return '/pricing'
     return home ? `#${id}` : `/#${id}`
   }
 
   const items = LINKS.map((item) => {
     const href = hrefFor(item.id)
-    const marked = current === item.id
-    if (item.id === 'pricing') {
+    const marked = current === item.id || (home && !current && item.id === 'home')
+    if (item.id === 'pricing' || item.id === 'home') {
       return (
         <Link key={item.id} to={href} aria-current={marked ? 'page' : undefined} onClick={() => setOpen(false)}>
           {item.label}
@@ -101,12 +102,13 @@ export default function SiteNav({
     <div ref={sentinelRef} className="nav-sentinel" aria-hidden="true" />
     <div ref={navRef} className={`nav nav--${tone}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
       <Link to="/" className="wordmark" onClick={() => setOpen(false)}>
-        <LogoMark className="wordmark__mark" />
-        <span className="wordmark__full">Nithya Appannagaari</span>
+        <span className="wordmark__full">Nithya</span>
         <span className="wordmark__short">Nithya</span>
       </Link>
       <nav className="nav__links" aria-label="Primary">
-        {items}
+        {items.slice(0, 2)}
+        <span className="nav__ornament" aria-hidden="true" />
+        {items.slice(2)}
       </nav>
       <div className="nav__side">
         <div className="nav__social">

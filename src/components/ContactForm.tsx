@@ -71,7 +71,7 @@ export default function ContactForm() {
       <div className="inquiry inquiry--sent" role="status">
         <p className="kicker">got it</p>
         <p className="inquiry__thanks">got it. i'll write back soon.</p>
-        <button type="button" className="sticker sticker--lavender" onClick={() => setStatus('idle')}>
+        <button type="button" className="btn" onClick={() => setStatus('idle')}>
           send another
         </button>
       </div>
@@ -174,7 +174,7 @@ export default function ContactForm() {
         </label>
       </div>
       {error ? <p className="inquiry__error" role="alert">{error}</p> : null}
-      <button className="sticker sticker--pink inquiry__send" type="submit" disabled={status === 'sending'}>
+      <button className="btn inquiry__send" type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'sending...' : 'send it'}
       </button>
     </form>

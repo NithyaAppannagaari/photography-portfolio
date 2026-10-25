@@ -40,12 +40,11 @@ export default function Highlights() {
 
   return (
     <section className="highlights band" id="highlights" aria-label="Highlights">
-      <p className="kicker">Highlights</p>
+      <p className="eyebrow">Highlights</p>
       <div className="board">
         {PHOTOS.map((photo, index) => (
           <Reveal key={photo.src} delay={Math.min(index, 5) * 40}>
             <button type="button" className="pinned" onClick={() => setOpen(index)}>
-              {photo.tape ? <span className={`washi washi--${photo.tape}`} aria-hidden="true" /> : null}
               <span className="frame">
                 <img
                   src={photo.src}
@@ -56,9 +55,6 @@ export default function Highlights() {
                   decoding="async"
                 />
               </span>
-              {photo.sticker ? (
-                <span className={`sticker sticker--${photo.tone} sticker--pin`}>{photo.sticker}</span>
-              ) : null}
             </button>
           </Reveal>
         ))}

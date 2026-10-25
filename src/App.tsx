@@ -4,8 +4,6 @@ import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
 import ContactForm from './components/ContactForm'
-import Cursor from './components/Cursor'
-import { LogoMark, Sparkle } from './components/Doodles'
 import Hero from './components/Hero'
 import Highlights from './components/Highlights'
 import Reveal from './components/Reveal'
@@ -84,7 +82,6 @@ function HomePage() {
 function HomeBlockView({ block }: { block: HomeBlock }) {
   if (block.kind === 'hero') return <Hero />
   if (block.kind === 'highlights') return <Highlights />
-  if (block.kind === 'scallop') return <div className={`scallop scallop--${block.tone}`} aria-hidden="true" />
   if (block.kind === 'contact') return <ContactSection />
   return <WorkSection />
 }
@@ -93,30 +90,26 @@ function WorkSection() {
   return (
     <section className="work band" id="work">
         <div className="section-head">
-          <p className="kicker">Work</p>
+          <p className="eyebrow">Portfolio</p>
         </div>
         <div className="work__list">
           {WORK.map((item, index) => (
             <Reveal key={item.slug} delay={index * 50}>
-              <Link to={`/gallery/${item.slug}`} className="poster">
-                <LogoMark className="poster__mark" />
-                <p className="kicker">{String(index + 1).padStart(2, '0')}</p>
+              <Link to={`/gallery/${item.slug}`} className="work-piece">
+                {item.src ? (
+                  <img
+                    src={item.src}
+                    alt=""
+                    width={item.width}
+                    height={item.height}
+                    decoding="async"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="work-piece__soon">coming soon</span>
+                )}
                 <h2>{item.title}</h2>
-                <p className="poster__meta">{item.desc}</p>
-                <span className="poster__well">
-                  {item.src ? (
-                    <img
-                      src={item.src}
-                      alt=""
-                      width={item.width}
-                      height={item.height}
-                      decoding="async"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className="poster__soon">coming soon</span>
-                  )}
-                </span>
+                <p>{item.desc}</p>
               </Link>
             </Reveal>
           ))}
@@ -129,10 +122,9 @@ function ContactSection() {
   return (
     <section className="sayhi band" id="contact">
         <div className="sayhi__intro">
-          <p className="kicker">say hi</p>
+          <p className="eyebrow">Inquire</p>
           <h2>tell me about the shoot</h2>
           <p>clubs, events, grads, whatever you need. i&apos;ll write back.</p>
-          <Sparkle className="sayhi__spark" />
         </div>
         <ContactForm />
     </section>
@@ -143,7 +135,6 @@ export default function App() {
   return (
     <Suspense fallback={<div className="route-fallback" />}>
       <HashScroll />
-      <Cursor />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/gallery/:category" element={<GalleryPage />} />

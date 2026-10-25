@@ -2,10 +2,10 @@
   position: relative;
   margin: 0;
   padding: clamp(1rem, 2vw, 1.5rem);
-  border: 1.5px solid var(--pink);
-  border-radius: 1.5rem;
-  background: var(--offwhite);
-  color: var(--violet);
+  border: 1px solid rgba(244, 239, 230, 0.7);
+  border-radius: 0;
+  background: var(--ivory);
+  color: var(--maroon-deep);
 }
 
 .inquiry__grid {
@@ -24,17 +24,24 @@
   min-width: 0;
 }
 
-.inquiry .kicker {
-  background: var(--blush);
-  color: var(--violet);
+.inquiry .kicker,
+.inquiry .btn {
+  color: var(--maroon-deep);
+  border-color: var(--maroon);
+}
+
+.inquiry .btn:hover {
+  background: var(--maroon);
+  color: var(--cream);
 }
 
 .inquiry label span {
   display: inline-block;
   padding: 0.14rem 0.5rem 0.1rem;
-  border-radius: 999px;
-  background: var(--blush);
-  color: var(--violet);
+  border-radius: 0;
+  background: transparent;
+  color: var(--maroon-deep);
+  letter-spacing: 0.18em;
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 650;
@@ -49,8 +56,8 @@
   width: 100%;
   margin: 0;
   padding: 0.72rem 0.75rem;
-  border: 1.5px solid var(--blush);
-  border-radius: 0.85rem;
+  border: 1px solid rgba(90, 26, 42, 0.35);
+  border-radius: 0;
   background: var(--paper);
   color: var(--ink-dark);
   font-family: var(--font-body);
@@ -85,13 +92,13 @@
 .inquiry input:focus,
 .inquiry select:focus,
 .inquiry textarea:focus {
-  outline: 2px solid var(--pink-hot);
+  outline: 1px solid var(--maroon);
   outline-offset: 2px;
 }
 
 .inquiry__error {
   margin-top: var(--stack);
-  color: var(--pink-hot);
+  color: var(--maroon);
   font-style: italic;
 }
 

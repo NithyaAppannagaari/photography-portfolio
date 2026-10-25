@@ -5,9 +5,9 @@
   gap: 0.7rem 1.6rem;
   align-items: flex-start;
   padding: 1.25rem max(var(--pad), env(safe-area-inset-right)) calc(1.35rem + env(safe-area-inset-bottom)) max(var(--pad), env(safe-area-inset-left));
-  background-color: #2a1b5e;
-  border-top: 6px solid var(--pink-hot);
-  font-family: var(--font-sans);
+  background-color: #6e1848;
+  border-top: 1px solid rgba(244, 239, 230, 0.28);
+  font-family: var(--font-serif);
   font-size: 0.66rem;
   font-weight: 500;
   letter-spacing: 0.16em;

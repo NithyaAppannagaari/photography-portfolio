@@ -1,6 +1,6 @@
 .pricing-page {
   min-height: 100vh;
-  background-color: #2a1b5e;
+  background-color: #5a1a2a;
 }
 
 .pricing-page .intro {
@@ -32,7 +32,7 @@
   gap: var(--section-y) var(--gutter);
   margin: 0;
   padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
-  background-color: #2a1b5e;
+  background-color: #5a1a2a;
 }
 
 .rates .reveal { height: 100%; }
@@ -46,10 +46,10 @@
   gap: 0.55rem;
   padding: 1.15rem 1.05rem 1.2rem;
   overflow: visible;
-  border: 0;
-  border-radius: 1.5rem;
-  background: var(--offwhite);
-  color: var(--indigo);
+  border: 1px solid rgba(244, 239, 230, 0.7);
+  border-radius: 0;
+  background: var(--ivory);
+  color: var(--maroon-deep);
 }
 
 .rate__mark {
@@ -61,26 +61,27 @@
 }
 
 .rate--lead {
-  background: linear-gradient(180deg, var(--offwhite) 0%, var(--blush) 100%);
+  background: var(--ivory);
+  border-color: var(--cream);
 }
 
 .rate--lead .rate__price { color: var(--violet); }
 
 .rate .kicker {
   margin-top: 0.15rem;
-  background: var(--blush);
-  color: var(--indigo);
+  background: none;
+  color: var(--maroon);
 }
 
 .rate h2 {
   margin-top: 0.2rem;
-  padding-right: 2.2rem;
-  color: var(--indigo);
+  padding-right: 0;
+  color: var(--maroon-deep);
   font-size: clamp(1.55rem, 2vw, 1.9rem);
   line-height: 1.05;
 }
 
-.rate__sub { color: rgba(42, 27, 94, 0.68); }
+.rate__sub { color: rgba(90, 26, 42, 0.68); }
 
 .rate__price {
   margin: 0.6rem 0 0.4rem;
@@ -97,31 +98,40 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(42, 27, 94, 0.68);
+  color: rgba(90, 26, 42, 0.68);
 }
 
 .rate ul { margin: 0.4rem 0 0.8rem; }
 
 .rate li {
   padding: 0.4rem 0;
-  border-top: 1px solid rgba(42, 27, 94, 0.12);
+  border-top: 1px solid rgba(90, 26, 42, 0.15);
   color: var(--indigo);
   font-size: 1.05rem;
 }
 
 .rate__note {
   margin-bottom: 1rem;
-  color: rgba(42, 27, 94, 0.68);
+  color: rgba(90, 26, 42, 0.68);
   font-size: 1rem;
 }
 
-.rate .btn { margin-top: auto; }
+.rate .btn {
+  margin-top: auto;
+  border-color: var(--maroon);
+  color: var(--maroon);
+}
+
+.rate .btn:hover {
+  background: var(--maroon);
+  color: var(--cream);
+}
 
 .rates-note {
   max-width: 40rem;
   margin: 0;
   padding: 0.5rem max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
-  background-color: #2a1b5e;
+  background-color: #5a1a2a;
   color: var(--muted);
 }
 
