@@ -44,7 +44,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.55rem;
-  padding: 1.35rem 1rem 1.15rem;
+  padding: 1.55rem 1rem 1.15rem;
+  overflow: visible;
   border: 1.5px solid var(--gold);
   background: transparent;
 }
@@ -52,21 +53,21 @@
 .rate::before {
   content: "";
   position: absolute;
-  top: 0.45rem;
+  top: 0.55rem;
   left: 50%;
   width: 4rem;
   height: 1rem;
-  transform: translateX(-50%) rotate(-2deg);
+  transform: translateX(-50%) rotate(var(--tilt, -2deg));
   background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #9DB89A 6px 11px, #F3E9D8 11px 16px);
 }
 
-.rates .reveal:nth-child(2) .rate::before {
-  transform: translateX(-50%) rotate(3deg);
+.rate--tape-marigold::before {
+  --tilt: 3deg;
   background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #E8A317 6px 11px, #F3E9D8 11px 16px);
 }
 
-.rates .reveal:nth-child(3) .rate::before {
-  transform: translateX(-50%) rotate(-3.5deg);
+.rate--tape-rose::before {
+  --tilt: -3.5deg;
   background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #D9A5A0 6px 11px, #F3E9D8 11px 16px);
 }
 

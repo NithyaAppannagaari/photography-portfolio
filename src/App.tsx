@@ -11,6 +11,7 @@ import Highlights from './components/Highlights'
 import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
+import { homeLayout, type HomeBlock } from './homeLayout'
 import clubCover from './assets/club_photoshoots/DSC08853 (1).jpg'
 import clubSize from './assets/club_photoshoots/DSC08853 (1).jpg?intrinsic'
 import eventCover from './assets/event_photography/vertical7.jpeg'
@@ -27,6 +28,8 @@ const WORK = [
     src: clubCover,
     width: clubSize.width,
     height: clubSize.height,
+    tape: 'sage',
+    flip: false,
   },
   {
     title: 'graduation photoshoots',
@@ -35,6 +38,8 @@ const WORK = [
     src: null,
     width: 0,
     height: 0,
+    tape: 'rose',
+    flip: true,
   },
   {
     title: 'event photography',
@@ -43,6 +48,8 @@ const WORK = [
     src: eventCover,
     width: eventSize.width,
     height: eventSize.height,
+    tape: 'gold',
+    flip: false,
   },
 ]
 
@@ -66,19 +73,32 @@ function HomePage() {
   return (
     <div className="home">
       <SiteNav tone="magenta" />
-      <Hero />
-      <div className="scallop scallop--sage" aria-hidden="true" />
+      {homeLayout.map((block) => (
+        <HomeBlockView key={`${block.kind}-${'tone' in block ? block.tone : ''}`} block={block} />
+      ))}
+      <SiteFooter />
+    </div>
+  )
+}
 
-      <Highlights />
+function HomeBlockView({ block }: { block: HomeBlock }) {
+  if (block.kind === 'hero') return <Hero />
+  if (block.kind === 'highlights') return <Highlights />
+  if (block.kind === 'scallop') return <div className={`scallop scallop--${block.tone}`} aria-hidden="true" />
+  if (block.kind === 'contact') return <ContactSection />
+  return <WorkSection />
+}
 
-      <section className="work band" id="work">
+function WorkSection() {
+  return (
+    <section className="work band" id="work">
         <div className="section-head">
           <p className="kicker">Work</p>
         </div>
         <div className="work__list">
           {WORK.map((item, index) => (
             <Reveal key={item.slug} delay={index * 50}>
-              <Link to={`/gallery/${item.slug}`} className={`work-card${index % 2 ? ' work-card--flip' : ''}`}>
+              <Link to={`/gallery/${item.slug}`} className={`work-card${item.flip ? ' work-card--flip' : ''}`}>
                 <div className="work-card__copy">
                   <p className="kicker">{String(index + 1).padStart(2, '0')}</p>
                   <h2>{item.title}</h2>
@@ -86,7 +106,7 @@ function HomePage() {
                 </div>
                 {item.src ? (
                   <span className="pinned">
-                    <span className={`washi washi--${index === 2 ? 'gold' : 'sage'}`} aria-hidden="true" />
+                    <span className={`washi washi--${item.tape}`} aria-hidden="true" />
                     <span className="frame">
                       <img
                         src={item.src}
@@ -100,7 +120,7 @@ function HomePage() {
                   </span>
                 ) : (
                   <span className="pinned">
-                    <span className="washi washi--rose" aria-hidden="true" />
+                    <span className={`washi washi--${item.tape}`} aria-hidden="true" />
                     <span className="frame work-card__soon">coming soon</span>
                   </span>
                 )}
@@ -108,11 +128,13 @@ function HomePage() {
             </Reveal>
           ))}
         </div>
-      </section>
+    </section>
+  )
+}
 
-      <div className="scallop scallop--rose" aria-hidden="true" />
-
-      <section className="sayhi band" id="contact">
+function ContactSection() {
+  return (
+    <section className="sayhi band" id="contact">
         <div className="sayhi__intro">
           <p className="kicker">say hi</p>
           <h2>tell me about the shoot</h2>
@@ -120,10 +142,7 @@ function HomePage() {
           <Sparkle className="sayhi__spark" />
         </div>
         <ContactForm />
-      </section>
-
-      <SiteFooter />
-    </div>
+    </section>
   )
 }
 

@@ -86,6 +86,7 @@ export default function GalleryPage() {
                 <button
                   key={photo.src}
                   type="button"
+                  className={index % 3 === 2 ? 'has-tape' : undefined}
                   onClick={() => setOpen(index)}
                 >
                   <img

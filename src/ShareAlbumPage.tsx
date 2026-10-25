@@ -95,6 +95,7 @@ export default function ShareAlbumPage() {
                 <button
                   key={photo.id}
                   type="button"
+                  className={index % 3 === 2 ? 'has-tape' : undefined}
                   style={{ '--i': Math.min(index, 12) } as CSSProperties}
                   onClick={() => setOpen(index)}
                 >

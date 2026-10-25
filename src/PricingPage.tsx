@@ -20,6 +20,7 @@ const TIERS = [
     ],
     note: 'we can sort hours and timing when you write.',
     highlight: true,
+    tape: 'sage',
   },
   {
     id: 'club-small',
@@ -34,6 +35,7 @@ const TIERS = [
     ],
     note: 'headshots and team photos.',
     highlight: false,
+    tape: 'marigold',
   },
   {
     id: 'club-large',
@@ -48,6 +50,7 @@ const TIERS = [
     ],
     note: 'headshots and team photos.',
     highlight: false,
+    tape: 'rose',
   },
 ]
 
@@ -70,7 +73,7 @@ export default function PricingPage() {
       <main className="rates">
         {TIERS.map((tier, index) => (
           <Reveal key={tier.id} delay={index * 80}>
-          <article className={tier.highlight ? 'rate rate--lead' : 'rate'}>
+          <article className={`rate rate--tape-${tier.tape}${tier.highlight ? ' rate--lead' : ''}`}>
             <p className="kicker">{tier.badge}</p>
             <h2>{tier.title}</h2>
             <p className="rate__price">
