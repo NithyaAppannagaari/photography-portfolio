@@ -1,6 +1,6 @@
 .gallery-page {
   min-height: 100vh;
-  background-color: #6e1848;
+  background-color: #2a1b5e;
 }
 
 .gallery-frames {
@@ -15,12 +15,13 @@
   justify-content: flex-start;
   gap: var(--stack);
   padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
-  background-color: #6e1848;
+  background-color: #2a1b5e;
 }
 
 .gallery-soon p {
   color: var(--paper);
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 650;
   font-size: clamp(2rem, 4vw, 3rem);
 }

@@ -1,3 +1,12 @@
+export function LogoMark({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="9" fill="#FF4FA3" />
+      <path d="M16 6.4 18.1 12.4 24.6 12.9 19.6 17 21.2 23.4 16 20.2 10.8 23.4 12.4 17 7.4 12.9 13.9 12.4 16 6.4Z" fill="#FFFFFF" />
+    </svg>
+  )
+}
+
 export function Sparkle({ className = '' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 48 48" aria-hidden="true">

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { LogoMark } from './Doodles'
 import './SiteNav.css'
 
 const LINKS = [
@@ -100,9 +101,7 @@ export default function SiteNav({
     <div ref={sentinelRef} className="nav-sentinel" aria-hidden="true" />
     <div ref={navRef} className={`nav nav--${tone}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
       <Link to="/" className="wordmark" onClick={() => setOpen(false)}>
-        <svg className="wordmark__mark" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M8 1.2 9.4 6.1 14.4 6.4 10.4 9.4 11.6 14.2 8 11.6 4.4 14.2 5.6 9.4 1.6 6.4 6.6 6.1 8 1.2Z" fill="currentColor" />
-        </svg>
+        <LogoMark className="wordmark__mark" />
         <span className="wordmark__full">Nithya Appannagaari</span>
         <span className="wordmark__short">Nithya</span>
       </Link>

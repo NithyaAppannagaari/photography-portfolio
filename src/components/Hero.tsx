@@ -45,6 +45,9 @@ export default function Hero() {
         </div>
       </div>
       <figure className="hero__photo pinned">
+        <span className="confetti" aria-hidden="true">
+          <span /><span /><span /><span /><span /><span />
+        </span>
         <span className="washi washi--pink" aria-hidden="true" />
         <span className="frame">
           <img

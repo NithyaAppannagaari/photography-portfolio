@@ -8,10 +8,8 @@
   padding-bottom: var(--section-y);
   padding-left: max(var(--pad), env(safe-area-inset-left));
   padding-right: max(var(--pad), env(safe-area-inset-right));
-  background-color: #6e1848;
-  background-image:
-    radial-gradient(720px 340px at 92% 0%, rgba(244, 166, 200, 0.32), transparent 68%),
-    radial-gradient(540px 300px at 0% 12%, rgba(201, 182, 228, 0.22), transparent 70%);
+  background-color: #2a1b5e;
+  background-image: linear-gradient(145deg, #2a1b5e 0%, #6b3fd0 100%);
 }
 
 .hero__top {
@@ -30,19 +28,20 @@
 .hero__name {
   margin: 0;
   color: var(--paper);
-  font-size: clamp(3.15rem, 5.7vw, 6.6rem);
-  font-weight: 560;
-  font-variation-settings: "SOFT" 45, "opsz" 144;
-  line-height: 0.92;
+  font-size: clamp(2.85rem, 5vw, 5.35rem);
+  font-weight: 700;
+  line-height: 1;
   overflow: visible;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
 }
 
 .hero__name em {
   display: block;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.045em;
+  margin-top: 0.06em;
+  color: var(--pink-hot);
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
 
 .hero__about {
@@ -86,6 +85,28 @@
 .doodle--lavender { width: 2.5rem; height: 2.5rem; color: var(--lavender); }
 .doodle--heart { width: 2.3rem; height: 2.3rem; color: var(--pink-hot); }
 .doodle--squiggle { width: 7.5rem; height: 1.6rem; color: var(--pink); }
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.confetti span {
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--pink-hot);
+}
+
+.confetti span:nth-child(1) { top: 1rem; left: 1rem; background: var(--white); }
+.confetti span:nth-child(2) { top: 1.05rem; right: 1.05rem; width: 0.75rem; height: 0.75rem; border-radius: 0; clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%); background: var(--blush); }
+.confetti span:nth-child(3) { top: 2.4rem; right: 1.15rem; width: 0.4rem; height: 0.4rem; background: var(--lavender); }
+.confetti span:nth-child(4) { bottom: 1.15rem; left: 1.1rem; width: 0.7rem; height: 0.7rem; border-radius: 0; clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%); background: var(--pink-hot); }
+.confetti span:nth-child(5) { bottom: 1.2rem; right: 1.2rem; background: var(--white); }
+.confetti span:nth-child(6) { bottom: 2.3rem; left: 1.15rem; width: 0.38rem; height: 0.38rem; background: var(--lavender); }
 
 @media (max-width: 800px) {
   .hero { gap: var(--section-y); }

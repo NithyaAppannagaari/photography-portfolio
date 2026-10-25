@@ -1,26 +1,29 @@
-@import '@fontsource-variable/fraunces/soft.css';
-@import '@fontsource-variable/fraunces/soft-italic.css';
+@import '@fontsource-variable/fredoka/wght.css';
 @import '@fontsource-variable/outfit/wght.css';
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --magenta: #6e1848;
-  --violet: #4a1038;
-  --lavender: #c9b6e4;
-  --pink: #f4a6c8;
-  --pink-hot: #e86aa6;
-  --blush: #fbd5e5;
+  --indigo: #2a1b5e;
+  --violet-mid: #6b3fd0;
+  --plum: #6e1848;
+  --magenta: #2a1b5e;
+  --violet: #2a1b5e;
+  --lavender: #d7c6ff;
+  --pink: #ffc2dc;
+  --pink-hot: #ff4fa3;
+  --blush: #ffc2dc;
   --white: #ffffff;
-  --paper: #ffffff;
-  --cream: #ffffff;
+  --offwhite: #faf6ff;
+  --paper: #faf6ff;
+  --cream: #faf6ff;
   --ink: #ffffff;
-  --ink-dark: #4a1038;
+  --ink-dark: #2a1b5e;
   --muted: rgba(255, 255, 255, 0.78);
   --line: rgba(255, 255, 255, 0.32);
-  --frame: #e86aa6;
-  --mat: transparent;
-  --font-display: "Fraunces Variable", "Iowan Old Style", Palatino, Georgia, serif;
+  --frame: #ff4fa3;
+  --mat: #faf6ff;
+  --font-display: "Fredoka Variable", "Outfit Variable", "Avenir Next", sans-serif;
   --font-body: "Outfit Variable", "Avenir Next", "Segoe UI", sans-serif;
   --font-serif: var(--font-display);
   --font-sans: var(--font-body);
@@ -34,7 +37,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: var(--magenta);
+  background-color: var(--indigo);
+  background-image: linear-gradient(180deg, #2a1b5e 0%, #3a2280 68%, #6e1848 100%);
   color-scheme: dark;
   overflow-x: clip;
   scrollbar-gutter: stable;
@@ -59,7 +63,7 @@ body::before {
   inset: 0;
   z-index: 80;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.05;
   background-image: url("/grain.png");
   background-size: 180px 180px;
 }
@@ -76,16 +80,15 @@ ul { list-style: none; }
   outline-offset: 3px;
 }
 
-::placeholder { color: rgba(26, 15, 10, 0.5); }
+::placeholder { color: rgba(42, 27, 94, 0.45); }
 
 section[id] { scroll-margin-top: calc(var(--nav-h) + 0.75rem); }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 560;
-  font-variation-settings: "SOFT" 40, "opsz" 72;
+  font-weight: 650;
   letter-spacing: -0.03em;
-  line-height: 1.02;
+  line-height: 1.05;
   color: var(--paper);
   text-align: left;
 }
@@ -102,8 +105,8 @@ h1, h2, h3 {
   display: inline-block;
   padding: 0.16rem 0.48rem 0.12rem;
   border-radius: 999px;
-  background: var(--white);
-  color: var(--violet);
+  background: var(--blush);
+  color: var(--indigo);
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 650;
@@ -120,7 +123,7 @@ h1, h2, h3 {
   padding: 0.45rem 0.95rem;
   border: 1.5px solid transparent;
   border-radius: 999px;
-  background: linear-gradient(160deg, var(--pink) 0%, var(--pink-hot) 100%);
+  background: var(--pink-hot);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 0.82rem;
@@ -161,10 +164,10 @@ h1, h2, h3 {
 .text-btn:disabled { opacity: 0.45; }
 
 .text-link {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 650;
+  font-size: 1.05rem;
   color: var(--paper);
   text-decoration: underline;
   text-underline-offset: 0.16em;
@@ -223,7 +226,7 @@ h1, h2, h3 {
   background: repeating-linear-gradient(
     -18deg,
     #ffffff 0 7px,
-    #c9b6e4 7px 13px,
+    #d7c6ff 7px 13px,
     #ffffff 13px 18px
   );
   box-shadow: 0 1px 0 rgba(26, 15, 10, 0.12);
@@ -231,12 +234,12 @@ h1, h2, h3 {
 
 .washi--blush {
   --tilt: 3deg;
-  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #fbd5e5 7px 13px, #ffffff 13px 18px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #ffc2dc 7px 13px, #ffffff 13px 18px);
 }
 
 .washi--pink {
   --tilt: -4deg;
-  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #e86aa6 7px 13px, #ffffff 13px 18px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 7px, #ff4fa3 7px 13px, #ffffff 13px 18px);
 }
 
 .washi--lavender { --tilt: 2deg; }
@@ -246,10 +249,11 @@ h1, h2, h3 {
 .frames button {
   display: block;
   position: relative;
-  overflow: visible;
-  border: 1.5px solid var(--pink-hot);
-  padding: 0.38rem;
-  background: transparent;
+  overflow: hidden;
+  border: 0;
+  border-radius: 1.15rem;
+  padding: 0.72rem;
+  background: var(--offwhite);
 }
 
 .frame img,
@@ -285,28 +289,17 @@ h1, h2, h3 {
   height: 0.95rem;
   pointer-events: none;
   transform: translateX(-50%) rotate(-3deg);
-  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #f4a6c8 6px 11px, #ffffff 11px 16px);
+  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #ffc2dc 6px 11px, #ffffff 11px 16px);
 }
 
 .scallop {
-  height: 14px;
-  background-image: radial-gradient(circle at 50% 0, var(--lavender) 8px, transparent 8.6px);
-  background-size: 20px 14px;
-  background-position: center top;
-  background-repeat: round;
+  height: 8px;
+  background: var(--lavender);
 }
 
-.scallop--lavender {
-  background-image: radial-gradient(circle at 50% 0, var(--lavender) 8px, transparent 8.6px);
-}
-
-.scallop--pink {
-  background-image: radial-gradient(circle at 50% 0, var(--pink-hot) 8px, transparent 8.6px);
-}
-
-.scallop--blush {
-  background-image: radial-gradient(circle at 50% 0, var(--blush) 8px, transparent 8.6px);
-}
+.scallop--lavender { background: var(--lavender); }
+.scallop--pink { background: var(--pink-hot); }
+.scallop--blush { background: var(--blush); }
 
 .home,
 .gallery-page,
@@ -474,7 +467,7 @@ html.has-cursor .cursor.is-hot {
   width: 42px;
   height: 42px;
   margin: -21px 0 0 -21px;
-  background: rgba(232, 106, 166, 0.2);
+  background: rgba(255, 79, 163, 0.22);
 }
 
 .reveal {

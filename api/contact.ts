@@ -151,10 +151,10 @@ export function buildMail(inquiry: Inquiry, env: ContactEnv): OutboundMail {
   const htmlRows = rows.map(([label, value]) => (
     `<tr><th style="text-align:left;padding:8px 16px 8px 0;vertical-align:top;font-weight:600;">${escapeHtml(label)}</th><td style="padding:8px 0;vertical-align:top;">${escapeHtml(value)}</td></tr>`
   )).join('')
-  const html = `<!DOCTYPE html><html><body style="margin:0;padding:24px;background:#ffffff;color:#4a1038;font-family:Georgia,serif;line-height:1.5;">
+  const html = `<!DOCTYPE html><html><body style="margin:0;padding:24px;background:#FAF6FF;color:#2A1B5E;font-family:Georgia,serif;line-height:1.5;">
 <div style="max-width:560px;">
-<p style="margin:0 0 8px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#e86aa6;">New inquiry</p>
-<h1 style="margin:0 0 18px;font-size:28px;font-weight:500;color:#6e1848;">${escapeHtml(inquiry.inquiryType)}</h1>
+<p style="margin:0 0 8px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#FF4FA3;">New inquiry</p>
+<h1 style="margin:0 0 18px;font-size:28px;font-weight:700;color:#2A1B5E;">${escapeHtml(inquiry.inquiryType)}</h1>
 <table style="width:100%;border-collapse:collapse;font-size:16px;">${htmlRows}</table>
 <h2 style="margin:22px 0 8px;font-size:16px;">Message</h2>
 <p style="margin:0;white-space:pre-wrap;">${escapeHtml(inquiry.message)}</p>

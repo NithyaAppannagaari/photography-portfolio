@@ -1,6 +1,6 @@
 .pricing-page {
   min-height: 100vh;
-  background-color: #6e1848;
+  background-color: #2a1b5e;
 }
 
 .pricing-page .intro {
@@ -32,7 +32,7 @@
   gap: var(--section-y) var(--gutter);
   margin: 0;
   padding: var(--stack) max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
-  background-color: #6e1848;
+  background-color: #2a1b5e;
 }
 
 .rates .reveal { height: 100%; }
@@ -44,57 +44,49 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.55rem;
-  padding: 1.7rem 1.05rem 1.2rem;
+  padding: 1.15rem 1.05rem 1.2rem;
   overflow: visible;
-  border: 1.5px solid var(--pink-hot);
-  border-radius: 1.35rem;
-  background: #fff;
-  color: var(--violet);
+  border: 0;
+  border-radius: 1.5rem;
+  background: var(--offwhite);
+  color: var(--indigo);
 }
 
-.rate::before {
-  content: "";
+.rate__mark {
   position: absolute;
-  top: 0.7rem;
-  left: 50%;
-  width: 4rem;
-  height: 1rem;
-  transform: translateX(-50%) rotate(var(--tilt, -2deg));
-  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #c9b6e4 6px 11px, #ffffff 11px 16px);
-}
-
-.rate--tape-pink::before {
-  --tilt: 3deg;
-  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #e86aa6 6px 11px, #ffffff 11px 16px);
-}
-
-.rate--tape-blush::before {
-  --tilt: -3.5deg;
-  background: repeating-linear-gradient(-18deg, #ffffff 0 6px, #fbd5e5 6px 11px, #ffffff 11px 16px);
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 1.7rem;
+  height: 1.7rem;
 }
 
 .rate--lead {
-  border-color: var(--pink-hot);
-  background: linear-gradient(180deg, #ffffff 0%, var(--blush) 100%);
+  background: linear-gradient(180deg, var(--offwhite) 0%, var(--blush) 100%);
 }
 
 .rate--lead .rate__price { color: var(--violet); }
 
 .rate .kicker {
-  margin-top: 0.85rem;
+  margin-top: 0.15rem;
   background: var(--blush);
-  color: var(--violet);
+  color: var(--indigo);
 }
 
-.rate h2 { font-size: 1.7rem; margin-top: 0.2rem; color: var(--violet); }
+.rate h2 {
+  margin-top: 0.2rem;
+  padding-right: 2.2rem;
+  color: var(--indigo);
+  font-size: clamp(1.55rem, 2vw, 1.9rem);
+  line-height: 1.05;
+}
 
-.rate__sub { color: rgba(74, 16, 56, 0.68); font-style: italic; }
+.rate__sub { color: rgba(42, 27, 94, 0.68); }
 
 .rate__price {
   margin: 0.6rem 0 0.4rem;
   font-size: 2.7rem;
   letter-spacing: -0.03em;
-  color: var(--violet);
+  color: var(--indigo);
 }
 
 .rate__price span {
@@ -105,23 +97,22 @@
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(74, 16, 56, 0.68);
+  color: rgba(42, 27, 94, 0.68);
 }
 
 .rate ul { margin: 0.4rem 0 0.8rem; }
 
 .rate li {
   padding: 0.4rem 0;
-  border-top: 1px solid rgba(74, 16, 56, 0.12);
-  color: var(--violet);
+  border-top: 1px solid rgba(42, 27, 94, 0.12);
+  color: var(--indigo);
   font-size: 1.05rem;
 }
 
 .rate__note {
   margin-bottom: 1rem;
-  color: rgba(74, 16, 56, 0.68);
+  color: rgba(42, 27, 94, 0.68);
   font-size: 1rem;
-  font-style: italic;
 }
 
 .rate .btn { margin-top: auto; }
@@ -130,7 +121,7 @@
   max-width: 40rem;
   margin: 0;
   padding: 0.5rem max(var(--pad), env(safe-area-inset-right)) var(--section-y) max(var(--pad), env(safe-area-inset-left));
-  background-color: #6e1848;
+  background-color: #2a1b5e;
   color: var(--muted);
 }
 

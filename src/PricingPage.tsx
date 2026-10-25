@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { LogoMark } from './components/Doodles'
 import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
@@ -73,7 +74,8 @@ export default function PricingPage() {
       <main className="rates">
         {TIERS.map((tier, index) => (
           <Reveal key={tier.id} delay={index * 80}>
-          <article className={`rate rate--tape-${tier.tape}${tier.highlight ? ' rate--lead' : ''}`}>
+          <article className={`rate${tier.highlight ? ' rate--lead' : ''}`}>
+            <LogoMark className="rate__mark" />
             <p className="kicker">{tier.badge}</p>
             <h2>{tier.title}</h2>
             <p className="rate__price">

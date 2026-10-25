@@ -5,7 +5,7 @@ import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
 import ContactForm from './components/ContactForm'
 import Cursor from './components/Cursor'
-import { Sparkle } from './components/Doodles'
+import { LogoMark, Sparkle } from './components/Doodles'
 import Hero from './components/Hero'
 import Highlights from './components/Highlights'
 import Reveal from './components/Reveal'
@@ -98,32 +98,25 @@ function WorkSection() {
         <div className="work__list">
           {WORK.map((item, index) => (
             <Reveal key={item.slug} delay={index * 50}>
-              <Link to={`/gallery/${item.slug}`} className={`work-card${item.flip ? ' work-card--flip' : ''}`}>
-                <div className="work-card__copy">
-                  <p className="kicker">{String(index + 1).padStart(2, '0')}</p>
-                  <h2>{item.title}</h2>
-                  <p>{item.desc}</p>
-                </div>
-                {item.src ? (
-                  <span className="pinned">
-                    <span className={`washi washi--${item.tape}`} aria-hidden="true" />
-                    <span className="frame">
-                      <img
-                        src={item.src}
-                        alt=""
-                        width={item.width}
-                        height={item.height}
-                        decoding="async"
-                        loading="lazy"
-                      />
-                    </span>
-                  </span>
-                ) : (
-                  <span className="pinned">
-                    <span className={`washi washi--${item.tape}`} aria-hidden="true" />
-                    <span className="frame work-card__soon">coming soon</span>
-                  </span>
-                )}
+              <Link to={`/gallery/${item.slug}`} className="poster">
+                <LogoMark className="poster__mark" />
+                <p className="kicker">{String(index + 1).padStart(2, '0')}</p>
+                <h2>{item.title}</h2>
+                <p className="poster__meta">{item.desc}</p>
+                <span className="poster__well">
+                  {item.src ? (
+                    <img
+                      src={item.src}
+                      alt=""
+                      width={item.width}
+                      height={item.height}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="poster__soon">coming soon</span>
+                  )}
+                </span>
               </Link>
             </Reveal>
           ))}
