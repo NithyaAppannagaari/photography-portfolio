@@ -50,7 +50,8 @@
   font-size: 1.9rem;
   font-weight: 400;
   font-style: normal;
-  line-height: 1;
+  line-height: 1.35;
+  padding-bottom: 0.12em;
   letter-spacing: 0;
   text-transform: none;
   color: var(--cream);
