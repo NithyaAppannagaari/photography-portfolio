@@ -1,5 +1,4 @@
 export const homeLayout = [
-  { kind: 'hero' },
   { kind: 'highlights' },
   { kind: 'work' },
   { kind: 'contact' },

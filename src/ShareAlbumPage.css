@@ -11,7 +11,7 @@
   color: var(--muted);
 }
 
-.share-note { color: var(--cream); font-style: italic; }
+.share-note { color: var(--cream); font-style: normal; }
 
 .share-empty {
   min-height: 46vh;
@@ -22,7 +22,7 @@
 }
 
 .share-empty h1 {
-  font-style: italic;
+  font-style: normal;
   font-size: clamp(2rem, 4vw, 3rem);
   max-width: 16ch;
 }

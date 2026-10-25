@@ -4,7 +4,7 @@ import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
 import ContactForm from './components/ContactForm'
-import Hero from './components/Hero'
+import Hero, { Quote } from './components/Hero'
 import Highlights from './components/Highlights'
 import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
@@ -70,7 +70,11 @@ function HomePage() {
 
   return (
     <div className="home">
-      <SiteNav tone="magenta" />
+      <div className="stage">
+        <Hero />
+        <SiteNav flow />
+        <Quote />
+      </div>
       {homeLayout.map((block) => (
         <HomeBlockView key={`${block.kind}-${'tone' in block ? block.tone : ''}`} block={block} />
       ))}
@@ -80,7 +84,6 @@ function HomePage() {
 }
 
 function HomeBlockView({ block }: { block: HomeBlock }) {
-  if (block.kind === 'hero') return <Hero />
   if (block.kind === 'highlights') return <Highlights />
   if (block.kind === 'contact') return <ContactSection />
   return <WorkSection />

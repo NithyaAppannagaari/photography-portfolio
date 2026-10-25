@@ -1,7 +1,16 @@
+.stage {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(0.95rem, 2.5vw, 2.2rem);
+  padding-left: max(clamp(0.95rem, 2.5vw, 2.2rem), env(safe-area-inset-left));
+  padding-right: max(clamp(0.95rem, 2.5vw, 2.2rem), env(safe-area-inset-right));
+  background: var(--maroon);
+}
+
 .work,
 .sayhi,
 .highlights {
-  background-color: var(--maroon-deep);
+  background-color: var(--maroon);
 }
 
 .section-head { margin-bottom: var(--stack); }
@@ -41,7 +50,7 @@
   margin-top: 0.3rem;
   max-width: 36rem;
   color: var(--cream);
-  font-style: italic;
+  font-style: normal;
   font-size: 1.25rem;
 }
 
@@ -53,7 +62,7 @@
   border: 1px solid rgba(244, 239, 230, 0.85);
   color: var(--cream);
   font-family: var(--font-serif);
-  font-style: italic;
+  font-style: normal;
   font-size: clamp(1.6rem, 2vw, 2rem);
 }
 
@@ -76,7 +85,7 @@
 .sayhi__intro > p:last-of-type {
   max-width: 28rem;
   color: var(--cream);
-  font-style: italic;
+  font-style: normal;
   font-size: 1.3rem;
 }
 

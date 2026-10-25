@@ -5,21 +5,23 @@ import './SiteNav.css'
 const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'highlights', label: 'Highlights' },
   { id: 'work', label: 'Portfolio' },
   { id: 'pricing', label: 'Rates' },
   { id: 'contact', label: 'Inquire' },
 ] as const
 
-type Active = 'home' | 'work' | 'pricing' | 'about' | 'contact' | ''
+type Active = 'home' | 'about' | 'highlights' | 'work' | 'pricing' | 'contact' | ''
 
 export default function SiteNav({
-  tone = 'paper',
   active,
   trailing,
+  flow = false,
 }: {
   tone?: 'paper' | 'magenta'
   active?: Active
   trailing?: ReactNode
+  flow?: boolean
 }) {
   const location = useLocation()
   const [open, setOpen] = useState(false)
@@ -45,17 +47,17 @@ export default function SiteNav({
 
   useEffect(() => {
     const sentinel = sentinelRef.current
-    if (!sentinel) return
+    if (!sentinel || flow) return
     const observer = new IntersectionObserver(([entry]) => {
       setStuck(entry ? !entry.isIntersecting : false)
     })
     observer.observe(sentinel)
     return () => observer.disconnect()
-  }, [])
+  }, [flow])
 
   useEffect(() => {
     if (!home || active) return
-    const ids = ['about', 'work', 'contact'] as const
+    const ids = ['about', 'highlights', 'work', 'contact'] as const
     const nodes = ids
       .map((id) => document.getElementById(id))
       .filter((node): node is HTMLElement => Boolean(node))
@@ -100,21 +102,18 @@ export default function SiteNav({
   return (
     <>
     <div ref={sentinelRef} className="nav-sentinel" aria-hidden="true" />
-    <div ref={navRef} className={`nav nav--${tone}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
-      <Link to="/" className="wordmark" onClick={() => setOpen(false)}>
-        <span className="wordmark__full">Nithya</span>
-        <span className="wordmark__short">Nithya</span>
-      </Link>
+    <div ref={navRef} className={`nav${flow ? ' nav--flow' : ''}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
       <nav className="nav__links" aria-label="Primary">
-        {items.slice(0, 2)}
-        <span className="nav__ornament" aria-hidden="true" />
-        {items.slice(2)}
+        {items.slice(0, 3)}
+        <span className="nav__ornament" aria-hidden="true">
+          <svg viewBox="0 0 96 24" width="78" height="20">
+            <path d="M8 12c7-6 14-6 18-1 3 4 6 5 10 2 4-3 8-6 12-6s8 3 12 6c4 3 7 2 10-2 4-5 11-5 18 1" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+            <path d="M8 12c7 6 14 6 18 1 3-4 6-5 10-2 4 3 8 6 12 6s8-3 12-6c4-3 7-2 10 2 4 5 11 5 18-1" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+          </svg>
+        </span>
+        {items.slice(3)}
       </nav>
       <div className="nav__side">
-        <div className="nav__social">
-          <a href="https://www.instagram.com/nithya.app/">Instagram</a>
-          <a href="https://www.linkedin.com/in/nithyaappannagaari/">LinkedIn</a>
-        </div>
         {trailing}
         <button
           type="button"

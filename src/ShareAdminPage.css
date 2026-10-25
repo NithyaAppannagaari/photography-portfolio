@@ -44,7 +44,7 @@
 }
 
 .desk-card h2 {
-  font-style: italic;
+  font-style: normal;
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
@@ -85,19 +85,19 @@
 .desk__hint {
   color: var(--muted);
   font-size: 1.02rem;
-  font-style: italic;
+  font-style: normal;
   margin: 0.15rem 0 0.9rem;
 }
 
 .desk__error {
   color: var(--cream);
-  font-style: italic;
+  font-style: normal;
   margin: 0.3rem 0 0.8rem;
 }
 
 .desk__toast {
   color: var(--cream);
-  font-style: italic;
+  font-style: normal;
   margin-top: 0.7rem;
 }
 
@@ -127,7 +127,7 @@
 }
 
 .desk-row > span:last-child {
-  font-style: italic;
+  font-style: normal;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -149,7 +149,7 @@
 
 .desk-drop span {
   font-family: var(--font-serif);
-  font-style: italic;
+  font-style: normal;
   font-size: 1.45rem;
 }
 
