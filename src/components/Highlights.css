@@ -1,55 +1,28 @@
-.highlights {
-  padding-top: var(--section-y);
-  padding-bottom: var(--section-y);
-  padding-left: max(var(--pad), env(safe-area-inset-left));
-  padding-right: max(var(--pad), env(safe-area-inset-right));
-  border-top: 1px solid var(--line);
-  background-color: #6e1848;
-}
-
 .highlights .kicker { margin-bottom: var(--stack); }
 
-.highlights__grid {
+.board {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
+  align-items: start;
 }
 
-.highlights__item { width: 100%; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
 
-.highlights__item--4 { grid-column: span 4; }
-.highlights__item--3 { grid-column: span 3; }
-.highlights__item--2 { grid-column: span 2; }
-
-.highlights__item img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: center center;
-}
-
-.highlights__item--4 img { aspect-ratio: 3 / 2; }
-.highlights__item--2 img { aspect-ratio: 3 / 4; }
-.highlights__item--3 img { aspect-ratio: 4 / 5; }
+.board .frame img { aspect-ratio: var(--shot, 3 / 4); }
 
 @media (max-width: 800px) {
-  .highlights__grid { grid-template-columns: 1fr 1fr; }
-  .highlights__item--4,
-  .highlights__item--3,
-  .highlights__item--2 { grid-column: span 1; }
-  .highlights__item:nth-child(5n + 1) { grid-column: span 2; }
-  .highlights__item img,
-  .highlights__item--4 img,
-  .highlights__item--3 img,
-  .highlights__item--2 img { aspect-ratio: 3 / 4; }
-  .highlights__item:nth-child(5n + 1) img { aspect-ratio: 4 / 3; }
-}
-
-@media (max-width: 520px) {
-  .highlights__grid { grid-template-columns: 1fr; }
-  .highlights__item,
-  .highlights__item:nth-child(5n + 1) { grid-column: auto; }
-  .highlights__item img,
-  .highlights__item:nth-child(5n + 1) img { aspect-ratio: 3 / 2; }
-  .highlights__item:nth-child(even) img { aspect-ratio: 4 / 5; }
+  .board { grid-template-columns: 1fr 1fr; }
+  .board > .span-3,
+  .board > .span-4,
+  .board > .span-5,
+  .board > .span-7,
+  .board > .span-8 { grid-column: span 1; }
+  .board > *:nth-child(4n + 1) { grid-column: span 2; }
+  .board .frame img { aspect-ratio: 3 / 4; }
+  .board > *:nth-child(4n + 1) .frame img { aspect-ratio: 3 / 2; }
 }

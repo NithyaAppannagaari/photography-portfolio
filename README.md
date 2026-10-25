@@ -7,7 +7,21 @@ npm install
 npm run dev
 ```
 
-The portfolio is at [http://localhost:5173](http://localhost:5173). Production is a Cloudflare Worker that serves the built site and stores album photographs in Cloudflare R2.
+The portfolio is at [http://localhost:5173](http://localhost:5173). Production on Vercel serves the built site. Album photographs still use the Cloudflare Worker and R2 when that deploy is used.
+
+## Contact form
+
+The say-hi form posts to `POST /api/contact`. On Vercel that file is a serverless function. It checks the fields, ignores a hidden honeypot, and limits each address to 5 notes in 15 minutes. A valid note is sent with the Resend API. The reply-to is the person who wrote in. Their address is not shown anywhere on the site.
+
+Set these in Vercel (Project Settings, Environment Variables). Do not commit them, and do not prefix them with `VITE_`.
+
+| Name | What it is |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API key |
+| `CONTACT_TO_EMAIL` | Where inquiries are delivered |
+| `CONTACT_FROM_EMAIL` | Sender. Use `onboarding@resend.dev` until a domain is verified |
+
+For `npm run dev`, put the same names in `.env`. The dev server reads that file and does not ship it to the browser. `npm test` covers validation, the honeypot, the rate limit, and the Resend payload.
 
 ## Client albums
 
@@ -56,5 +70,8 @@ The bucket name in `wrangler.jsonc` is `nithya-share`. If you change it, change 
 | --- | --- | --- |
 | `SHARE_ADMIN_PASSWORD` | `.env` locally, Worker secret in production | Password for `/share/admin` |
 | `SHARE_BUCKET` | `wrangler.jsonc` binding | R2 bucket `nithya-share` |
+| `RESEND_API_KEY` | `.env` locally, Vercel env in production | Resend API key for the inquiry form |
+| `CONTACT_TO_EMAIL` | `.env` locally, Vercel env in production | Inbox that receives inquiries |
+| `CONTACT_FROM_EMAIL` | `.env` locally, Vercel env in production | Sender address, `onboarding@resend.dev` until a domain is verified |
 
 Do not commit `.env`, `.dev.vars`, `.data/`, or `.wrangler/`.

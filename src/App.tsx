@@ -1,15 +1,16 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import GalleryPage from './GalleryPage'
 import PricingPage from './PricingPage'
+import ContactForm from './components/ContactForm'
 import Cursor from './components/Cursor'
+import { Sparkle } from './components/Doodles'
 import Hero from './components/Hero'
 import Highlights from './components/Highlights'
 import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
-import aboutImg from './assets/about.JPG'
 import clubCover from './assets/club_photoshoots/DSC08853 (1).jpg'
 import eventCover from './assets/event_photography/vertical7.jpeg'
 
@@ -37,6 +38,18 @@ const WORK = [
   },
 ]
 
+function HashScroll() {
+  const { hash, pathname } = useLocation()
+  useEffect(() => {
+    if (!hash) return
+    const node = document.getElementById(hash.slice(1))
+    if (!node) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    node.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+  }, [hash, pathname])
+  return null
+}
+
 function HomePage() {
   useEffect(() => {
     document.title = 'Nithya Appannagaari Photography'
@@ -46,59 +59,42 @@ function HomePage() {
     <div className="home">
       <SiteNav tone="magenta" />
       <Hero />
+      <div className="scallop scallop--sage" aria-hidden="true" />
 
-      <Reveal>
-        <section className="about" id="about">
-          <figure className="photo-frame">
-            <img
-              src={aboutImg}
-              alt="Portrait of Nithya Appannagaari"
-              width={3456}
-              height={2304}
-              decoding="async"
-              loading="lazy"
-            />
-          </figure>
-          <div>
-            <p className="kicker">About</p>
-            <h2>Nithya Appannagaari</h2>
-            <p>
-              hi, i&apos;m nithya. i&apos;m at berkeley, and i photograph clubs, grads, and events.
-            </p>
-            <a href="#highlights" className="text-link">see the photos</a>
-          </div>
-        </section>
-      </Reveal>
+      <Highlights />
 
-      <Reveal>
-        <Highlights />
-      </Reveal>
-
-      <section className="work" id="work">
+      <section className="work band" id="work">
         <div className="section-head">
           <p className="kicker">Work</p>
         </div>
         <div className="work__list">
           {WORK.map((item, index) => (
-            <Reveal key={item.slug} delay={index * 70}>
-              <Link to={`/gallery/${item.slug}`} className="work-row">
-                <div className="work-row__copy">
+            <Reveal key={item.slug} delay={index * 50}>
+              <Link to={`/gallery/${item.slug}`} className={`work-card${index % 2 ? ' work-card--flip' : ''}`}>
+                <div className="work-card__copy">
+                  <p className="kicker">{String(index + 1).padStart(2, '0')}</p>
                   <h2>{item.title}</h2>
                   <p>{item.desc}</p>
                 </div>
                 {item.src ? (
-                  <span className="photo-frame">
-                    <img
-                      src={item.src}
-                      alt=""
-                      width={1200}
-                      height={800}
-                      decoding="async"
-                      loading="lazy"
-                    />
+                  <span className="pinned">
+                    <span className={`washi washi--${index === 2 ? 'gold' : 'sage'}`} aria-hidden="true" />
+                    <span className="frame">
+                      <img
+                        src={item.src}
+                        alt=""
+                        width={1200}
+                        height={800}
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </span>
                   </span>
                 ) : (
-                  <div className="work-row__soon"><span>coming soon</span></div>
+                  <span className="pinned">
+                    <span className="washi washi--rose" aria-hidden="true" />
+                    <span className="frame work-card__soon">coming soon</span>
+                  </span>
                 )}
               </Link>
             </Reveal>
@@ -106,16 +102,17 @@ function HomePage() {
         </div>
       </section>
 
-      <Reveal>
-        <section className="contact" id="contact">
-          <p className="kicker">Contact</p>
-          <h2>
-            <a href="mailto:nithya.app@berkeley.edu">Email me</a>
-          </h2>
-          <p>for club shoots, grad photos, or events.</p>
-          <a className="contact__email" href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
-        </section>
-      </Reveal>
+      <div className="scallop scallop--rose" aria-hidden="true" />
+
+      <section className="sayhi band" id="contact">
+        <div className="sayhi__intro">
+          <p className="kicker">say hi</p>
+          <h2>tell me about the shoot</h2>
+          <p>clubs, events, grads, whatever you need. i&apos;ll write back.</p>
+          <Sparkle className="sayhi__spark" />
+        </div>
+        <ContactForm />
+      </section>
 
       <SiteFooter />
     </div>
@@ -125,6 +122,7 @@ function HomePage() {
 export default function App() {
   return (
     <Suspense fallback={<div className="route-fallback" />}>
+      <HashScroll />
       <Cursor />
       <Routes>
         <Route path="/" element={<HomePage />} />

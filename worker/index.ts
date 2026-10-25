@@ -1,3 +1,4 @@
+import { handleContactRequest } from '../api/contact.ts'
 import { readAlbum } from '../share/albums.ts'
 import { handleShare } from '../share/http.ts'
 import { createR2Store, type R2BucketLike } from '../share/r2-store.ts'
@@ -10,6 +11,9 @@ type AssetBinding = {
 export interface ShareEnv {
   SHARE_BUCKET: R2BucketLike
   SHARE_ADMIN_PASSWORD?: string
+  RESEND_API_KEY?: string
+  CONTACT_TO_EMAIL?: string
+  CONTACT_FROM_EMAIL?: string
   ASSETS: AssetBinding
 }
 
@@ -52,6 +56,13 @@ async function albumHtml(request: Request, env: ShareEnv, slug: string): Promise
 export default {
   async fetch(request: Request, env: ShareEnv): Promise<Response> {
     const url = new URL(request.url)
+    if (url.pathname === '/api/contact') {
+      return handleContactRequest(request, {
+        RESEND_API_KEY: env.RESEND_API_KEY,
+        CONTACT_TO_EMAIL: env.CONTACT_TO_EMAIL,
+        CONTACT_FROM_EMAIL: env.CONTACT_FROM_EMAIL,
+      })
+    }
     if (url.pathname.startsWith('/api/share')) {
       return handleShare(request, createR2Store(env.SHARE_BUCKET), {
         password: env.SHARE_ADMIN_PASSWORD ?? '',

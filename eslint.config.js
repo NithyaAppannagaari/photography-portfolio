@@ -26,7 +26,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['share/**/*.ts', 'worker/**/*.ts', 'vite.config.ts'],
+    files: ['share/**/*.ts', 'worker/**/*.ts', 'vite.config.ts', 'api/**/*.ts'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
     },

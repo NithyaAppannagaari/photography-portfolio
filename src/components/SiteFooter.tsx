@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './SiteFooter.css'
 
 export default function SiteFooter() {
@@ -7,7 +8,7 @@ export default function SiteFooter() {
       <div>
         <a href="https://www.instagram.com/nithya.app/">Instagram</a>
         <a href="https://www.linkedin.com/in/nithyaappannagaari/">LinkedIn</a>
-        <a href="mailto:nithya.app@berkeley.edu">Email</a>
+        <Link to="/#contact">Say hi</Link>
       </div>
     </footer>
   )

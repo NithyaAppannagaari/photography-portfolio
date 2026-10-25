@@ -39,19 +39,42 @@
 .rates .rate { height: 100%; }
 
 .rate {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.55rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
+  padding: 1.35rem 1rem 1.15rem;
+  border: 1.5px solid var(--gold);
+  background: transparent;
 }
 
-.rate--lead { border-top: 2px solid var(--cream); }
+.rate::before {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 50%;
+  width: 4rem;
+  height: 1rem;
+  transform: translateX(-50%) rotate(-2deg);
+  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #9DB89A 6px 11px, #F3E9D8 11px 16px);
+}
+
+.rates .reveal:nth-child(2) .rate::before {
+  transform: translateX(-50%) rotate(3deg);
+  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #E8A317 6px 11px, #F3E9D8 11px 16px);
+}
+
+.rates .reveal:nth-child(3) .rate::before {
+  transform: translateX(-50%) rotate(-3.5deg);
+  background: repeating-linear-gradient(-18deg, #F3E9D8 0 6px, #D9A5A0 6px 11px, #F3E9D8 11px 16px);
+}
+
+.rate--lead { border-color: var(--paper); }
 
 .rate--lead .rate__price { color: var(--cream); }
 
-.rate .kicker { color: var(--muted); }
+.rate .kicker { margin-top: 0.85rem; }
 
 .rate h2 { font-size: 1.7rem; margin-top: 0.2rem; }
 

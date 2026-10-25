@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from './components/Reveal'
 import SiteFooter from './components/SiteFooter'
 import SiteNav from './components/SiteNav'
@@ -17,8 +18,7 @@ const TIERS = [
       'a digital gallery',
       'print-ready files',
     ],
-    note: 'we can sort hours and timing over email.',
-    href: 'mailto:nithya.app@berkeley.edu?subject=Graduation photoshoot',
+    note: 'we can sort hours and timing when you write.',
     highlight: true,
   },
   {
@@ -33,7 +33,6 @@ const TIERS = [
       'a digital gallery',
     ],
     note: 'headshots and team photos.',
-    href: 'mailto:nithya.app@berkeley.edu?subject=Club photoshoot',
     highlight: false,
   },
   {
@@ -48,7 +47,6 @@ const TIERS = [
       'a digital gallery',
     ],
     note: 'headshots and team photos.',
-    href: 'mailto:nithya.app@berkeley.edu?subject=Club photoshoot, 25 or more',
     highlight: false,
   },
 ]
@@ -65,7 +63,7 @@ export default function PricingPage() {
         <h1>Rates</h1>
         <p>
           editing and a gallery are included.{' '}
-          <a href="mailto:nithya.app@berkeley.edu">Email me</a>
+          <Link to="/#contact">say hi</Link>
           {' '}if you need something else.
         </p>
       </header>
@@ -82,14 +80,15 @@ export default function PricingPage() {
               {tier.features.map((feature) => <li key={feature}>{feature}</li>)}
             </ul>
             <p className="rate__note">{tier.note}</p>
-            <a className={tier.highlight ? 'btn btn-solid' : 'btn'} href={tier.href}>Email me</a>
+            <Link className={tier.highlight ? 'btn btn-solid' : 'btn'} to="/#contact">say hi</Link>
           </article>
           </Reveal>
         ))}
       </main>
       <p className="rates-note">
         not sure which one?{' '}
-        <a href="mailto:nithya.app@berkeley.edu">nithya.app@berkeley.edu</a>
+        <Link to="/#contact">say hi</Link>
+        {' '}and tell me about the club.
       </p>
       <SiteFooter />
     </div>

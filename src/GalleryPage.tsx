@@ -65,9 +65,7 @@ export default function GalleryPage() {
           {data.comingSoon ? (
             <div className="gallery-soon">
               <p>coming soon</p>
-              <a className="text-link" href="mailto:nithya.app@berkeley.edu?subject=Graduation photoshoot">
-                Email me
-              </a>
+              <Link className="text-link" to="/#contact">say hi</Link>
             </div>
           ) : (
             <div className="frames gallery-frames">

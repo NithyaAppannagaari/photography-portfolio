@@ -13,7 +13,7 @@ function readBody(req: IncomingMessage): Promise<Buffer> {
   })
 }
 
-async function toRequest(req: IncomingMessage): Promise<Request> {
+export async function toRequest(req: IncomingMessage): Promise<Request> {
   const host = req.headers.host ?? '127.0.0.1'
   const url = new URL(req.url ?? '/', `http://${host}`)
   const headers = new Headers()
@@ -31,6 +31,17 @@ async function toRequest(req: IncomingMessage): Promise<Request> {
     init.duplex = 'half'
   }
   return new Request(url, init)
+}
+
+export async function applyResponse(res: ServerResponse, response: Response): Promise<void> {
+  res.statusCode = response.status
+  response.headers.forEach((value, key) => {
+    if (key === 'content-length') return
+    res.setHeader(key, value)
+  })
+  const bytes = Buffer.from(await response.arrayBuffer())
+  res.setHeader('content-length', String(bytes.byteLength))
+  res.end(bytes)
 }
 
 type Connect = {
@@ -58,14 +69,7 @@ export function attachShareApi(middlewares: Connect, dataDir: string, password: 
         password,
         ip: req.socket.remoteAddress ?? 'local',
       })
-      res.statusCode = response.status
-      response.headers.forEach((value, key) => {
-        if (key === 'content-length') return
-        res.setHeader(key, value)
-      })
-      const bytes = Buffer.from(await response.arrayBuffer())
-      res.setHeader('content-length', String(bytes.byteLength))
-      res.end(bytes)
+      await applyResponse(res, response)
     })().catch((error: unknown) => {
       next(error)
     })

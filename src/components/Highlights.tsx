@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import PhotoViewer from './PhotoViewer'
+import Reveal from './Reveal'
 import jump from '../assets/sunny/jump.webp'
 import lift from '../assets/sunny/lift.webp'
 import blueSky from '../assets/sunny/blue-sky.webp'
@@ -17,27 +18,21 @@ import skyDancers from '../assets/sunny/sky-dancers.webp'
 import './Highlights.css'
 
 const PHOTOS = [
-  { src: goldenTrio, alt: 'Three women in warm golden-hour light.', span: 4 },
-  { src: blueSky, alt: 'A portrait in direct sun, blue sky behind her.', span: 2 },
-  { src: lift, alt: 'A dancer lifted outdoors in daylight, smiling.', span: 2 },
-  { src: trees, alt: 'Three people smiling in bright light, green trees behind them.', span: 2 },
-  { src: columns, alt: 'Four women in daylight in front of stone columns.', span: 2 },
-  { src: daylightPair, alt: 'Two women standing together in bright daylight.', span: 3 },
-  { src: candid, alt: 'People talking outdoors, trees and daylight behind them.', span: 3 },
-  { src: goldenGreen, alt: 'A group in golden light with green trees behind them.', span: 4 },
-  { src: jump, alt: 'Two dancers jumping, blue sky behind them.', span: 2 },
-  { src: circle, alt: 'A circle of dancers on a sunny lawn.', span: 2 },
-  { src: lawn, alt: 'A group seated on the grass in the sun.', span: 2 },
-  { src: goldenPortrait, alt: 'A close portrait in warm golden light.', span: 2 },
-  { src: laugh, alt: 'A woman laughing in bright outdoor light.', span: 3 },
-  { src: skyDancers, alt: 'Three dancers outdoors, sun and blue sky behind them.', span: 3 },
+  { src: goldenTrio, alt: 'Three women in warm golden-hour light.', span: 7, ratio: '3 / 2', tape: 'sage', sticker: '', tone: '' },
+  { src: blueSky, alt: 'A portrait in direct sun, blue sky behind her.', span: 5, ratio: '4 / 5', tape: '', sticker: 'golden hour', tone: 'rose' },
+  { src: lift, alt: 'A dancer lifted outdoors in daylight, smiling.', span: 4, ratio: '3 / 4', tape: '', sticker: '', tone: '' },
+  { src: trees, alt: 'Three people smiling in bright light, green trees behind them.', span: 4, ratio: '1 / 1', tape: 'gold', sticker: '', tone: '' },
+  { src: columns, alt: 'Four women in daylight in front of stone columns.', span: 4, ratio: '3 / 4', tape: '', sticker: 'sunny', tone: 'marigold' },
+  { src: daylightPair, alt: 'Two women standing together in bright daylight.', span: 5, ratio: '4 / 5', tape: 'rose', sticker: '', tone: '' },
+  { src: candid, alt: 'People talking outdoors, trees and daylight behind them.', span: 7, ratio: '3 / 2', tape: '', sticker: '', tone: '' },
+  { src: goldenGreen, alt: 'A group in golden light with green trees behind them.', span: 8, ratio: '3 / 2', tape: 'sage', sticker: '', tone: '' },
+  { src: jump, alt: 'Two dancers jumping, blue sky behind them.', span: 4, ratio: '3 / 4', tape: '', sticker: '', tone: '' },
+  { src: circle, alt: 'A circle of dancers on a sunny lawn.', span: 4, ratio: '1 / 1', tape: '', sticker: '', tone: '' },
+  { src: lawn, alt: 'A group seated on the grass in the sun.', span: 4, ratio: '4 / 5', tape: 'gold', sticker: '', tone: '' },
+  { src: goldenPortrait, alt: 'A close portrait in warm golden light.', span: 4, ratio: '3 / 4', tape: '', sticker: 'daylight', tone: 'sage' },
+  { src: laugh, alt: 'A woman laughing in bright outdoor light.', span: 7, ratio: '3 / 2', tape: '', sticker: '', tone: '' },
+  { src: skyDancers, alt: 'Three dancers outdoors, sun and blue sky behind them.', span: 5, ratio: '4 / 5', tape: 'rose', sticker: '', tone: '' },
 ]
-
-const FRAME = {
-  4: { ratio: '3 / 2', width: 1200, height: 800 },
-  3: { ratio: '4 / 5', width: 800, height: 1000 },
-  2: { ratio: '3 / 4', width: 900, height: 1200 },
-} as const
 
 export default function Highlights() {
   const [open, setOpen] = useState<number | null>(null)
@@ -45,30 +40,30 @@ export default function Highlights() {
   const active = open === null ? null : PHOTOS[open]
 
   return (
-    <section className="highlights" id="highlights" aria-label="Highlights">
+    <section className="highlights band" id="highlights" aria-label="Highlights">
       <p className="kicker">Highlights</p>
-      <div className="highlights__grid">
-        {PHOTOS.map((photo, index) => {
-          const frame = FRAME[photo.span as keyof typeof FRAME]
-          return (
-            <button
-              key={photo.src}
-              type="button"
-              className={`photo-frame highlights__item highlights__item--${photo.span}`}
-              onClick={() => setOpen(index)}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                width={frame.width}
-                height={frame.height}
-                style={{ aspectRatio: frame.ratio }}
-                loading={index < 2 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
+      <div className="board">
+        {PHOTOS.map((photo, index) => (
+          <Reveal key={photo.src} className={`span-${photo.span}`} delay={Math.min(index, 5) * 40}>
+            <button type="button" className="pinned" onClick={() => setOpen(index)}>
+              {photo.tape ? <span className={`washi washi--${photo.tape}`} aria-hidden="true" /> : null}
+              <span className="frame">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.ratio === '3 / 2' ? 1200 : 900}
+                  height={photo.ratio === '3 / 2' ? 800 : photo.ratio === '1 / 1' ? 900 : 1120}
+                  style={{ '--shot': photo.ratio } as CSSProperties}
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </span>
+              {photo.sticker ? (
+                <span className={`sticker sticker--${photo.tone} sticker--pin`}>{photo.sticker}</span>
+              ) : null}
             </button>
-          )
-        })}
+          </Reveal>
+        ))}
       </div>
       {active && open !== null ? (
         <PhotoViewer
