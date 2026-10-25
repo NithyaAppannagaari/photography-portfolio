@@ -1,4 +1,4 @@
-@import '@fontsource/monsieur-la-doulaise/400.css';
+@import '@fontsource/petit-formal-script/400.css';
 @import '@fontsource/cormorant-garamond/400.css';
 @import '@fontsource/cormorant-garamond/500.css';
 @import '@fontsource/cormorant-garamond/600.css';
@@ -28,7 +28,7 @@
   --line: rgba(244, 239, 230, 0.35);
   --frame: #f4efe6;
   --mat: transparent;
-  --font-script: "Monsieur La Doulaise", Palatino, cursive;
+  --font-script: "Petit Formal Script", Palatino, cursive;
   --font-display: "Cormorant Garamond", Palatino, Georgia, serif;
   --font-body: "Cormorant Garamond", Palatino, Georgia, serif;
   --font-serif: "Cormorant Garamond", Palatino, Georgia, serif;

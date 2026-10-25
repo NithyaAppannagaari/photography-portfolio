@@ -30,6 +30,28 @@
   border-radius: 0;
 }
 
+.hero__figure::after,
+.epigraph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__figure::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(68, 28, 30, 0.5) 0%,
+    rgba(68, 28, 30, 0.44) 46%,
+    rgba(68, 28, 30, 0.35) 100%
+  );
+}
+
+.epigraph::after {
+  background: rgba(68, 28, 30, 0.42);
+}
+
 .hero__edge {
   position: absolute;
   top: 50%;
@@ -59,7 +81,7 @@
 
 .hero__overlay {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(12.5rem, 16rem);
   grid-template-areas:
@@ -86,25 +108,26 @@
   margin: 0;
   color: var(--cream);
   font-family: var(--font-script);
-  font-size: 11.2cqi;
+  font-size: 10.4cqi;
   font-weight: 400;
   font-style: normal;
-  line-height: 0.92;
+  line-height: 1.18;
   letter-spacing: 0;
   text-align: center;
-  text-shadow: 0 2px 18px rgba(68, 28, 30, 0.35);
+  text-shadow: 0 2px 16px rgba(68, 28, 30, 0.45);
 }
 
 .hero__name span {
   display: block;
-  padding-bottom: 0.16em;
+  padding-top: 0.12em;
+  padding-bottom: 0.28em;
   font-style: normal;
   font-weight: 400;
 }
 
 .hero__name-line {
-  margin-top: -0.02em;
-  margin-left: 0.42em;
+  margin-top: -0.08em;
+  margin-left: 0.35em;
   font-size: 0.92em;
 }
 
@@ -181,7 +204,7 @@
 
 .epigraph__copy {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: 50%;
   top: 36%;
   width: min(34rem, 78%);
@@ -219,7 +242,7 @@
     row-gap: 0.7rem;
   }
 
-  .hero__name { font-size: 11.4cqi; }
+  .hero__name { font-size: 10.6cqi; }
   .hero__about { justify-self: center; text-align: left; max-width: 22rem; }
   .hero__edge { font-size: 0.52rem; letter-spacing: 0.32em; }
   .hero__edge--left { left: 0.35rem; }
