@@ -14,6 +14,7 @@ export type Work = {
   desc: string
   color: string
   tags: string[]
+  photos: number
   cover: Shot | null
   prefer: string
   soon?: boolean
@@ -26,8 +27,15 @@ const shot = (src: string, size: { width: number; height: number }, alt: string)
   alt,
 })
 
-export const SHOOTS = ['Clubs', 'Events', 'Daylight', 'Grads'] as const
-export const KINDS = ['Headshots', 'Campus', 'Groups'] as const
+export const OLIVE = '#6b7a3a'
+
+function photoCount(files: Record<string, unknown>): number {
+  return Object.keys(files).length
+}
+
+const CLUB_PHOTOS = photoCount(import.meta.glob('./assets/club_photoshoots/*', { eager: true, query: '?intrinsic', import: 'default' }))
+const EVENT_PHOTOS = photoCount(import.meta.glob('./assets/event_photography/*', { eager: true, query: '?intrinsic', import: 'default' }))
+const DAY_PHOTOS = photoCount(import.meta.glob('./assets/sunny/*.webp', { eager: true, query: '?intrinsic', import: 'default' }))
 
 export const WORKS: Work[] = [
   {
@@ -37,6 +45,7 @@ export const WORKS: Work[] = [
     desc: 'Headshots and team photos for clubs.',
     color: '#441c1e',
     tags: ['Clubs', 'Headshots', 'Groups'],
+    photos: CLUB_PHOTOS,
     cover: shot(clubCover, clubSize, 'Club photograph'),
     prefer: 'DSC08853',
   },
@@ -47,6 +56,7 @@ export const WORKS: Work[] = [
     desc: 'Photos from campus events.',
     color: '#2e3ca8',
     tags: ['Events', 'Campus', 'Groups'],
+    photos: EVENT_PHOTOS,
     cover: shot(eventCover, eventSize, 'Event photograph'),
     prefer: 'wide6',
   },
@@ -55,8 +65,9 @@ export const WORKS: Work[] = [
     title: 'Daylight',
     slogan: ['out', 'in', 'the sun'],
     desc: 'Sun, lawns, and the golden hour around campus.',
-    color: '#f73326',
+    color: OLIVE,
     tags: ['Daylight', 'Campus', 'Headshots'],
+    photos: DAY_PHOTOS,
     cover: shot(dayCover, daySize, 'Three women in warm golden-hour light.'),
     prefer: 'golden-trio',
   },
@@ -67,6 +78,7 @@ export const WORKS: Work[] = [
     desc: 'Grad photos around campus.',
     color: '#441c1e',
     tags: ['Grads', 'Headshots', 'Campus'],
+    photos: 0,
     cover: null,
     prefer: '',
     soon: true,
@@ -128,8 +140,7 @@ export const SUNNY_ALT: Record<string, string> = {
   'garba-sun.webp': 'Dancers outdoors in the sun.',
 }
 
-export const INSTAGRAM = 'https://www.instagram.com/nithya.app/'
-export const LINKEDIN = 'https://www.linkedin.com/in/nithyaappannagaari/'
+export const INSTAGRAM = 'https://www.instagram.com/flicsbynith'
 
 export function workBySlug(slug: string | undefined): Work | undefined {
   return WORKS.find((work) => work.slug === slug)

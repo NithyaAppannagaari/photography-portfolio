@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { INSTAGRAM } from '../content'
 import './SiteNav.css'
 
 const LINKS = [
@@ -125,8 +126,7 @@ export default function SiteNav({
       </div>
       <div className="nav__sheet" hidden={!open}>
         {items}
-        <a href="https://www.instagram.com/nithya.app/">Instagram</a>
-        <a href="https://www.linkedin.com/in/nithyaappannagaari/">LinkedIn</a>
+        <a href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
     </>
