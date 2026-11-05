@@ -5,13 +5,12 @@ import './SiteNav.css'
 const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'highlights', label: 'Highlights' },
-  { id: 'work', label: 'Portfolio' },
+  { id: 'works', label: 'Works' },
   { id: 'pricing', label: 'Rates' },
-  { id: 'contact', label: 'Inquire' },
+  { id: 'contact', label: 'Contact' },
 ] as const
 
-type Active = 'home' | 'about' | 'highlights' | 'work' | 'pricing' | 'contact' | ''
+type Active = 'home' | 'about' | 'works' | 'pricing' | 'contact' | ''
 
 export default function SiteNav({
   active,
@@ -57,7 +56,7 @@ export default function SiteNav({
 
   useEffect(() => {
     if (!home || active) return
-    const ids = ['about', 'highlights', 'work', 'contact'] as const
+    const ids = ['about', 'works', 'contact'] as const
     const nodes = ids
       .map((id) => document.getElementById(id))
       .filter((node): node is HTMLElement => Boolean(node))
@@ -104,14 +103,14 @@ export default function SiteNav({
     <div ref={sentinelRef} className="nav-sentinel" aria-hidden="true" />
     <div ref={navRef} className={`nav${flow ? ' nav--flow' : ''}${open ? ' nav--open' : ''}${stuck ? ' is-stuck' : ''}`}>
       <nav className="nav__links" aria-label="Primary">
-        {items.slice(0, 3)}
+        {items.slice(0, 2)}
         <span className="nav__ornament" aria-hidden="true">
           <svg viewBox="0 0 96 24" width="78" height="20">
             <path d="M8 12c7-6 14-6 18-1 3 4 6 5 10 2 4-3 8-6 12-6s8 3 12 6c4 3 7 2 10-2 4-5 11-5 18 1" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
             <path d="M8 12c7 6 14 6 18 1 3-4 6-5 10-2 4 3 8 6 12 6s8-3 12-6c4-3 7-2 10 2 4 5 11 5 18-1" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
           </svg>
         </span>
-        {items.slice(3)}
+        {items.slice(2)}
       </nav>
       <div className="nav__side">
         {trailing}
