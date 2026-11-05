@@ -1,17 +1,12 @@
 .inquiry {
   position: relative;
-  margin: 0;
-  padding: clamp(1rem, 2vw, 1.5rem);
-  border: 1px solid rgba(244, 239, 230, 0.7);
-  border-radius: 0;
-  background: var(--ivory);
-  color: var(--maroon-deep);
+  color: #fff;
 }
 
 .inquiry__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--stack);
+  gap: 18px 20px;
 }
 
 .inquiry__wide { grid-column: 1 / -1; }
@@ -20,111 +15,73 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 6px;
   min-width: 0;
 }
 
-.inquiry .kicker,
-.inquiry .btn {
-  color: var(--maroon-deep);
-  border-color: var(--maroon);
-}
-
-.inquiry .btn:hover {
-  background: var(--maroon);
-  color: var(--cream);
-}
-
 .inquiry label span {
-  display: inline-block;
-  padding: 0.14rem 0.5rem 0.1rem;
-  border-radius: 0;
-  background: transparent;
-  color: var(--maroon-deep);
-  letter-spacing: 0.18em;
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .inquiry input,
 .inquiry select,
 .inquiry textarea {
-  color-scheme: light;
   width: 100%;
   margin: 0;
-  padding: 0.72rem 0.75rem;
-  border: 1px solid rgba(68, 28, 30, 0.35);
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 0;
-  background: var(--paper);
-  color: var(--ink-dark);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 450;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-weight: 400;
   line-height: 1.4;
-  text-align: left;
+  color-scheme: dark;
 }
 
-.inquiry textarea {
-  min-height: 8.5rem;
-  resize: vertical;
-}
+.inquiry textarea { min-height: 120px; resize: vertical; }
 
 .inquiry select {
   appearance: none;
   background-image:
-    linear-gradient(45deg, transparent 50%, var(--ink-dark) 50%),
-    linear-gradient(135deg, var(--ink-dark) 50%, transparent 50%);
-  background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%;
+    linear-gradient(45deg, transparent 50%, #fff 50%),
+    linear-gradient(135deg, #fff 50%, transparent 50%);
+  background-position: calc(100% - 14px) 55%, calc(100% - 8px) 55%;
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
-  background-color: var(--paper);
-}
-
-.inquiry input:-webkit-autofill,
-.inquiry textarea:-webkit-autofill {
-  -webkit-text-fill-color: var(--ink-dark);
-  box-shadow: 0 0 0 1000px var(--paper) inset;
 }
 
 .inquiry input:focus,
 .inquiry select:focus,
 .inquiry textarea:focus {
-  outline: 1px solid var(--maroon);
-  outline-offset: 2px;
+  outline: none;
+  border-bottom-color: #fff;
 }
 
 .inquiry__error {
-  margin-top: var(--stack);
-  color: var(--maroon);
-  font-style: normal;
+  margin-top: 14px;
+  color: #fff;
+  font-weight: 400;
 }
 
-.inquiry__send {
-  margin-top: var(--stack);
-}
-
-.inquiry__send:disabled {
-  opacity: 0.6;
-}
+.inquiry__send { margin-top: 22px; }
 
 .inquiry--sent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--stack);
-  min-height: 12rem;
+  gap: 14px;
 }
 
 .inquiry__thanks {
-  margin: 0;
-  color: var(--violet);
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.1rem);
-  font-weight: 650;
-  line-height: 1.08;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 .inquiry__trap {
