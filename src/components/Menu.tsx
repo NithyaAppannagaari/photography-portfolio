@@ -1,16 +1,16 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { INSTAGRAM } from '../content'
 
 const LINKS = [
   { href: '/#about', label: 'About' },
-  { href: '/#works', label: 'Works' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/#works', label: 'Work' },
   { href: '/#rates', label: 'Rates' },
+  { href: '/#contact', label: 'Contact' },
 ] as const
 
 export default function Menu({ hidden = false }: { hidden?: boolean }) {
   const [open, setOpen] = useState(false)
-  const [light, setLight] = useState(true)
   const location = useLocation()
 
   useEffect(() => { setOpen(false) }, [location.pathname, location.hash])
@@ -19,32 +19,6 @@ export default function Menu({ hidden = false }: { hidden?: boolean }) {
     document.body.classList.toggle('nav-open', open)
     return () => document.body.classList.remove('nav-open')
   }, [open])
-
-  useEffect(() => {
-    let frame = 0
-    const pick = () => {
-      frame = 0
-      const nodes = document.querySelectorAll<HTMLElement>('[data-surface]')
-      let surface = 'light'
-      nodes.forEach((node) => {
-        const box = node.getBoundingClientRect()
-        if (box.top <= 88 && box.bottom > 88) surface = node.dataset.surface || 'light'
-      })
-      setLight(surface !== 'dark')
-    }
-    const onScroll = () => {
-      if (frame) return
-      frame = window.requestAnimationFrame(pick)
-    }
-    pick()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
-  }, [location.pathname])
 
   useEffect(() => {
     if (!open) return
@@ -56,31 +30,29 @@ export default function Menu({ hidden = false }: { hidden?: boolean }) {
   }, [open])
 
   return (
-    <>
+    <header className={`topbar${hidden ? ' is-hidden' : ''}`}>
+      <Link className="topbar__mark" to="/">Nithya Appannagaari</Link>
+      <nav className="topbar__links" aria-label="Primary">
+        {LINKS.map((link) => (
+          <Link key={link.href} to={link.href}>{link.label}</Link>
+        ))}
+        <a href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
+      </nav>
       <button
         type="button"
-        className={`burger${open ? ' is-open' : ''}${light && !open ? ' is-light' : ''}${hidden ? ' is-hidden' : ''}`}
-        aria-label={open ? 'Close menu' : 'Menu'}
+        className={`topbar__toggle${open ? ' is-open' : ''}`}
         aria-expanded={open}
+        aria-label={open ? 'Close menu' : 'Menu'}
         onClick={() => setOpen((value) => !value)}
       >
-        <span />
-        <span />
-        <span />
+        {open ? 'Close' : 'Menu'}
       </button>
-      <nav className={`menu${open ? ' is-open' : ''}`} aria-hidden={!open}>
-        <ul>
-          {LINKS.map((link, index) => (
-            <li key={link.href} style={{ '--i': index } as CSSProperties}>
-              <Link to={link.href} className="u" tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>{link.label}.</Link>
-            </li>
-          ))}
-        </ul>
-        <p className="menu__social">
-          <a className="u" href="https://www.instagram.com/nithya.app/" tabIndex={open ? 0 : -1}>Instagram</a>
-          <a className="u" href="https://www.linkedin.com/in/nithyaappannagaari/" tabIndex={open ? 0 : -1}>LinkedIn</a>
-        </p>
-      </nav>
-    </>
+      <div className={`drawer${open ? ' is-open' : ''}`} hidden={!open}>
+        {LINKS.map((link) => (
+          <Link key={link.href} to={link.href} onClick={() => setOpen(false)}>{link.label}</Link>
+        ))}
+        <a href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </header>
   )
 }

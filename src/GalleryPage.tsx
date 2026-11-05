@@ -1,9 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import CategoryBar from './components/CategoryBar'
 import Menu from './components/Menu'
 import PhotoViewer from './components/PhotoViewer'
 import { SUNNY_ALT, WORKS, workBySlug, type Shot } from './content'
-import { useFlight } from './useFlight'
 import { reducedMotion } from './useCycle'
 
 type Size = { width: number; height: number }
@@ -57,7 +57,6 @@ export default function GalleryPage() {
   const images = work ? lead(SETS[work.slug] ?? [], work.prefer) : []
   const location = useLocation()
   const navigate = useNavigate()
-  const fly = useFlight()
   const flight = (location.state as { flight?: Flight } | null)?.flight
   const heroRef = useRef<HTMLImageElement>(null)
   const [ghost, setGhost] = useState<Flight | null>(flight && work?.cover ? flight : null)
@@ -96,14 +95,26 @@ export default function GalleryPage() {
 
   function back(event: MouseEvent) {
     event.preventDefault()
-    fly('works', '#f73326', () => navigate('/#works'))
+    navigate('/#works')
+  }
+
+  function pick(slug: string | null) {
+    if (!slug) {
+      navigate('/#works')
+      return
+    }
+    if (slug === work?.slug) {
+      document.getElementById('set-photos')?.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'start' })
+      return
+    }
+    navigate(`/gallery/${slug}`)
   }
 
   function onward(event: MouseEvent) {
     if (!next) return
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
-    fly(next.title, next.color, () => navigate(`/gallery/${next.slug}`))
+    navigate(`/gallery/${next.slug}`)
   }
 
   return (
@@ -120,6 +131,11 @@ export default function GalleryPage() {
             <a className="back" href="/#works" aria-label="Back to works" onClick={back}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
             </a>
+            <nav className="crumb" aria-label="Breadcrumb">
+              <a href="/#works" onClick={back}>All work</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{work.title}</span>
+            </nav>
             <div className="case-meta">
               <div>
                 <h1>{work.title}</h1>
@@ -129,17 +145,14 @@ export default function GalleryPage() {
               </div>
               <p>{work.desc}</p>
             </div>
-            <h2 className="case-slogan">
-              {work.slogan.map((word) => <span key={word}>{word}</span>)}
-            </h2>
           </header>
           {work.soon || images.length === 0 ? (
-            <div className="case-soon" data-surface="light">
-              <p>Coming soon</p>
-              <Link className="u" to="/#contact">Say hi</Link>
+            <div className="case-soon" id="set-photos" data-surface="light">
+              <p>No photographs in {work.title} yet.</p>
+              <Link className="u" to="/#contact">Contact to book a shoot</Link>
             </div>
           ) : (
-            <>
+            <div id="set-photos">
               <figure className="case-hero">
                 <button type="button" onClick={() => setOpen(0)} aria-label={`Open ${images[0].alt}`}>
                   <img
@@ -152,22 +165,26 @@ export default function GalleryPage() {
                     decoding="async"
                   />
                 </button>
+                <figcaption>{work.title} · 01</figcaption>
               </figure>
               <div className="stills" data-surface="light">
                 {images.slice(1).map((photo, photoIndex) => (
-                  <button key={photo.src} type="button" onClick={() => setOpen(photoIndex + 1)}>
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      width={photo.width}
-                      height={photo.height}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </button>
+                  <figure key={photo.src}>
+                    <button type="button" onClick={() => setOpen(photoIndex + 1)}>
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        width={photo.width}
+                        height={photo.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </button>
+                    <figcaption>{work.title} · {String(photoIndex + 2).padStart(2, '0')}</figcaption>
+                  </figure>
                 ))}
               </div>
-            </>
+            </div>
           )}
           {next ? (
             <Link className="next-work" to={`/gallery/${next.slug}`} onClick={onward}>
@@ -203,6 +220,7 @@ export default function GalleryPage() {
           }}
         />
       ) : null}
+      {work ? <CategoryBar active={work.slug} onPick={pick} /> : null}
     </div>
   )
 }
