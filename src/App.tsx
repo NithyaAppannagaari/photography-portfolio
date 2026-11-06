@@ -9,15 +9,16 @@ const ShareAlbumPage = lazy(() => import('./ShareAlbumPage'))
 const ShareAdminPage = lazy(() => import('./ShareAdminPage'))
 
 function HashScroll() {
-  const { hash, pathname } = useLocation()
+  const { hash, pathname, search } = useLocation()
   useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (hash) {
       const node = document.getElementById(hash.slice(1))
-      if (node) node.scrollIntoView({ behavior: 'auto', block: 'start' })
+      if (node) node.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
       return
     }
     window.scrollTo(0, 0)
-  }, [hash, pathname])
+  }, [hash, pathname, search])
   return null
 }
 

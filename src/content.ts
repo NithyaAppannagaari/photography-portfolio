@@ -27,7 +27,9 @@ const shot = (src: string, size: { width: number; height: number }, alt: string)
   alt,
 })
 
-export const OLIVE = '#6b7a3a'
+export const PURPLE = '#6e1848'
+export const BROWN = '#441c1e'
+export const CREAM = '#F3E9D8'
 
 function photoCount(files: Record<string, unknown>): number {
   return Object.keys(files).length
@@ -43,7 +45,7 @@ export const WORKS: Work[] = [
     title: 'Clubs',
     slogan: ['the', 'team', 'shot'],
     desc: 'Headshots and team photos for clubs.',
-    color: '#441c1e',
+    color: PURPLE,
     tags: ['Clubs', 'Headshots', 'Groups'],
     photos: CLUB_PHOTOS,
     cover: shot(clubCover, clubSize, 'Club photograph'),
@@ -54,7 +56,7 @@ export const WORKS: Work[] = [
     title: 'Events',
     slogan: ['on', 'the', 'night'],
     desc: 'Photos from campus events.',
-    color: '#2e3ca8',
+    color: PURPLE,
     tags: ['Events', 'Campus', 'Groups'],
     photos: EVENT_PHOTOS,
     cover: shot(eventCover, eventSize, 'Event photograph'),
@@ -65,7 +67,7 @@ export const WORKS: Work[] = [
     title: 'Daylight',
     slogan: ['out', 'in', 'the sun'],
     desc: 'Sun, lawns, and the golden hour around campus.',
-    color: OLIVE,
+    color: PURPLE,
     tags: ['Daylight', 'Campus', 'Headshots'],
     photos: DAY_PHOTOS,
     cover: shot(dayCover, daySize, 'Three women in warm golden-hour light.'),
@@ -76,7 +78,7 @@ export const WORKS: Work[] = [
     title: 'Grads',
     slogan: ['the', 'last', 'walk'],
     desc: 'Grad photos around campus.',
-    color: '#441c1e',
+    color: PURPLE,
     tags: ['Grads', 'Headshots', 'Campus'],
     photos: 0,
     cover: null,
@@ -116,7 +118,6 @@ export const RATES = [
 ] as const
 
 export const ABOUT = [
-  "I'm Nithya. I'm at Berkeley, and I photograph clubs, grads, and events.",
   'Editing and a digital gallery are included. For grads, that includes print-ready files.',
 ]
 
