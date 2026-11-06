@@ -1,4 +1,4 @@
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, type MouseEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import CategoryBar from './components/CategoryBar'
 import ContactForm from './components/ContactForm'
@@ -6,10 +6,7 @@ import Intro from './components/Intro'
 import Menu from './components/Menu'
 import Rates from './components/Rates'
 import { ABOUT, INSTAGRAM, SERVICES, WORKS, type Work } from './content'
-import { reducedMotion } from './useCycle'
-
 export default function HomePage() {
-  const [introDone, setIntroDone] = useState(false)
   const [params] = useSearchParams()
   const requested = params.get('category')
   const active = WORKS.some((work) => work.slug === requested) ? requested : null
@@ -26,11 +23,6 @@ export default function HomePage() {
 
   function pick(slug: string | null) {
     navigate({ pathname: '/', search: slug ? `?category=${slug}` : '', hash: 'work-grid' }, { preventScrollReset: true })
-    window.setTimeout(() => {
-      const node = document.getElementById('work-grid')
-      node?.focus({ preventScroll: true })
-      node?.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'start' })
-    }, 0)
   }
 
   useEffect(() => {
@@ -39,17 +31,13 @@ export default function HomePage() {
 
   return (
     <div className="home">
-      <Intro onDone={setIntroDone} />
-      <Menu hidden={!introDone} />
-      <section className="hero" id="home" data-surface="light">
+      <Intro />
+      <Menu />
+      <section className="hero" id="home" data-surface="dark">
         <div className="hero__wrap">
           <p className="hero__place">Berkeley</p>
           <h1>Nithya Appannagaari</h1>
-          <p className="hero__tagline">Campus life, photographed in daylight.</p>
-          <div className="hero__note">
-            <p>I&apos;m Nithya. I&apos;m at Berkeley, and I photograph clubs, grads, and events.</p>
-            <p>Editing and digital gallery are included in rates. Contact to book a shoot. Scroll to view previous work.</p>
-          </div>
+          <p className="hero__note">I&apos;m Nithya, a student at Berkeley and photographer for clubs, grads, and events. Editing and digital gallery are included in rates. Be sure to scroll to view my previous work or book a shoot!</p>
           <p className="hero__links">
             <a className="text-link" href="#works">See the photographs</a>
             <a className="text-link" href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
@@ -58,7 +46,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CategoryBar active={active} hidden={!introDone} onPick={pick} />
+      <CategoryBar active={active} onPick={pick} />
 
       <section className="about" id="about" data-surface="dark">
         <div className="about__wrap">

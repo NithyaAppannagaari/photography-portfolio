@@ -47,11 +47,11 @@ export default function Menu({ hidden = false }: { hidden?: boolean }) {
       >
         {open ? 'Close' : 'Menu'}
       </button>
-      <div className={`drawer${open ? ' is-open' : ''}`} hidden={!open}>
+      <div className={`drawer${open ? ' is-open' : ''}`} aria-hidden={!open}>
         {LINKS.map((link) => (
-          <Link key={link.href} to={link.href} onClick={() => setOpen(false)}>{link.label}</Link>
+          <Link key={link.href} to={link.href} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>{link.label}</Link>
         ))}
-        <a href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
+        <a href={INSTAGRAM} target="_blank" rel="noopener" tabIndex={open ? 0 : -1}>Instagram</a>
       </div>
     </header>
   )
