@@ -152,38 +152,24 @@ export default function GalleryPage() {
               <Link className="u" to="/#contact">Contact to book a shoot</Link>
             </div>
           ) : (
-            <div id="set-photos">
-              <figure className="case-hero">
-                <button type="button" onClick={() => setOpen(0)} aria-label={`Open ${images[0].alt}`}>
-                  <img
-                    ref={heroRef}
-                    src={images[0].src}
-                    alt={images[0].alt}
-                    width={images[0].width}
-                    height={images[0].height}
-                    style={{ opacity: ghost ? 0 : 1 }}
-                    decoding="async"
-                  />
-                </button>
-                <figcaption>{work.title} · 01</figcaption>
-              </figure>
-              <div className="stills" data-surface="light">
-                {images.slice(1).map((photo, photoIndex) => (
-                  <figure key={photo.src}>
-                    <button type="button" onClick={() => setOpen(photoIndex + 1)}>
-                      <img
-                        src={photo.src}
-                        alt={photo.alt}
-                        width={photo.width}
-                        height={photo.height}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </button>
-                    <figcaption>{work.title} · {String(photoIndex + 2).padStart(2, '0')}</figcaption>
-                  </figure>
-                ))}
-              </div>
+            <div className="gallery" id="set-photos" data-surface="light">
+              {images.map((photo, photoIndex) => (
+                <figure key={photo.src}>
+                  <button type="button" onClick={() => setOpen(photoIndex)} aria-label={`Open ${photo.alt}`}>
+                    <img
+                      ref={photoIndex === 0 ? heroRef : undefined}
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={photo.width}
+                      height={photo.height}
+                      style={photoIndex === 0 && ghost ? { opacity: 0 } : undefined}
+                      loading={photoIndex < 4 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  </button>
+                  <figcaption>{work.title} · {String(photoIndex + 1).padStart(2, '0')}</figcaption>
+                </figure>
+              ))}
             </div>
           )}
           {next ? (
