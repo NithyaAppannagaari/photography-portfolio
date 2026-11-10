@@ -354,9 +354,22 @@ body.nav-open { overflow: hidden; }
 .hero__mark.is-in { opacity: 0.14; }
 .hero__mark.is-in path { animation: draw 1.15s var(--ease) forwards; }
 .hero__wrap {
-  width: min(920px, 100%);
+  width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 48px 28px 36px;
+  padding: 48px 28px 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.9fr);
+  gap: 28px 48px;
+  align-items: center;
+}
+.hero__portrait { margin: 0; }
+.hero__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--brown);
+  border: 1px solid rgba(243, 233, 216, 0.4);
 }
 .hero h1 {
   margin-top: 8px;
@@ -509,14 +522,19 @@ body.nav-open { overflow: hidden; }
 .works { background: var(--works); }
 .work {
   position: relative;
-  display: block;
-  color: #fff;
-  background: #fff;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--cream);
+  background: var(--works);
+  overflow: visible;
+  padding: 28px 16px 8px;
 }
 .work img {
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: min(100%, 880px);
+  max-height: 68vh;
   object-fit: contain;
   background: var(--works);
 }
@@ -528,23 +546,15 @@ body.nav-open { overflow: hidden; }
 }
 .work:hover .work__veil, .work:focus-visible .work__veil { background: rgba(68, 28, 30, 0.42); }
 .work__caption {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  position: static;
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
-  background: rgba(68, 28, 30, 0.78);
+  width: min(100%, 880px);
+  margin-top: 10px;
+  padding: 8px 2px 16px;
+  background: transparent;
   color: var(--cream);
-  transform: translateY(6px);
-  transition: transform 0.35s ease, background 0.35s ease;
-}
-.work:hover .work__caption, .work:focus-visible .work__caption {
-  transform: none;
-  background: var(--cream);
-  color: var(--purple);
 }
 .work__caption strong {
   font-family: var(--font-display);
@@ -1039,7 +1049,7 @@ body.nav-open { overflow: hidden; }
 }
 
 @media (max-width: 860px) {
-  .hero__wrap { padding: 24px 20px 180px; }
+  .hero__wrap { grid-template-columns: 1fr; padding: 28px 20px 36px; }
   .hero__mark { width: 72vw; right: -14vw; top: 16vh; }
   .hero__foot, .about__grid, .case-meta, .rates { grid-template-columns: 1fr; }
   .about__list { display: none; }

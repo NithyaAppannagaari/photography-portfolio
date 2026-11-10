@@ -128,11 +128,11 @@ export default function GalleryPage() {
       ) : (
         <>
           <header className="case-head" style={{ backgroundColor: work.color }} data-surface="dark">
-            <a className="back" href="/#works" aria-label="Back to works" onClick={back}>
+            <a className="back" href="/#works" aria-label="Back to previous pictures" onClick={back}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
             </a>
             <nav className="crumb" aria-label="Breadcrumb">
-              <a href="/#works" onClick={back}>All work</a>
+              <a href="/#works" onClick={back}>All pictures</a>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{work.title}</span>
             </nav>

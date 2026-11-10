@@ -4,7 +4,7 @@ import { INSTAGRAM } from '../content'
 
 const LINKS = [
   { href: '/#about', label: 'About' },
-  { href: '/#works', label: 'Work' },
+  { href: '/#works', label: 'Previous Pictures' },
   { href: '/#rates', label: 'Rates' },
   { href: '/#contact', label: 'Contact' },
 ] as const
