@@ -5,6 +5,8 @@ import ContactForm from './components/ContactForm'
 import Intro from './components/Intro'
 import Menu from './components/Menu'
 import Rates from './components/Rates'
+import aboutImg from './assets/about.webp'
+import aboutSize from './assets/about.webp?intrinsic'
 import { ABOUT, INSTAGRAM, SERVICES, WORKS, type Work } from './content'
 export default function HomePage() {
   const [params] = useSearchParams()
@@ -35,14 +37,26 @@ export default function HomePage() {
       <Menu />
       <section className="hero" id="home" data-surface="dark">
         <div className="hero__wrap">
-          <p className="hero__place">Berkeley</p>
-          <h1>Nithya Appannagaari</h1>
-          <p className="hero__note">I&apos;m Nithya, a student at Berkeley and photographer for clubs, grads, and events. Editing and digital gallery are included in rates. Be sure to scroll to view my previous work or book a shoot!</p>
-          <p className="hero__links">
-            <a className="text-link" href="#works">See the photographs</a>
-            <a className="text-link" href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
-            <a className="text-link" href="#rates">Rates</a>
-          </p>
+          <div className="hero__copy">
+            <p className="hero__place">Berkeley</p>
+            <h1>Nithya Appannagaari</h1>
+            <p className="hero__note">I&apos;m Nithya, a student at Berkeley and photographer for clubs, grads, and events. Editing and digital gallery are included in rates. Be sure to scroll to view my previous work or book a shoot!</p>
+            <p className="hero__links">
+              <a className="text-link" href="#works">See the photographs</a>
+              <a className="text-link" href={INSTAGRAM} target="_blank" rel="noopener">Instagram</a>
+              <a className="text-link" href="#rates">Rates</a>
+            </p>
+          </div>
+          <figure className="hero__portrait">
+            <img
+              src={aboutImg}
+              alt="Nithya Appannagaari holding her camera"
+              width={aboutSize.width}
+              height={aboutSize.height}
+              decoding="async"
+              fetchPriority="high"
+            />
+          </figure>
         </div>
       </section>
 
@@ -51,7 +65,7 @@ export default function HomePage() {
       <section className="about" id="about" data-surface="dark">
         <div className="about__wrap">
           <p className="about__kicker">About</p>
-          <h2>The work</h2>
+          <h2>About me</h2>
           <div className="about__text">
             {ABOUT.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
@@ -64,8 +78,14 @@ export default function HomePage() {
 
       <section className="selected" id="works" data-surface="dark">
         <p className="selected__kicker">Browse by category</p>
-        <h2 className="selected__title" id="work-grid" tabIndex={-1}>Showing: {label}</h2>
-        <p className="selected__hint">Pick a kind of shoot to filter the work</p>
+        <h2 className="selected__title" id="work-grid" tabIndex={-1}>
+          {current ? `Showing: ${label}` : 'Previous Pictures'}
+        </h2>
+        <p className="selected__hint">
+          {current
+            ? `Here are some previous ${label} pictures.`
+            : "Here are some previous pictures I've taken."}
+        </p>
       </section>
 
       <div className="works" data-surface="light">

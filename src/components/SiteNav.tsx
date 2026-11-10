@@ -6,7 +6,7 @@ import './SiteNav.css'
 const LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'works', label: 'Works' },
+  { id: 'works', label: 'Previous Pictures' },
   { id: 'pricing', label: 'Rates' },
   { id: 'contact', label: 'Contact' },
 ] as const

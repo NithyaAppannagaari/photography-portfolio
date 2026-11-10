@@ -33,7 +33,7 @@ export default function CategoryBar({ active, hidden = false, onPick }: Props) {
           <path d="m1 1 6.5 6.5L14 1" fill="none" stroke="currentColor" strokeWidth="1.6" />
         </svg>
       </p>
-      <p className="browse-bar__hint">Pick a kind of shoot to filter the work</p>
+      <p className="browse-bar__hint">Pick a kind of shoot to see those pictures</p>
       <div
         ref={row}
         className="browse-bar__pills"
@@ -48,7 +48,7 @@ export default function CategoryBar({ active, hidden = false, onPick }: Props) {
           aria-pressed={active === null}
           onClick={() => onPick(null)}
         >
-          All work <span>{total}</span>
+          All pictures <span>{total}</span>
         </button>
         {WORKS.map((work) => (
           <button
