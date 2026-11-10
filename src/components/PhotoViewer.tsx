@@ -73,7 +73,7 @@ export default function PhotoViewer({
     <div className="lightbox" role="dialog" aria-modal="true" aria-label={alt}>
       <button type="button" className="lightbox__backdrop" aria-label="Close" onClick={onClose} />
       {count > 1 ? (
-        <button type="button" className="lightbox__arrow lightbox__arrow--side" onClick={onPrev}>
+        <button type="button" className="lightbox__arrow lightbox__arrow--side" onClick={onPrev} aria-label="Previous picture">
           Prev
         </button>
       ) : <span className="lightbox__arrow lightbox__arrow--side" aria-hidden="true" />}
@@ -88,8 +88,8 @@ export default function PhotoViewer({
         <figcaption className="lightbox__bar">
           {count > 1 ? (
             <>
-              <button type="button" className="text-btn lightbox__inline" onClick={onPrev}>Prev</button>
-              <button type="button" className="text-btn lightbox__inline" onClick={onNext}>Next</button>
+              <button type="button" className="text-btn lightbox__inline" onClick={onPrev} aria-label="Previous picture">Prev</button>
+              <button type="button" className="text-btn lightbox__inline" onClick={onNext} aria-label="Next picture">Next</button>
             </>
           ) : null}
           <button ref={closeRef} type="button" className="text-btn" onClick={onClose}>Close</button>
@@ -98,7 +98,7 @@ export default function PhotoViewer({
         </figcaption>
       </figure>
       {count > 1 ? (
-        <button type="button" className="lightbox__arrow lightbox__arrow--side" onClick={onNext}>
+        <button type="button" className="lightbox__arrow lightbox__arrow--side" onClick={onNext} aria-label="Next picture">
           Next
         </button>
       ) : <span className="lightbox__arrow lightbox__arrow--side" aria-hidden="true" />}
